@@ -1,0 +1,225 @@
+{
+  "version": "1",
+  "scenarios": [
+    {
+      "id": "kani-rust-arithmetic", "version": "1.0.0",
+      "goal_tags": ["arithmetic", "functional-correctness"],
+      "title": "Bounded Rust integer kernel panic and arithmetic checks",
+      "languages": ["rust"], "patterns": ["function", "arithmetic"],
+      "goals": ["Check overflow, panics, and approved integer postconditions in a small kernel"],
+      "constraints": ["Isolatable sequential function", "Explicit input domain and unwind completeness"],
+      "hard_exclusions": ["ffi", "concurrency", "async", "assembly", "dynamic_dispatch"],
+      "questions": ["Which overflow semantics are intended?", "Are called dependencies and Rust features supported by the pinned Kani release?"],
+      "tool": "Kani", "method": "bounded-model-checking",
+      "alternatives": [{"tool": "Verus", "reason": "Deductive contracts for unbounded mathematical intent; requires supported-source adaptation"}, {"tool": "property-based tests", "reason": "Executable samples, not exhaustive verification"}],
+      "assurance": "Checks enabled safety properties and assertions for all inputs represented by a harness, subject to complete unwinding, models, assumptions, and tool soundness.",
+      "does_not_establish": ["Unbounded input sizes beyond harness bounds", "Correctness of unstated intent", "Concurrency correctness"],
+      "tool_version": "Unknown compatibility; pin Kani and its matching Rust toolchain after feature inspection.",
+      "sources": [{"url": "https://model-checking.github.io/kani/", "checked": "2026-11-05"}, {"url": "https://model-checking.github.io/kani/tutorial-loop-unwinding.html", "checked": "2026-11-05"}],
+      "examples": [{"url": "https://github.com/model-checking/kani/blob/main/docs/src/tutorial/loops-unwinding/src/lib.rs", "scope": "Official bounded harness tutorial; not reproduction evidence"}],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Resolve integer semantics, call graph, input domain, and release support", "prerequisites": [], "acceptance": ["Record source-backed intent and unsupported features", "Obtain explicit approval for inferred contracts"]},
+        {"key": "verify", "kind": "implementation", "property": "Check approved integer postconditions and absence of enabled panic/overflow failures in the declared harness domain", "prerequisites": ["inspect"], "acceptance": ["Pin toolchain and retain exact harness and commands", "Retain full output and successful unwinding assertions; report bounds and failures"]}
+      ]
+    },
+    {
+      "id": "kani-rust-slices", "version": "1.0.0",
+      "goal_tags": ["memory-safety", "functional-correctness"],
+      "title": "Bounded Rust slice and buffer indexing",
+      "languages": ["rust"], "patterns": ["function", "indexing"],
+      "goals": ["Find out-of-bounds access and check small-buffer functional assertions"],
+      "constraints": ["Finite buffer/input domain", "Cost grows with modeled size"],
+      "hard_exclusions": ["ffi", "concurrency", "async", "assembly", "dynamic_dispatch"],
+      "questions": ["What buffer sizes and preconditions are legitimate?", "Are loops completely unwound for that domain?"],
+      "tool": "Kani", "method": "bounded-model-checking",
+      "alternatives": [{"tool": "Verus", "reason": "Sequence specifications can cover arbitrary lengths after proof adaptation"}],
+      "assurance": "Enabled checks and assertions over the stated finite harness domain with complete unwinding.",
+      "does_not_establish": ["Correctness at larger buffer sizes", "Coverage of excluded dependencies or models"],
+      "tool_version": "Unknown compatibility; pin Kani/Rust and inspect allocation and library support.",
+      "sources": [{"url": "https://model-checking.github.io/kani/tutorial-loop-unwinding.html", "checked": "2026-11-05"}],
+      "examples": [{"url": "https://github.com/model-checking/kani/blob/main/docs/src/tutorial/loops-unwinding/src/lib.rs", "scope": "Official slice initialization tutorial; not executed here"}],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Resolve valid lengths, indexing intent, dependencies, and bounds", "prerequisites": [], "acceptance": ["Document length domain and all assumptions", "Inspect existing tests for off-by-one requirements"]},
+        {"key": "verify", "kind": "implementation", "property": "Check approved slice safety and postconditions for explicitly bounded lengths", "prerequisites": ["inspect"], "acceptance": ["Preserve counterexamples and exact bounds", "Require successful unwinding assertions and full check output"]}
+      ]
+    },
+    {
+      "id": "kani-rust-unsafe-memory", "version": "1.0.0",
+      "goal_tags": ["memory-safety"],
+      "title": "Isolated sequential Rust unsafe-memory harness",
+      "languages": ["rust"], "patterns": ["function", "unsafe"],
+      "goals": ["Check supported undefined-behavior classes in an isolated unsafe operation"],
+      "constraints": ["Explicit allocation, pointer validity, and aliasing assumptions", "Inspect tool UB coverage rather than claiming all UB is checked"],
+      "hard_exclusions": ["ffi", "concurrency", "async", "assembly", "dynamic_dispatch"],
+      "questions": ["Which UB checks are supported?", "Does the harness model real caller obligations without assuming away bugs?"],
+      "tool": "Kani", "method": "bounded-model-checking",
+      "alternatives": [{"tool": "Miri", "reason": "Dynamic UB detection for executed paths, not exhaustive proof"}],
+      "assurance": "Supported enabled UB checks over the modeled harness domain; coverage depends on the pinned Kani release.",
+      "does_not_establish": ["Absence of every Rust UB class", "Soundness of arbitrary unsafe abstractions or FFI"],
+      "tool_version": "Unknown compatibility; inspect the pinned release's UB and feature support.",
+      "sources": [{"url": "https://model-checking.github.io/kani/", "checked": "2026-11-05"}, {"url": "https://model-checking.github.io/kani/limitations.html", "checked": "2026-11-05"}],
+      "examples": [],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Map unsafe caller obligations and supported UB checks", "prerequisites": [], "acceptance": ["Inventory allocations, lifetimes, aliases, and boundary assumptions", "List unsupported UB checks explicitly"]},
+        {"key": "verify", "kind": "implementation", "property": "Check supported memory-safety obligations for the approved bounded unsafe harness", "prerequisites": ["inspect"], "acceptance": ["Retain harness, assumptions, exact command, tool versions, and complete output", "Do not label partial UB coverage complete memory-safety proof"]}
+      ]
+    },
+    {
+      "id": "verus-rust-integer-contract", "version": "1.0.0",
+      "goal_tags": ["arithmetic", "functional-correctness"],
+      "title": "Deductive contracts for an adaptable Rust integer kernel",
+      "languages": ["rust"], "patterns": ["function", "arithmetic"],
+      "goals": ["Prove approved pre/postconditions without enumerating bounded executions"],
+      "constraints": ["Willingness to adapt supported Rust into Verus", "Explicit machine-integer versus mathematical-integer semantics"],
+      "hard_exclusions": ["ffi", "unsafe", "async", "assembly", "dynamic_dispatch", "concurrency"],
+      "questions": ["Can the kernel and callees be represented in the supported subset?", "Who approves the mathematical contract and migration?"],
+      "tool": "Verus", "method": "deductive-verification",
+      "alternatives": [{"tool": "Kani", "reason": "Bounded harness checks may require less production-source adaptation"}],
+      "assurance": "Deductive verification of stated contracts for translated/adapted Verus code, subject to trusted specifications, external bodies, and the verifier/compiler trust boundary.",
+      "does_not_establish": ["Drop-in verification of arbitrary Rust", "Correctness of external bodies", "Correctness of unstated requirements or the compiler"],
+      "tool_version": "Unknown compatibility; pin a Verus release and required Rust toolchain; inspect every callee.",
+      "sources": [{"url": "https://verus-lang.github.io/verus/guide/", "checked": "2026-11-05"}],
+      "examples": [],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Establish a source-to-contract mapping and Verus subset feasibility", "prerequisites": [], "acceptance": ["Record trusted boundaries and migration scope", "Obtain approval for contracts and production adaptation"]},
+        {"key": "verify", "kind": "implementation", "property": "Deductively verify the approved integer pre/postconditions in adapted Verus source", "prerequisites": ["inspect"], "acceptance": ["Retain exact verifier output, version, source, and assumptions", "Inventory external_body, admits, and trusted declarations; do not hide proof gaps"]}
+      ]
+    },
+    {
+      "id": "verus-rust-sequence-invariant", "version": "1.0.0",
+      "goal_tags": ["memory-safety", "functional-correctness"],
+      "title": "Sequence specifications for an adaptable Rust buffer algorithm",
+      "languages": ["rust"], "patterns": ["function", "indexing"],
+      "goals": ["Prove length, indexing, and approved sequence postconditions using invariants"],
+      "constraints": ["Adaptation into supported Verus source", "Proof and loop-invariant authoring budget"],
+      "hard_exclusions": ["ffi", "unsafe", "async", "assembly", "dynamic_dispatch", "concurrency"],
+      "questions": ["What sequence relation defines success?", "Are container APIs supported or explicitly trusted?"],
+      "tool": "Verus", "method": "deductive-verification",
+      "alternatives": [{"tool": "Kani", "reason": "Finite buffers can be checked with smaller initial proof effort"}],
+      "assurance": "Proof of stated sequence invariants and postconditions in adapted Verus code under declared preconditions and trusted APIs.",
+      "does_not_establish": ["Arbitrary Rust library correctness", "An automatic proof of the original unadapted application"],
+      "tool_version": "Unknown compatibility; inspect release-specific container and borrowing support.",
+      "sources": [{"url": "https://verus-lang.github.io/verus/guide/", "checked": "2026-11-05"}],
+      "examples": [],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Resolve sequence semantics and supported container boundaries", "prerequisites": [], "acceptance": ["Map source operations to specification relations", "List adaptation and trusted API obligations"]},
+        {"key": "verify", "kind": "implementation", "property": "Prove the approved sequence relation with explicit loop invariants", "prerequisites": ["inspect"], "acceptance": ["Retain proof source, exact tool output, and trusted-boundary inventory", "Review correspondence to original behavior before integration"]}
+      ]
+    },
+    {
+      "id": "cbmc-c-buffer", "version": "1.0.0",
+      "goal_tags": ["memory-safety", "functional-correctness"],
+      "title": "Bounded C/C++ buffer memory safety",
+      "languages": ["c", "cpp"], "patterns": ["function", "indexing"],
+      "goals": ["Check array bounds, pointers, and approved buffer assertions"],
+      "constraints": ["Discover compilation flags, include paths, data model, and callee bodies", "Bound loops and allocations explicitly"],
+      "hard_exclusions": ["assembly", "concurrency", "ffi"],
+      "questions": ["Which compiler extensions and C++ features occur?", "Are environment stubs sound and loops completely unwound?"],
+      "tool": "CBMC", "method": "bounded-model-checking",
+      "alternatives": [{"tool": "sanitizers and fuzzing", "reason": "Executable bug finding; no exhaustive assurance outside executed inputs"}],
+      "assurance": "Enabled memory/UB checks and assertions over the modeled C/C++ harness domain with complete unwinding and specified platform model.",
+      "does_not_establish": ["Unbounded heap or loop behavior", "Correctness of unmodeled external implementations", "General support for every C++ feature"],
+      "tool_version": "Unknown target compatibility. CBMC 6 documentation changes standard-check and malloc defaults; pin version and flags.",
+      "sources": [{"url": "https://www.cprover.org/cbmc/", "checked": "2026-11-05"}],
+      "examples": [],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Recover buffer contracts, compilation model, and external-call boundaries", "prerequisites": [], "acceptance": ["Record include paths, flags, architecture, allocation semantics, and stubs", "Approve bounds and intended buffer behavior"]},
+        {"key": "verify", "kind": "implementation", "property": "Check approved buffer safety obligations in the finite CBMC harness", "prerequisites": ["inspect"], "acceptance": ["Enable and retain unwinding assertion results", "Retain exact command, flags, check inventory, bounds, and full output"]}
+      ]
+    },
+    {
+      "id": "cbmc-c-bitvector", "version": "1.0.0",
+      "goal_tags": ["arithmetic", "functional-correctness"],
+      "title": "C/C++ integer and bit-manipulation kernel",
+      "languages": ["c", "cpp"], "patterns": ["function", "bitwise"],
+      "goals": ["Check shifts, overflow policy, and approved bit-level assertions"],
+      "constraints": ["Explicit integer widths, signedness, and platform model", "Isolated kernel with modeled callees"],
+      "hard_exclusions": ["assembly", "concurrency", "ffi"],
+      "questions": ["What is the intended signed overflow policy?", "Which implementation-defined behaviors affect the contract?"],
+      "tool": "CBMC", "method": "bounded-model-checking",
+      "alternatives": [{"tool": "executable reference tests", "reason": "Differential samples can expose mismatches without proving all inputs"}],
+      "assurance": "Bit-precise enabled checks and assertions in the modeled harness domain with complete unwinding and explicit platform assumptions.",
+      "does_not_establish": ["Portability across unspecified data models", "Correctness outside harness assumptions"],
+      "tool_version": "Unknown target compatibility; pin CBMC, machine model, and enabled checks.",
+      "sources": [{"url": "https://www.cprover.org/cbmc/", "checked": "2026-11-05"}],
+      "examples": [],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Resolve bit-level requirements and implementation-defined behavior", "prerequisites": [], "acceptance": ["Record widths, signedness, compiler configuration, and requirements", "Inspect every called function and unsupported feature"]},
+        {"key": "verify", "kind": "implementation", "property": "Check approved bit-level assertions under the declared machine model", "prerequisites": ["inspect"], "acceptance": ["Retain exact command, machine model, enabled checks, and output", "Report all bounds, assumptions, failures, and unwinding completeness"]}
+      ]
+    },
+    {
+      "id": "tla-state-machine-safety", "version": "1.0.0",
+      "goal_tags": ["state-invariants"],
+      "title": "Separate state-machine model and finite safety exploration",
+      "languages": ["*"], "patterns": ["state_machine"],
+      "goals": ["Explore protocol/state invariants in an explicit finite model"],
+      "constraints": ["A separate abstract model is acceptable", "Explicit finite constants and implementation correspondence review"],
+      "hard_exclusions": [],
+      "questions": ["Which transitions and invariants are requirements?", "Which implementation behaviors does abstraction omit?"],
+      "tool": "TLC", "method": "explicit-state-model-checking",
+      "alternatives": [{"tool": "TLAPS", "reason": "Mechanically checked deductive TLA+ proofs are separate work, not a TLC result"}, {"tool": "stateful tests", "reason": "Check implementation traces but not exhaustive abstract state spaces"}],
+      "assurance": "Invariant checking for the explored finite TLA+ model and recorded configuration, subject to constraints and complete exploration.",
+      "does_not_establish": ["Implementation correctness without correspondence evidence", "An unbounded theorem", "Liveness from safety checks"],
+      "tool_version": "Unknown compatibility; pin TLC/TLA+ tools and Java; retain model configuration.",
+      "sources": [{"url": "https://lamport.azurewebsites.net/tla/tools.html", "checked": "2026-11-05"}, {"url": "https://github.com/tlaplus/Examples", "checked": "2026-11-05"}],
+      "examples": [{"url": "https://github.com/tlaplus/Examples", "scope": "Official corpus distinguishes TLC models and TLAPS proofs; not execution evidence"}],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Extract state variables, transitions, invariants, and abstraction boundary", "prerequisites": [], "acceptance": ["Link model elements to source and approved requirements", "Record omitted behavior and finite constants"]},
+        {"key": "verify", "kind": "implementation", "property": "Check approved safety invariants in a separate finite TLA+ model", "prerequisites": ["inspect"], "acceptance": ["Retain model, configuration, exact TLC command, counts, and full output", "Review model correspondence; label finite-model results, not implementation proofs"]}
+      ]
+    },
+    {
+      "id": "tla-concurrency-liveness", "version": "1.0.0",
+      "goal_tags": ["progress", "state-invariants"],
+      "title": "Separate concurrency model with fairness and progress obligations",
+      "languages": ["*"], "patterns": ["concurrency"],
+      "goals": ["Explore deadlock, starvation, and approved temporal progress properties"],
+      "constraints": ["Explicit scheduling/fairness model", "Manageable finite state space", "Separate model correspondence review"],
+      "hard_exclusions": [],
+      "questions": ["What progress guarantee is actually promised?", "Are weak or strong fairness assumptions justified by the implementation?"],
+      "tool": "TLC", "method": "explicit-state-model-checking",
+      "alternatives": [{"tool": "TLAPS", "reason": "Unbounded temporal reasoning needs separate proof effort"}, {"tool": "concurrency testing", "reason": "Implementation schedule exploration, not automatic model correspondence"}],
+      "assurance": "Safety/liveness checks explicitly configured over a finite TLA+ model under recorded fairness assumptions and completed exploration.",
+      "does_not_establish": ["Real scheduler fairness", "Unbounded process-count correctness", "Implementation race freedom"],
+      "tool_version": "Unknown compatibility; pin TLC and inspect temporal-property and symmetry settings.",
+      "sources": [{"url": "https://lamport.azurewebsites.net/tla/tools.html", "checked": "2026-11-05"}, {"url": "https://github.com/tlaplus/Examples", "checked": "2026-11-05"}],
+      "examples": [{"url": "https://github.com/tlaplus/Examples", "scope": "Official concurrency examples; no claim of local reproduction"}],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Resolve promised progress, fairness, and scheduling abstraction", "prerequisites": [], "acceptance": ["Link progress claims to approved requirements", "Explain why fairness assumptions are justified or unresolved"]},
+        {"key": "verify", "kind": "implementation", "property": "Explore approved temporal properties in a finite concurrent model", "prerequisites": ["inspect"], "acceptance": ["Retain fairness assumptions, configuration, exact command, and complete TLC output", "Distinguish deadlock checks, safety checks, liveness checks, and implementation correspondence"]}
+      ]
+    },
+    {
+      "id": "dafny-verified-kernel-codegen", "version": "1.0.0",
+      "goal_tags": ["arithmetic", "functional-correctness", "verified-source"],
+      "title": "Verified-source algorithm replacement and code generation",
+      "languages": ["*"], "patterns": ["function", "arithmetic"],
+      "goals": ["Specify and verify a small replacement kernel written in Dafny"],
+      "constraints": ["Explicit opt-in to verified-source replacement/code generation", "Review generated-language integration and compiler trust"],
+      "hard_exclusions": ["ffi", "concurrency", "assembly", "async"],
+      "questions": ["Is rewriting this kernel in Dafny acceptable?", "Which supported compilation target and integration boundary are required?"],
+      "tool": "Dafny", "method": "verified-source-codegen",
+      "alternatives": [{"tool": "native-language verifier", "reason": "Avoid rewriting where a supported native-language scenario exists"}],
+      "assurance": "Dafny verifies stated contracts of Dafny source; approved compilation can produce target-language code with separate integration and compiler trust obligations.",
+      "does_not_establish": ["Verification of arbitrary existing Rust/C/C++/other source", "Equivalence of replacement to existing code without a separate argument", "Correctness of unverified extern implementations"],
+      "tool_version": "Unknown compatibility; pin Dafny and a supported backend, runtime, and integration toolchain.",
+      "sources": [{"url": "https://dafny.org/", "checked": "2026-11-05"}, {"url": "https://dafny.org/latest/DafnyRef/DafnyRef", "checked": "2026-11-05"}],
+      "examples": [],
+      "evidence_status": "documented",
+      "work_items": [
+        {"key": "inspect", "kind": "evidence-gathering", "property": "Establish rewrite approval, contract, target backend, and equivalence obligations", "prerequisites": [], "acceptance": ["Explicitly approve verified-source adoption rather than native-source verification", "Document API, runtime, build, and trust boundaries"]},
+        {"key": "verify", "kind": "implementation", "property": "Verify the approved replacement in Dafny and review generated-code integration", "prerequisites": ["inspect"], "acceptance": ["Retain Dafny source, proof output, compiler/backend versions, and commands", "Provide separate correspondence and integration evidence; never label original code verified"]}
+      ]
+    }
+  ]
+}
