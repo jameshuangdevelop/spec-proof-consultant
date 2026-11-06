@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec-consultant.local/assessment.schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["version", "created_at", "analysis", "context", "profile", "catalog_digest", "matches", "coverage_gaps", "work_items", "approval", "limitations"],
+  "properties": {
+    "version": {"enum": ["1", "2"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "analysis": {"enum": ["static-provisional", "agent-reviewed"]},
+    "context": {"$ref": "#/$defs/context"},
+    "profile": {"$ref": "#/$defs/profile"},
+    "catalog_digest": {"$ref": "#/$defs/hash"},
+    "matches": {"type": "array", "items": {"$ref": "#/$defs/match"}},
+    "coverage_gaps": {"$ref": "#/$defs/texts"},
+    "work_items": {"type": "array", "items": {"$ref": "#/$defs/work"}},
+    "conclusions": {"type": "array", "items": {"$ref": "#/$defs/conclusion"}},
+    "approval": {
+      "type": "object", "additionalProperties": false, "required": ["policy", "grants"],
+      "properties": {"policy": {"$ref": "#/$defs/text"}, "grants": {"$ref": "#/$defs/texts"}}
+    },
+    "limitations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}}
+  },
+  "allOf": [
+    {"if": {"properties": {"version": {"const": "2"}}}, "then": {"required": ["conclusions"]}}
+  ],
+  "$defs": {
+    "component": {
+      "type": "object", "additionalProperties": false,
+      "required": ["property", "provenance", "requirement_refs", "disposition", "reason"],
+      "properties": {
+        "property": {"$ref": "#/$defs/text"},
+        "provenance": {"enum": ["requirement-backed", "inferred", "unresolved"]},
+        "requirement_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+        "disposition": {"enum": ["represented", "deferred", "rejected"]},
+        "reason": {"$ref": "#/$defs/text"}
+      }
+    },
+    "conclusion": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "root", "kind", "disposition", "reason", "property", "targets", "provenance", "requirement_refs", "assumptions", "exclusions", "unknowns", "work_item_ids", "related_to"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "root": {"$ref": "#/$defs/text"},
+        "kind": {"enum": ["opportunity", "evidence-only", "no-new-work"]},
+        "disposition": {"enum": ["represented", "deferred", "rejected"]},
+        "reason": {"$ref": "#/$defs/text"}, "property": {"$ref": "#/$defs/text"},
+        "targets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ref"}},
+        "provenance": {"enum": ["requirement-backed", "inferred", "unresolved"]},
+        "requirement_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+        "assumptions": {"$ref": "#/$defs/texts"}, "exclusions": {"$ref": "#/$defs/texts"},
+        "unknowns": {"$ref": "#/$defs/texts"},
+        "work_item_ids": {"$ref": "#/$defs/texts"}, "related_to": {"$ref": "#/$defs/texts"},
+        "property_components": {"type": "array", "items": {"$ref": "#/$defs/component"}},
+        "input_domain": {"$ref": "#/$defs/text"},
+        "postconditions": {"$ref": "#/$defs/texts"},
+        "counterexample_conditions": {"$ref": "#/$defs/texts"},
+        "existing_assurance": {"$ref": "#/$defs/text"},
+        "existing_assurance_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+        "compatibility": {
+          "type": "object", "additionalProperties": false, "required": ["status", "details"],
+          "properties": {
+            "status": {"enum": ["unknown", "catalog-gap", "unsupported-in-current-catalog", "not-applicable"]},
+            "details": {"$ref": "#/$defs/text"}
+          }
+        },
+        "incremental_value": {"$ref": "#/$defs/text"},
+        "method_plan": {"$ref": "#/$defs/text"},
+        "alternatives": {"type": "array", "items": {"$ref": "#/$defs/alternative"}},
+        "observations": {"$ref": "#/$defs/texts"}
+      }
+    },
+    "alternative": {
+      "type": "object", "additionalProperties": false, "required": ["tool", "reason"],
+      "properties": {"tool": {"$ref": "#/$defs/text"}, "reason": {"$ref": "#/$defs/text"}}
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rationale", "source_refs", "included_files", "excluded_files", "configuration", "compatibility"],
+      "properties": {
+        "rationale": {"$ref": "#/$defs/text"},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ref"}},
+        "included_files": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+        "excluded_files": {"$ref": "#/$defs/texts"},
+        "configuration": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+        "compatibility": {"const": "unknown"}
+      }
+    },
+    "context": {
+      "type": "object", "additionalProperties": false, "required": ["goals", "adoption"],
+      "properties": {
+        "goals": {
+          "type": "array", "uniqueItems": true,
+          "items": {"enum": ["memory-safety", "arithmetic", "functional-correctness", "state-invariants", "progress", "verified-source"]}
+        },
+        "adoption": {"enum": ["unknown", "no-production-changes", "source-adaptation"]}
+      }
+    },
+    "text": {"type": "string", "minLength": 1},
+    "texts": {"type": "array", "items": {"$ref": "#/$defs/text"}, "uniqueItems": true},
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["root", "path", "line", "symbol"],
+      "properties": {
+        "root": {"$ref": "#/$defs/text"}, "path": {"$ref": "#/$defs/text"},
+        "line": {"type": "integer", "minimum": 1},
+        "symbol": {"type": ["string", "null"]}
+      }
+    },
+    "signal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "line", "symbol", "basis"],
+      "properties": {
+        "kind": {"$ref": "#/$defs/text"}, "line": {"type": "integer", "minimum": 1},
+        "symbol": {"type": ["string", "null"]}, "basis": {"const": "heuristic"}
+      }
+    },
+    "file": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "language", "kind", "sha256", "lines", "signals"],
+      "properties": {
+        "path": {"$ref": "#/$defs/text"}, "language": {"$ref": "#/$defs/text"},
+        "kind": {"enum": ["source", "manifest", "configuration", "specification", "test", "other", "benchmark", "example"]},
+        "sha256": {"$ref": "#/$defs/hash"}, "lines": {"type": "integer", "minimum": 0},
+        "signals": {"type": "array", "items": {"$ref": "#/$defs/signal"}},
+        "symbols": {
+          "type": "array", "items": {
+            "type": "object", "additionalProperties": false, "required": ["name", "line", "end_line", "role"],
+            "properties": {
+              "name": {"$ref": "#/$defs/text"}, "line": {"type": "integer", "minimum": 1},
+              "end_line": {"type": "integer", "minimum": 1},
+              "role": {"enum": ["production", "test", "harness"]}
+            }
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object", "additionalProperties": false, "required": ["version", "roots"],
+      "properties": {
+        "version": {"enum": ["1", "2"]},
+        "roots": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/root"}}
+      }
+    },
+    "root": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "git", "changed_during_scan", "files", "languages", "dependencies", "uninspected", "limits", "coverage", "snapshot"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "path": {"$ref": "#/$defs/text"},
+        "git": {
+          "type": "object", "additionalProperties": false,
+          "required": ["available", "top_level", "revision", "dirty", "status_scope"],
+          "properties": {
+            "available": {"type": "boolean"}, "top_level": {"type": ["string", "null"]},
+            "revision": {"type": ["string", "null"]}, "dirty": {"type": ["boolean", "null"]},
+            "status_scope": {"$ref": "#/$defs/text"}
+          }
+        },
+        "changed_during_scan": {"type": "boolean"},
+        "files": {"type": "array", "items": {"$ref": "#/$defs/file"}},
+        "languages": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 1}},
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["manifest", "name", "relationship", "target"],
+            "properties": {
+              "manifest": {"$ref": "#/$defs/text"}, "name": {"$ref": "#/$defs/text"},
+              "relationship": {"$ref": "#/$defs/text"}, "target": {"type": ["string", "null"]}
+            }
+          }
+        },
+        "uninspected": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["path", "reason"],
+            "properties": {"path": {"$ref": "#/$defs/text"}, "reason": {"$ref": "#/$defs/text"}}
+          }
+        },
+        "limits": {
+          "type": "object", "additionalProperties": false,
+          "required": ["max_files", "max_bytes", "max_entries", "max_depth"],
+          "properties": {
+            "max_files": {"type": "integer", "minimum": 1},
+            "max_bytes": {"type": "integer", "minimum": 1},
+            "max_entries": {"type": "integer", "minimum": 1},
+            "max_depth": {"type": "integer", "minimum": 1}
+          }
+        },
+        "coverage": {"$ref": "#/$defs/text"}, "snapshot": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "match": {
+      "type": "object", "additionalProperties": false,
+      "required": ["root", "scenario", "scenario_version", "status", "reasons", "unknowns", "targets"],
+      "properties": {
+        "root": {"$ref": "#/$defs/text"}, "scenario": {"$ref": "#/$defs/text"},
+        "scenario_version": {"$ref": "#/$defs/text"},
+        "status": {"enum": ["candidate", "excluded", "more-information-required"]},
+        "reasons": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+        "unknowns": {"$ref": "#/$defs/texts"},
+        "targets": {"type": "array", "items": {"$ref": "#/$defs/ref"}}
+      }
+    },
+    "effort": {
+      "type": "object", "additionalProperties": false, "required": ["min_hours", "max_hours", "basis"],
+      "properties": {
+        "min_hours": {"type": "number", "minimum": 0},
+        "max_hours": {"type": "number", "minimum": 0},
+        "basis": {"$ref": "#/$defs/text"}
+      }
+    },
+    "work": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "title", "property", "targets", "provenance", "requirement_refs", "existing_assurance", "incremental_value", "scenario", "scenario_version", "tool", "method", "assurance", "does_not_establish", "alternatives", "assumptions", "exclusions", "unknowns", "priority", "priority_rationale", "confidence", "readiness", "depends_on", "likely_changed_files", "effort", "acceptance", "required_evidence", "scope", "result"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-zA-Z0-9-]+$"},
+        "kind": {"enum": ["evidence-gathering", "implementation"]},
+        "title": {"$ref": "#/$defs/text"}, "property": {"$ref": "#/$defs/text"},
+        "targets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ref"}},
+        "provenance": {"enum": ["requirement-backed", "inferred", "unresolved"]},
+        "requirement_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+        "existing_assurance": {"$ref": "#/$defs/text"},
+        "incremental_value": {"$ref": "#/$defs/text"},
+        "scenario": {"type": ["string", "null"], "minLength": 1},
+        "scenario_version": {"type": ["string", "null"], "minLength": 1},
+        "tool": {"enum": ["Kani", "Verus", "CBMC", "TLC", "Dafny", "native-tests", "source-inspection"]},
+        "method": {"enum": ["bounded-model-checking", "deductive-verification", "explicit-state-model-checking", "verified-source-codegen", "testing", "source-inspection"]},
+        "assurance": {"$ref": "#/$defs/text"},
+        "does_not_establish": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["tool", "reason"],
+            "properties": {"tool": {"$ref": "#/$defs/text"}, "reason": {"$ref": "#/$defs/text"}}
+          }
+        },
+        "assumptions": {"$ref": "#/$defs/texts"}, "exclusions": {"$ref": "#/$defs/texts"},
+        "unknowns": {"$ref": "#/$defs/texts"},
+        "priority": {"type": "integer", "minimum": 1, "maximum": 5},
+        "priority_rationale": {"$ref": "#/$defs/text"},
+        "confidence": {"enum": ["low", "medium", "high"]},
+        "readiness": {"enum": ["ready", "blocked", "done"]},
+        "depends_on": {"$ref": "#/$defs/texts"},
+        "likely_changed_files": {"$ref": "#/$defs/texts"},
+        "effort": {"$ref": "#/$defs/effort"},
+        "acceptance": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+        "required_evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+        "scope": {"enum": ["production", "harness", "separate-model"]},
+        "result": {"const": "not-run"},
+        "review": {"$ref": "#/$defs/review"}
+      }
+    }
+  }
+}
