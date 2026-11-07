@@ -10,6 +10,14 @@ This is an initial working version, not a universal proof-readiness detector.
 Static rules do not understand intent. Use the skill with your existing agent to
 inspect source, propose precise contracts, and resolve requirements.
 
+## One-session agent team
+
+Use `copilot --agent orchestrator` in this checkout. The orchestrator is the
+human-facing lead and delegates to the implementor, independent evaluator, and
+researcher without requiring extra terminals. See the
+[org chart, role boundaries, and startup prompt](docs/AGENT-ORGANIZATION.md).
+Contributions still require a new branch, pull request, and approval.
+
 ## Install
 
 Requires **Python 3.11+**, pip, and a POSIX platform (tested on macOS; uses
