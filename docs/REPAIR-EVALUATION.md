@@ -131,3 +131,31 @@ opportunity remains provisional. Approval legitimacy, semantic correctness,
 model correspondence and actual verification outcomes are not established by
 schema validation or these assessor tests. No accuracy, cost advantage, universal
 compatibility, target proof or benchmark superiority is claimed.
+
+## Independent canonical-handoff gaps (CH-1–CH-3)
+
+This bounded follow-up preserves the immutable initial evaluation report.
+The original six held-outs reproduced CH-1 (ready implementation with typed
+unknown linked compatibility), CH-2 (task-only guards missing from the report),
+and CH-3 (cross-root component citation accepted while top-level citation was
+rejected). Portable regressions failed before repair: six failures, ten passing
+controls.
+
+- CH-1: validation now rejects ready implementation linked to **any** conclusion
+  whose typed compatibility status is `unknown`, even with cleared task
+  unknowns/dependencies and synthetic grants. Ready evidence and blocked
+  implementation remain valid. No semantic prose is parsed; `result: not-run`
+  is not compatibility. Existing readiness without this blocker is preserved.
+- CH-2: the report includes a compact, task-identified projection of assumptions,
+  exclusions, unknowns, acceptance criteria, required evidence and scoped review.
+  It does not duplicate the full backlog's effort, alternatives or priority data.
+- CH-3: component requirement references use the same owning-root restriction as
+  top-level conclusion references, including archival validation. A valid hash
+  does not exempt a cross-root citation. No schema or catalog change is needed.
+
+All 16 new portable cases pass after repair, including same-root citation,
+ready-evidence, noncatalog/catalog readiness and CLI rejection controls.
+The schema has no `supported` compatibility status; positive readiness controls
+use existing valid structures with compatibility absent or `not-applicable`,
+not an invented certification state. These are product checks, not target proof,
+compatibility certification, independent reevaluation or approval to merge.
