@@ -143,9 +143,24 @@ def report(assessment: dict) -> str:
         ]
         lines.append("")
     lines += conclusions(assessment)
+    if assessment["work_items"]:
+        lines += ["## Task guards and evidence requirements", ""]
     for item in assessment["work_items"]:
-        if item.get("review"):
-            lines += [f"### Scoped eligibility evidence: {item['id']}", "", *scoped_review(item), ""]
+        lines += [
+            f"### {item['id']} ({item['kind']}, {item['readiness']})",
+            "",
+            f"Assumptions: {'; '.join(item['assumptions']) or 'none recorded'}.",
+            f"Exclusions: {'; '.join(item['exclusions']) or 'none recorded'}.",
+            f"Unknowns: {'; '.join(item['unknowns']) or 'none recorded'}.",
+            *scoped_review(item),
+            "",
+            "Acceptance criteria:",
+            *[f"- {criterion}" for criterion in item["acceptance"]],
+            "",
+            "Required evidence:",
+            *[f"- {evidence}" for evidence in item["required_evidence"]],
+            "",
+        ]
     lines += ["## Immutable discovery decisions (not endorsed semantic work)", ""]
     scenarios = {entry["id"]: entry for entry in catalog()["scenarios"]}
     for match in assessment["matches"]:

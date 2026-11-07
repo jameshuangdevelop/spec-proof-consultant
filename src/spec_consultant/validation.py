@@ -324,6 +324,12 @@ def validate_assessment(value: dict, *, check_sources: bool = True) -> None:
                 raise ValueError("conclusion links work for another root")
             if conclusion["kind"] == "evidence-only" and task["kind"] != "evidence-gathering":
                 raise ValueError("evidence-only conclusion must not introduce implementation work")
+            if (
+                conclusion.get("compatibility", {}).get("status") == "unknown"
+                and task["kind"] == "implementation"
+                and task["readiness"] == "ready"
+            ):
+                raise ValueError("conclusion compatibility is unknown; implementation cannot be ready")
         linked.update(work_ids)
         for ref in (
             conclusion["targets"] + conclusion["requirement_refs"] + conclusion.get("existing_assurance_refs", [])
@@ -336,6 +342,8 @@ def validate_assessment(value: dict, *, check_sources: bool = True) -> None:
         for component in conclusion.get("property_components", []):
             for ref in component["requirement_refs"]:
                 reference(ref)
+                if ref["root"] != conclusion["root"]:
+                    raise ValueError("conclusion evidence belongs to another root")
             if component["provenance"] == "requirement-backed" and not component["requirement_refs"]:
                 raise ValueError("requirement-backed component needs evidence")
     if value["version"] == "2" and value["analysis"] == "agent-reviewed":

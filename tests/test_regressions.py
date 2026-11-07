@@ -385,3 +385,133 @@ def test_reviewed_completeness_and_scope_cannot_authorize_silent_or_unsupported_
         value["approval"]["grants"] = [pilot["id"]]
     with pytest.raises(ValueError, match=message):
         validate_assessment(value)
+
+
+@pytest.mark.parametrize("scenario", ["kani-rust-arithmetic", None])
+@pytest.mark.parametrize("compatibility", [None, "not-applicable", "unknown"])
+def test_ch1_linked_compatibility_constrains_ready_implementation(tmp_path, scenario, compatibility):
+    value = source(tmp_path, {"lib.rs": "fn real(x:u8)->u8 { x + 1 }\n"})
+    targets = [ref("lib.rs", symbol="real")]
+    evidence = work("inspect", targets, scenario=scenario)
+    pilot = work("pilot", targets, scenario=scenario, kind="implementation")
+    pilot.update(readiness="ready", unknowns=[], depends_on=[])
+    record = conclusion("review", targets, [evidence, pilot])
+    # Unknown semantic prose and unexecuted results are not typed compatibility.
+    record["unknowns"] = ["Unrelated documentation status is unknown."]
+    if compatibility is not None:
+        record["compatibility"] = {"status": compatibility, "details": "Pinned integration not certified."}
+    reviewed(value, [evidence, pilot], [record])
+    value["approval"]["grants"] = [pilot["id"]]  # Synthetic record, not actual execution approval.
+    assert pilot["result"] == "not-run" and not pilot.get("review")
+    canonical = tmp_path / "canonical.json"
+    canonical.write_text(json.dumps(value))
+    out = tmp_path / "rendered"
+    if compatibility == "unknown":
+        with pytest.raises(ValueError, match="conclusion compatibility is unknown"):
+            validate_assessment(value)
+        assert main(["validate", str(canonical)]) == 2
+        assert main(["render", str(canonical), "--out", str(out)]) == 2
+        assert not out.exists()
+    else:
+        validate_assessment(value)
+        assert main(["validate", str(canonical)]) == 0
+        assert main(["render", str(canonical), "--out", str(out)]) == 0
+        assert "Initially ready work IDs: inspect, pilot." in (out / "orchestrator.md").read_text()
+
+
+def test_ch1_any_linked_unknown_blocks_only_ready_implementation(tmp_path):
+    value = source(tmp_path, {"lib.rs": "fn real(x:u8)->u8 { x + 1 }\n"})
+    targets = [ref("lib.rs", symbol="real")]
+    evidence = work("inspect", targets)
+    pilot = work("pilot", targets, kind="implementation")
+    record = conclusion("primary", targets, [evidence, pilot])
+    other = conclusion("integration", targets, [evidence, pilot])
+    other["compatibility"] = {"status": "unknown", "details": "Integration remains unconfirmed."}
+    reviewed(value, [evidence, pilot], [record, other])
+    pilot["depends_on"] = [evidence["id"]]
+    validate_assessment(value)  # Unknown compatibility permits ready evidence and blocked implementation.
+    assert "Initially ready work IDs: inspect." in artifacts(value, "/outside/canonical.json")["orchestrator.md"]
+    pilot.update(readiness="ready", depends_on=[], unknowns=[])
+    value["approval"]["grants"] = [pilot["id"]]
+    with pytest.raises(ValueError, match="conclusion compatibility is unknown"):
+        validate_assessment(value)
+
+
+def test_ch2_task_only_guards_and_evidence_survive_all_cli_projections(tmp_path):
+    value = source(tmp_path, {"ledger.py": "def debit(balance, amount):\n return balance - amount\n"})
+    targets = [ref("ledger.py", 1)]
+    evidence = work("inspect-ledger", targets, scenario=None)
+    pilot = work("test-ledger", targets, scenario=None, kind="implementation")
+    pilot["depends_on"] = [evidence["id"]]
+    for item in (evidence, pilot):
+        item.update(
+            assumptions=[f"{item['id']}: sequential calls with saved pre-balance."],
+            exclusions=[f"{item['id']}: never normalize an overdraft into an allowed debit."],
+            unknowns=[f"{item['id']}: atomicity observation after refusal signaling is clarified."],
+            acceptance=[f"{item['id']}: balance 5 debit 6 must refuse and preserve pre-balance 5."],
+            required_evidence=[f"{item['id']}: retain refusal observation and pre/post balance evidence."],
+        )
+    record = conclusion("ledger", targets, [evidence, pilot])
+    reviewed(value, [evidence, pilot], [record])
+    canonical = tmp_path / "canonical.json"
+    payload = json.dumps(value)
+    canonical.write_text(payload)
+    out = tmp_path / "rendered"
+    assert main(["validate", str(canonical)]) == 0
+    assert main(["render", str(canonical), "--out", str(out)]) == 0
+    assert canonical.read_text() == payload
+    for name in ("report.md", "backlog.md", "orchestrator.md"):
+        text = (out / name).read_text()
+        for item in (evidence, pilot):
+            for field in ("assumptions", "exclusions", "unknowns", "acceptance", "required_evidence"):
+                assert all(guard in text for guard in item[field]), (name, item["id"], field)
+    report = (out / "report.md").read_text()
+    assert "inspect-ledger (evidence-gathering, ready)" in report
+    assert "test-ledger (implementation, blocked)" in report
+    assert "Effort:" not in report  # Guard projection, not a second complete backlog.
+
+
+@pytest.mark.parametrize("citation", ["component", "top-level"])
+@pytest.mark.parametrize("citation_root", ["r1", "r2"])
+@pytest.mark.parametrize("check_sources", [True, False])
+def test_ch3_property_citations_share_conclusion_root_policy(tmp_path, citation, citation_root, check_sources):
+    roots = []
+    for name in ("alpha", "beta"):
+        root = tmp_path / name
+        root.mkdir()
+        (root / "kernel.c").write_text("unsigned first(unsigned *buffer) { return buffer[0] + 1; }\n")
+        (root / "REQUIREMENTS.md").write_text(f"Independent {name} requirements; no shared ownership.\n")
+        roots.append(str(root))
+    value = assess(profile(roots), adoption="no-production-changes")
+    targets = [ref("kernel.c", symbol="first")]
+    evidence = work("inspect-alpha", targets, scenario=None)
+    record = conclusion("alpha-contract", targets, [evidence])
+    requirement_refs = [ref("REQUIREMENTS.md", root=citation_root)]
+    if citation == "component":
+        record["property_components"] = [
+            {
+                "property": "Alpha buffer result",
+                "provenance": "requirement-backed",
+                "requirement_refs": requirement_refs,
+                "disposition": "represented",
+                "reason": "Cite inspected requirements.",
+            }
+        ]
+    else:
+        record.update(provenance="requirement-backed", requirement_refs=requirement_refs)
+    beta = conclusion("beta-stop", [ref("REQUIREMENTS.md", root="r2")], kind="no-new-work")
+    reviewed(value, [evidence], [record, beta])
+    canonical = tmp_path / "canonical.json"
+    canonical.write_text(json.dumps(value))
+    out = tmp_path / "rendered"
+    if citation_root == "r2":
+        with pytest.raises(ValueError, match="conclusion evidence belongs to another root"):
+            validate_assessment(value, check_sources=check_sources)
+        assert main(["validate", str(canonical)]) == 2
+        assert main(["render", str(canonical), "--out", str(out)]) == 2
+        assert not out.exists()
+    else:
+        validate_assessment(value, check_sources=check_sources)
+        assert main(["validate", str(canonical)]) == 0
+        assert main(["render", str(canonical), "--out", str(out)]) == 0
+        assert "r1:REQUIREMENTS.md:1" in (out / "report.md").read_text()
