@@ -134,10 +134,37 @@ as execution evidence.
 
 ## Installation
 
-Install the Spec Consultant package from its trusted source checkout:
-`python3.11 -m pip install /path/to/spec-consultant`.
-Copy this entire `proof-readiness` directory into a skill-discovery location
-supported by the user's agent, such as `.github/skills/proof-readiness/`.
-Copying the skill does not install the Python package. Perform installation before
-assessment, not as a target-dependency action. No network is needed after package
-dependencies are available.
+This directory is self-contained skill instructions, not the assessment runtime.
+Install/copy the entire directory into a location supported by the user's agent,
+or install the repository's skill-only plugin. Neither route installs Python
+dependencies or configures automatic runtime updates.
+
+The CLI requires Python 3.11+ (standard-library `tomllib`) and POSIX
+descriptor-relative, no-follow filesystem APIs for scanner symlink/race
+protections. These are runtime choices, not Agent Skills format requirements.
+macOS is tested; Linux requires the same APIs. Native Windows is unsupported;
+WSL is an untested POSIX workaround.
+
+Before assessment, create a dedicated environment outside all selected roots:
+
+```sh
+python3.11 -m venv "$HOME/.venvs/spec-consultant"
+"$HOME/.venvs/spec-consultant/bin/python" -m pip install \
+  "git+https://github.com/jameshuangdevelop/spec-proof-consultant.git@9ce3702cb69a0944cb4db4d5b318cf118cf00509"
+export PATH="$HOME/.venvs/spec-consultant/bin:$PATH"
+spec-consultant --help
+```
+
+This approved immutable source pin needs Git for installation and may download
+build/runtime dependencies; transitive dependencies are not locked. Alternatively,
+use the environment's `python -m pip install /path/to/trusted/spec-consultant`
+from a reviewed checkout, never from an assessed target. Git is optional for
+assessment. No network is needed after dependencies are available.
+
+Installation is a separate user-approved step, never a target-dependency action.
+If the CLI or dependencies are missing, stop and report the missing prerequisite;
+do not fabricate an assessment or use target-provided fallback code.
+For manual skill updates, review a new trusted source and replace the whole
+directory, preserving local edits separately. For plugin installs, use the
+client's update controls and verify its auto-update setting. Skill updates do not
+update the runtime; review runtime revisions independently before reinstalling.

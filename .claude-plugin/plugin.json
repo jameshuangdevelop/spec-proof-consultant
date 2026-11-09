@@ -1,0 +1,6 @@
+{
+  "name": "proof-readiness",
+  "version": "0.1.0",
+  "description": "Source-grounded specification and verification opportunity assessment with Spec Consultant.",
+  "skills": ["./.github/skills/proof-readiness"]
+}

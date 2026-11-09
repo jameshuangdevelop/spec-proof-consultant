@@ -18,24 +18,134 @@ researcher without requiring extra terminals. See the
 [org chart, role boundaries, and startup prompt](docs/AGENT-ORGANIZATION.md).
 Contributions still require a new branch, pull request, and approval.
 
-## Install
+## Get the skill
 
-Requires **Python 3.11+**, pip, and a POSIX platform (tested on macOS; uses
-descriptor-relative, no-follow file access available on macOS/Linux).
-Git is optional. From this checkout:
+Choose your agent below. Installing the skill/plugin **does not install the
+assessment runtime**. Install that separately before asking for an assessment.
+The [installation guide](docs/INSTALLATION.md) covers updates, compatibility,
+tested versus documented routes, and release prerequisites. Plugin commands below
+require these manifests to be merged into the remote repository first; they do
+not imply a published release or official marketplace listing.
+
+### Claude Code
+
+In Claude Code:
+
+```text
+/plugin marketplace add jameshuangdevelop/spec-proof-consultant
+/plugin install proof-readiness@spec-consultant
+```
+
+See [Claude's marketplace documentation](https://code.claude.com/docs/en/plugin-marketplaces).
+Check your marketplace's auto-update setting; do not assume it is enabled.
+
+### Codex
+
+The [documented plugin route](https://developers.openai.com/plugins/build/plugins):
 
 ```sh
-python3.11 -m venv .venv
-. .venv/bin/activate
-python -m pip install -e '.[dev]'
+codex plugin marketplace add jameshuangdevelop/spec-proof-consultant
+codex plugin add proof-readiness@spec-consultant
+```
+
+Not tested here with a Codex client. For a standalone skill instead, GitHub CLI
+supports the exact source path (no plugin manifests required):
+
+```sh
+gh skill install jameshuangdevelop/spec-proof-consultant \
+  .github/skills/proof-readiness/SKILL.md --agent codex --scope user
+```
+
+### GitHub Copilot (CLI and VS Code)
+
+For Copilot CLI, install the plugin directly:
+
+```sh
+copilot plugin install jameshuangdevelop/spec-proof-consultant
+```
+
+For a standalone skill used by CLI and VS Code, install to Copilot's user scope:
+
+```sh
+gh skill install jameshuangdevelop/spec-proof-consultant \
+  .github/skills/proof-readiness/SKILL.md --agent github-copilot --scope user
+```
+
+Restart/reload your client and confirm skill discovery. See
+[Copilot CLI plugins](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating)
+and [VS Code agent plugins](https://code.visualstudio.com/docs/agent-customization/agent-plugins).
+In VS Code, select **Chat: Install Plugin from Source** and enter
+`https://github.com/jameshuangdevelop/spec-proof-consultant`. Its plugin
+UI/settings are separate from Copilot CLI's plugin installation.
+
+### Gemini CLI (manual updates)
+
+The [documented skill installer](https://geminicli.com/docs/cli/skills/) defaults
+to user scope:
+
+```sh
+gemini skills install https://github.com/jameshuangdevelop/spec-proof-consultant.git \
+  --path .github/skills/proof-readiness
+```
+
+No automatic updates are configured here; review the new source and reinstall
+using your client's removal/overwrite workflow.
+
+### Any other agent or editable files (manual updates)
+
+The cross-agent [skills installer](https://github.com/vercel-labs/skills)
+documents installation from GitHub with an agent-selection prompt:
+
+```sh
+npx skills@latest add jameshuangdevelop/spec-proof-consultant --skill proof-readiness
+```
+
+This downloads/executes third-party tooling. The route is documentation-based,
+not yet reproduced here; review the installer before using it. It installs skill
+files, not the Python runtime. See the installation guide for updates.
+
+Alternatively, from a reviewed, trusted checkout, copy the **whole** canonical
+directory into your agent's documented skill location (replace the destination):
+
+```sh
+mkdir -p /path/to/agent-workspace/.github/skills
+cp -R .github/skills/proof-readiness /path/to/agent-workspace/.github/skills/
+```
+
+For clients without skill discovery, open
+[SKILL.md](.github/skills/proof-readiness/SKILL.md) as editable instructions.
+Copying does not configure updates; keep local edits separately and review/re-copy
+the directory when updating. Do this before assessment, never during a read-only
+assessment of that workspace.
+
+## Install the assessment runtime
+
+The CLI requires **Python 3.11+**, pip, and POSIX filesystem APIs. These are
+implementation requirements, **not Agent Skills format requirements**.
+Python provides the offline scanner/validator; 3.11 supplies standard-library
+`tomllib`. Descriptor-relative `os.open`, `O_NOFOLLOW`, and `O_DIRECTORY` support
+the scanner's symlink/race protections. macOS is tested; Linux has the required
+APIs but is not claimed tested here. Native Windows is not supported; WSL is an
+untested POSIX workaround, not a native Windows compatibility promise.
+
+Use a dedicated virtual environment **outside assessed roots**. This pins the
+runtime source to an existing approved commit, independently of skill updates:
+
+```sh
+python3.11 -m venv "$HOME/.venvs/spec-consultant"
+"$HOME/.venvs/spec-consultant/bin/python" -m pip install \
+  "git+https://github.com/jameshuangdevelop/spec-proof-consultant.git@9ce3702cb69a0944cb4db4d5b318cf118cf00509"
+export PATH="$HOME/.venvs/spec-consultant/bin:$PATH"
 spec-consultant --help
 ```
 
-For runtime-only installation, use `python -m pip install .` instead of the
-editable/dev install. The only direct runtime dependency is `jsonschema`.
-Install the package from a trusted checkout, not from code being assessed.
-After dependencies are installed, assessment needs no network. Nothing is
-published, pushed, or scheduled by this package.
+This installation needs Git and may download build/runtime dependencies;
+transitive dependencies are not locked. Alternatively, in a trusted checkout,
+use that environment's `python -m pip install .`. Git is optional for assessment.
+The only direct runtime dependency is `jsonschema`. There is no PyPI/npm release.
+After dependencies are installed, assessment needs no network. If the runtime or
+dependencies are unavailable, stop and report that prerequisite; do not fabricate
+an assessment or execute a target-provided substitute.
 
 ## Assess repositories
 
@@ -213,20 +323,12 @@ reproduce them, and no recommendation accuracy was measured.
 See [catalog contribution and evaluation](docs/CATALOG.md). There is no autonomous
 research system, hosted service, frontend, vector database, or proprietary SDK.
 
-## Install the Agent Skill
+## Use the skill
 
-After installing the trusted package, copy the complete skill directory into the
-skill location supported by your agent. For an agent discovering `.github/skills`:
-
-```sh
-mkdir -p /path/to/agent-workspace/.github/skills
-cp -R .github/skills/proof-readiness /path/to/agent-workspace/.github/skills/
-```
-
-Do this **before** assessing that workspace, not as a modification during assessment.
-The [skill](.github/skills/proof-readiness/SKILL.md) uses official Agent Skills YAML
+The [skill](.github/skills/proof-readiness/SKILL.md) uses Agent Skills YAML
 frontmatter and an agent-neutral workflow: profile, retrieve local scenarios,
-inspect source/tests/specs, propose contracts, validate, and render. Ask your agent:
+inspect source/tests/specs, propose contracts, validate, and render. After
+installing the skill and runtime, ask your agent:
 
 > Use proof-readiness to assess `/absolute/repo`. Keep discovery bounded, detail at
 > most three scenarios, and write outputs to `/outside/roots/assessment`. Do not
@@ -254,7 +356,12 @@ See [example interpretation](examples/README.md).
 
 ## Development
 
+From a trusted checkout (not an assessed target):
+
 ```sh
+python3.11 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e '.[dev]'
 python -m pytest -q
 ruff check .
 ruff format --check .

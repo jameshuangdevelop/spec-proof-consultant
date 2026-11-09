@@ -1,0 +1,12 @@
+{
+  "name": "spec-consultant",
+  "owner": {
+    "name": "Spec Consultant"
+  },
+  "plugins": [
+    {
+      "name": "proof-readiness",
+      "source": "./"
+    }
+  ]
+}
