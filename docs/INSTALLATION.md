@@ -142,8 +142,10 @@ An optional external installer documents:
 npx skills@latest add jameshuangdevelop/spec-proof-consultant --skill proof-readiness
 ```
 
-This downloads/executes third-party tooling; it is **not required**, was not
-installed or run here, and discovery against a published release is unverified.
+This downloads/executes third-party tooling and is **not required**. Independent
+evaluation installed published `skills` **1.7.6** into scratch and exercised
+local-root/direct-directory copying and the offline `npx` wrapper. This exact
+remote command, `@latest`, and discovery against a project release remain untested.
 See its [commands and update workflow](https://github.com/vercel-labs/skills/blob/main/docs/commands.md).
 Review/trust that tooling independently. If discovery fails, use the exact
 [canonical directory](https://github.com/jameshuangdevelop/spec-proof-consultant/tree/main/.github/skills/proof-readiness)
@@ -152,7 +154,7 @@ discovery.
 
 ## GitHub CLI standalone updates and pinning
 
-GitHub CLI supports an exact path even outside conventional skill directories:
+GitHub CLI documents an exact remote path even outside conventional skill directories:
 
 ```sh
 gh skill install jameshuangdevelop/spec-proof-consultant \
@@ -170,6 +172,13 @@ no release tag is assumed here. Pinned skills are skipped by updates unless
 explicitly unpinned. `gh` injects source-tracking frontmatter; an installed copy
 is therefore not byte-identical to source. Updates can replace local edits.
 No scheduled updater is installed.
+
+Local mode differs: with **gh 2.102.0**, `--from-local` with the exact
+`.github/skills/proof-readiness/SKILL.md` selection fails even with
+`--allow-hidden-dirs`. Independent evaluation succeeded with a local checkout
+plus the skill name and `--allow-hidden-dirs`, or the canonical skill directory
+as source with `--all`. These local results neither test nor demonstrate failure
+of the remote commands above.
 
 ## Runtime requirements: why Python and POSIX?
 
@@ -227,20 +236,36 @@ There is currently no GitHub release or PyPI/npm publication. The runtime comman
 above uses an already existing immutable revision; it does not depend on these
 unmerged manifests.
 
-Available CLI help was inspected with Copilot CLI **1.0.107** and GitHub CLI
-**2.102.0**. With Copilot CLI, `copilot --plugin-dir /path/to/this/checkout plugin
-list` discovered `proof-readiness (v0.1.0)` without invoking a model. This checks
-local plugin discovery, not skill activation or remote installation.
-Automated product tests check manifest consistency, a single canonical skill,
-and relocation/local-link closure. Those checks do not certify client
-installation, model behavior, or agent compliance. No remote installation or
-external installer was run for this contribution. Claude Code, Codex, Gemini CLI
-and VS Code were unavailable; their routes are documentation-based. No minimum
-agent versions are invented.
+Independent evaluation of commit **891949f** on macOS arm64 observed:
+
+- Copilot CLI **1.0.107** discovered exactly one enabled plugin skill using
+  `--plugin-dir`, including after relocation of only the manifest and skill
+  bundle. A manifest-only negative case did not discover the skill.
+- GitHub CLI **2.102.0** installed from local sources by hidden-aware skill name
+  and direct directory, including personal Copilot/Codex paths. Copilot
+  discovered the personal skill; this is not a Codex client test. The local
+  exact-path asymmetry is recorded above.
+- Published `skills` **1.7.6**, with Node **24.21.0**/npm **11.19.0**, copied the
+  skill from local root/direct-directory sources in isolated scratch paths;
+  its offline `npx` wrapper was also exercised. Scratch paths are write
+  containment, not a security sandbox.
+- A wheel built from the approved runtime revision was installed offline into
+  scratch. With Python **3.11.18** and trusted dependencies, installed CLI
+  assess/validate/freshness/render checks passed, as did output-inside-target
+  rejection. This did not test the remote pip command or fresh dependency resolution.
+- 22 selected product tests and Ruff checks passed, covering distribution, CLI,
+  and retained-evidence regressions. These are bounded checks, not proof of
+  assessment correctness, model behavior, or agent compliance.
+
+The exact README remote commands, remote updates, project-release discovery,
+and model activation remain untested. Claude Code, Codex, Gemini CLI and VS Code
+executables were unavailable; their routes remain documentation/source-based.
+No Linux/WSL/native Windows runs or minimum agent versions are claimed.
 
 Before public release or catalog submission:
 
-- [ ] Independently evaluate this contribution and obtain PR approval/merge.
+- [ ] Review the independent evaluation and this docs follow-up; obtain PR
+      approval/merge. Bounded local evaluation is not release or human approval.
 - [ ] Reproduce the remote install and update paths on each claimed client;
       record client versions, source revisions, settings, and discovered skills.
 - [ ] Verify runtime/skill compatibility at the intended immutable release ref.

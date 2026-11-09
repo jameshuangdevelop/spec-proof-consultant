@@ -100,9 +100,11 @@ documents installation from GitHub with an agent-selection prompt:
 npx skills@latest add jameshuangdevelop/spec-proof-consultant --skill proof-readiness
 ```
 
-This downloads/executes third-party tooling. The route is documentation-based,
-not yet reproduced here; review the installer before using it. It installs skill
-files, not the Python runtime. See the installation guide for updates.
+This downloads/executes third-party tooling; review the installer before using it.
+Independent evaluation exercised published `skills` **1.7.6** with local sources,
+including its offline `npx` wrapper, not this exact remote command or `@latest`.
+It installs skill files, not the Python runtime. See the installation guide for
+validation limits and updates.
 
 Alternatively, from a reviewed, trusted checkout, copy the **whole** canonical
 directory into your agent's documented skill location (replace the destination):
