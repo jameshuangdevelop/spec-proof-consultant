@@ -1,0 +1,6 @@
+# Trusted builder/runtime inputs. Resolve to requirements.lock before building.
+PyInstaller==6.22.3
+pyinstaller-hooks-contrib==2026.7
+jsonschema==4.26.0
+setuptools==82.0.1
+wheel==0.46.3

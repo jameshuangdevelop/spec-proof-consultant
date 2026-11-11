@@ -1,0 +1,32 @@
+name: Build runtime evaluation artifacts (no publication)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  macos-arm64:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Isolated locked builder
+        run: |
+          python -m venv "$RUNNER_TEMP/runtime-builder"
+          "$RUNNER_TEMP/runtime-builder/bin/python" -m pip install --require-hashes --only-binary=:all: -r packaging/requirements-macos-arm64.lock
+      - name: Build unqualified evaluation artifacts
+        run: |
+          "$RUNNER_TEMP/runtime-builder/bin/python" packaging/build.py --development --output "$RUNNER_TEMP/runtime-artifacts"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: proof-readiness-macos-arm64-unqualified
+          path: |
+            ${{ runner.temp }}/runtime-artifacts/dist/*
+            ${{ runner.temp }}/runtime-artifacts/proof-readiness-macos-arm64.zip
+            ${{ runner.temp }}/runtime-artifacts/artifact-manifest.json
+            ${{ runner.temp }}/runtime-artifacts/commands.json
+            ${{ runner.temp }}/runtime-artifacts/source-files.json
+            ${{ runner.temp }}/runtime-artifacts/native-analysis.toc

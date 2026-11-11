@@ -1,0 +1,144 @@
+#!/bin/sh
+# Trusted installation only. Never copy this launcher out of an assessed target.
+set -eu
+PATH=/usr/bin:/bin
+export PATH
+umask 077
+fail() { printf '%s\n' "spec-consultant launcher: $*" >&2; exit 2; }
+hash() { /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/shasum -a 256 "$1" | /usr/bin/cut -d ' ' -f 1; }
+# Physical paths are required for storage; root aliases are resolved first.
+physical_dir() { (CDPATH= cd -P -- "$1" && /bin/pwd -P); }
+outside() {
+    oldifs=$IFS; IFS='
+'
+    for r in $roots; do
+        [ "$r" != / ] || fail "root / leaves no external storage"
+        case "$1/" in "$r/"*) fail "path overlaps selected root: $1";; esac
+    done
+    IFS=$oldifs
+}
+safe_dir() {
+    case "$1" in /*) ;; *) fail "absolute physical directory required: $1";; esac
+    actual=$(physical_dir "$1") || fail "directory does not exist: $1"
+    [ "$actual" = "$1" ] || fail "symlink/noncanonical storage directory: $1"
+    outside "$actual"
+}
+safe_file() {
+    [ ! -L "$1" ] && [ -f "$1" ] || fail "regular nonsymlink file required: $1"
+    safe_dir "${1%/*}"
+    outside "$1"
+}
+roots=
+cache=
+source_file=
+download=no
+manifest=
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --root)
+            [ "$#" -ge 2 ] || fail "--root needs a directory"
+            case "$2" in *'
+'*|*'|'*) fail "unsupported root characters";; esac
+            r=$(physical_dir "$2") || fail "invalid root"
+            roots="${roots}${roots:+
+}$r"; shift 2;;
+        --cache) [ "$#" -ge 2 ] || fail "--cache needs a path"; cache=$2; shift 2;;
+        --manifest) [ "$#" -ge 2 ] || fail "--manifest needs a path"; manifest=$2; shift 2;;
+        --from) [ "$#" -ge 2 ] || fail "--from needs a file"; source_file=$2; shift 2;;
+        --allow-download) download=yes; shift;;
+        prepare|status|run) operation=$1; shift; break;;
+        *) fail "expected --root DIR --cache DIR [--from FILE|--allow-download] prepare|status|run";;
+    esac
+done
+[ -n "$roots" ] && [ -n "$cache" ] && [ -n "${operation:-}" ] || fail "explicit roots, cache and operation required"
+case "$cache" in *'
+'*|*'|'*) fail "unsupported cache characters";; esac
+# Refuse alternate $0 resolution via a target PATH or symlinked installation.
+case "$0" in /*) launcher=$0;; *) fail "invoke the absolute trusted launcher path";; esac
+safe_file "$launcher"
+skill=${launcher%/scripts/*}
+safe_dir "$skill"
+[ -n "$manifest" ] || manifest=$skill/runtime-manifest
+safe_file "$manifest"
+if [ -e "$cache" ] || [ -L "$cache" ]; then
+    safe_dir "$cache"
+    case "$(/usr/bin/stat -f '%u:%Lp' "$cache")" in "$(/usr/bin/id -u):700") ;; *) fail "cache must be owned by current user with mode 700";; esac
+else
+    safe_dir "${cache%/*}"
+    outside "$cache"
+fi
+case "$(/usr/bin/uname -s):$(/usr/bin/uname -m)" in
+    Darwin:arm64) platform=macos-arm64;;
+    *) fail "unsupported platform; no qualified runtime";;
+esac
+sha=; asset=; url=; seen=no
+{
+    IFS= read -r header || fail "empty manifest"
+    [ "$header" = spec-runtime-v1 ] || fail "invalid manifest header"
+    while IFS= read -r line || [ -n "$line" ]; do
+        case "$line" in ''|'#'*) continue;; esac
+        # A small data grammar, never shell source/eval.
+        IFS='|' read -r p h a u extra <<EOF
+$line
+EOF
+        [ -z "$extra" ] && [ -n "$u" ] || fail "invalid manifest fields"
+        [ "$line" = "$p|$h|$a|$u" ] || fail "invalid manifest separators"
+        case "$p" in macos-arm64) ;; *) fail "unsupported manifest platform";; esac
+        case "$h" in *[!0-9a-f]*|'') fail "invalid digest";; esac
+        [ "${#h}" -eq 64 ] || fail "invalid digest length"
+        case "$a" in ''|*[!a-zA-Z0-9._-]*|.*) fail "invalid asset basename";; esac
+        case "$u" in -) ;; https://*) case "$u" in *latest*|*'?'*|*'#'*) fail "URL must identify an immutable version";; esac;; *) fail "HTTPS required";; esac
+        [ "$seen" = no ] || fail "duplicate manifest entry"
+        seen=yes
+        if [ "$p" = "$platform" ]; then sha=$h; asset=$a; url=$u; fi
+    done
+} < "$manifest"
+[ -n "$sha" ] || fail "release not published/prepared for $platform"
+binary=$cache/$sha
+verified() {
+    safe_file "$1"
+    [ "$(hash "$1")" = "$sha" ] || fail "runtime digest mismatch (no execution)"
+}
+if [ "$operation" != prepare ]; then
+    [ -z "$source_file" ] && [ "$download" = no ] || fail "provisioning options only allowed with prepare"
+    [ -e "$binary" ] || fail "cache miss; request permission and prepare first (no network)"
+    verified "$binary"
+    if [ "$operation" = status ]; then printf '%s\n' "verified $platform $sha"; exit 0; fi
+else
+    [ "$#" -eq 0 ] || fail "unexpected prepare arguments"
+    if [ -e "$binary" ]; then verified "$binary"; printf '%s\n' "already prepared: $binary"; exit 0; fi
+    if [ -n "$source_file" ]; then
+        verified "$source_file"
+    elif [ -f "$skill/runtime/$asset" ]; then
+        source_file=$skill/runtime/$asset
+        verified "$source_file"
+    else
+        [ "$download" = yes ] || fail "no bundled/local runtime; download requires explicit --allow-download consent"
+        [ "$url" != - ] || fail "release not published; no approved download URL"
+    fi
+fi
+# All checks above are read-only. Ignore HOME/TMPDIR and target cwd/config.
+if [ ! -d "$cache" ]; then /bin/mkdir -m 700 "$cache" || fail "cannot create private cache"; fi
+safe_dir "$cache"
+temp=$(/usr/bin/mktemp -d "$cache/.runtime.XXXXXXXX") || fail "cannot create external private temp"
+trap '/bin/rm -rf -- "$temp"' EXIT HUP INT TERM
+if [ "$operation" = prepare ]; then
+    if [ -n "$source_file" ]; then /bin/cp "$source_file" "$temp/runtime"
+    else
+        /usr/bin/env -i PATH=/usr/bin:/bin HOME="$temp" /usr/bin/curl --disable \
+            --fail --silent --show-error --proto '=https' --tlsv1.2 --max-time 300 \
+            --location --max-redirs 5 --proto-redir '=https' \
+            --output "$temp/runtime" "$url" || fail "download failed"
+    fi
+    verified "$temp/runtime"
+    /bin/chmod 700 "$temp/runtime"
+    # Hard link is atomic and never replaces an existing/concurrent cache entry.
+    if ! /bin/ln "$temp/runtime" "$binary" 2>/dev/null; then verified "$binary"; fi
+    printf '%s\n' "prepared: $binary"
+    exit 0
+fi
+verified "$binary"
+cd /
+/usr/bin/env -i PATH=/usr/bin:/bin LC_ALL=C HOME="$temp" TMPDIR="$temp" \
+    SPEC_CONSULTANT_LAUNCHER="$launcher" SPEC_CONSULTANT_CACHE="$cache" \
+    SPEC_CONSULTANT_ROOTS="$roots" "$binary" "$@"

@@ -1,0 +1,4 @@
+spec-runtime-v1
+# platform|sha256|bundled basename|immutable HTTPS URL or -
+# No published/prepared runtime is approved in this source checkout.
+# The builder generates a matching manifest in the offline skill artifact.

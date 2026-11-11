@@ -20,6 +20,15 @@ Contributions still require a new branch, pull request, and approval.
 
 ## Install
 
+For an interpreter-and-dependencies-included skill artifact, see
+[Bundled runtime](docs/BUNDLED-RUNTIME.md). Generated macOS ARM64 evaluation
+bundles work offline without Python/uv; publication and release qualification
+remain pending. The source skill fails closed until an approved runtime is
+prepared, and downloads require explicit prior user consent. Add the entire
+trusted skill outside assessed roots, not just its `SKILL.md`.
+
+The following is the alternative source/developer installation:
+
 Requires **Python 3.11+**, pip, and a POSIX platform (tested on macOS; uses
 descriptor-relative, no-follow file access available on macOS/Linux).
 Git is optional. From this checkout:

@@ -1,7 +1,7 @@
 ---
 name: proof-readiness
 description: Assess existing repositories for useful specifications and verification opportunities with Spec Consultant's curated catalog. Use for proof-readiness assessments, source-grounded contract proposals, prioritized verification backlogs, and repository-specific agent handoffs.
-compatibility: Requires Python 3.11+ and the spec-consultant CLI. Git is optional. Assessments are offline and require no model credentials or proprietary agent SDK.
+compatibility: Offline skill bundles carry their interpreter and dependencies on qualified macOS ARM64. Source CLI alternatively requires Python 3.11+. Git is optional; no model credentials or proprietary agent SDK.
 metadata:
   version: "0.1.0"
 ---
@@ -30,21 +30,43 @@ requires an explicit user request and revised CLI limits. Preserve coverage note
 
 ## Workflow
 
+Use the **absolute trusted installation** launcher, not a target executable or
+an executable found on target PATH. Before any operation declare **every** selected
+root, including for catalog/schema/status/prepare. Choose an absolute physical
+cache path outside all roots, with an existing nonsymlink parent; existing cache
+must be owned by the user with mode 700. Do not assume HOME or TMPDIR is safe.
+For example (set these paths from the actual user's selections):
+
+```sh
+SC=/absolute/trusted/proof-readiness/scripts/spec-consultant
+CACHE=/absolute/external/private-runtime-cache
+ROOT=/absolute/repository
+sc() { "$SC" --cache "$CACHE" --root "$ROOT" run "$@"; }
+"$SC" --cache "$CACHE" --root "$ROOT" status
+```
+
+Add a separate `--root /absolute/other-root` to **every** launcher invocation and
+the `sc` function for multiple roots. Paths containing spaces must stay quoted.
+On cache miss, follow Installation below; never silently download or fall back
+to target Python, uv, scripts, or configuration. Examples below use `sc`; a
+separately installed source CLI retains `spec-consultant freshness` and other
+original commands. Do not use the shorthand until preparation succeeds.
+
 1. Establish selected roots, goals, adoption constraints, and the project's approval
    policy from the actual user. If absent, use read-only discovery only; leave
    inferred implementation blocked. Choose an output directory outside every root.
    Profile without executing target code:
 
    ```sh
-   spec-consultant profile /absolute/repository /absolute/other-root -o /outside/roots/profile.json
+   sc profile "$ROOT" -o /outside/roots/profile.json
    ```
 
 2. Retrieve the **local curated** scenarios and explicit rules:
 
    ```sh
-   spec-consultant catalog --profile /outside/roots/profile.json
-   spec-consultant assess --profile /outside/roots/profile.json --out /outside/roots/assessment
-   spec-consultant schema assessment
+   sc catalog --profile /outside/roots/profile.json
+   sc assess --profile /outside/roots/profile.json --out /outside/roots/assessment
+   sc schema assessment
    ```
 
    The initial canonical `assessment.json` is static-provisional. Matching requires
@@ -110,9 +132,9 @@ requires an explicit user request and revised CLI limits. Preserve coverage note
 6. Validate and regenerate **all** projections:
 
    ```sh
-   spec-consultant validate /outside/roots/assessment/assessment.json
-   spec-consultant freshness /outside/roots/assessment/assessment.json
-   spec-consultant render /outside/roots/assessment/assessment.json --out /outside/roots/assessment
+   sc validate /outside/roots/assessment/assessment.json
+   sc freshness /outside/roots/assessment/assessment.json
+   sc render /outside/roots/assessment/assessment.json --out /outside/roots/assessment
    ```
 
    Never hand-edit the report/backlog/orchestrator as separate truths. Validation
@@ -134,10 +156,45 @@ as execution evidence.
 
 ## Installation
 
-Install the Spec Consultant package from its trusted source checkout:
+Add the **whole** trusted `proof-readiness` skill directory to an agent-supported
+skill location **outside all assessed roots**. A generated platform skill archive
+includes the raw one-file engine, interpreter, dependencies, local catalog/schemas,
+notices, and matching reviewed manifest. It needs no Python, uv, or PATH edits.
+Do not install into a repository that will itself be assessed.
+
+One-time offline preparation verifies the bundled engine before copying it into
+private external storage (use the explicit paths/roots established above):
+
+```sh
+"$SC" --cache "$CACHE" --root "$ROOT" prepare
+sc runtime-info
+```
+
+For an already downloaded approved raw engine use `--from /absolute/external/file`
+**before** `prepare`. Local files must also match the trusted manifest digest;
+never execute a target-supplied binary or adopt a target-supplied manifest.
+The source-distributed skill intentionally contains **no published approved
+runtime entries** yet: it stops with “release not published/prepared”, not a
+fabricated URL or digest.
+
+If a reviewed matching immutable HTTPS runtime entry is available but the binary
+is absent, explain the version, platform, source identity and download destination,
+and ask the user for permission **before**:
+
+```sh
+"$SC" --cache "$CACHE" --root "$ROOT" --allow-download prepare
+```
+
+Without that flag there is no download. `run` and `status` never use the network
+or silently repair corrupt caches. Refusal means stop without provisioning.
+Every execution rechecks SHA-256 and uses a private external extraction directory.
+Unsupported platforms, corrupt files, unsafe storage, permission/noexec or
+Gatekeeper failures mean stop; never escalate privilege, remove quarantine,
+disable Gatekeeper, or improvise a target executable fallback.
+
+Source CLI installation remains available separately from a trusted checkout:
 `python3.11 -m pip install /path/to/spec-consultant`.
-Copy this entire `proof-readiness` directory into a skill-discovery location
-supported by the user's agent, such as `.github/skills/proof-readiness/`.
-Copying the skill does not install the Python package. Perform installation before
-assessment, not as a target-dependency action. No network is needed after package
-dependencies are available.
+That alternative requires Python/dependencies; copying the source skill alone
+does not install them. Bundle artifacts remain unqualified for publication until
+platform/provenance/license review. Checksums anchor a reviewed installation, not
+a same-user tamper sandbox, code-signing certificate or legal certification.

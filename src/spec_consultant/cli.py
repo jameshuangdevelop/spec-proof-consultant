@@ -12,6 +12,7 @@ from pathlib import Path
 from .matcher import ADOPTION, GOALS, assess, assessment_context, match_scenarios
 from .profiler import profile
 from .render import artifacts
+from .runtime import check_declared_roots, runtime_info
 from .validation import (
     catalog,
     freshness,
@@ -59,6 +60,7 @@ def parser() -> argparse.ArgumentParser:
         description="Offline, provisional specification opportunity assessment",
     )
     commands = result.add_subparsers(dest="command", required=True)
+    commands.add_parser("runtime-info", help="Machine-readable interpreter, build, data and notices identity")
     for name in ("profile", "assess"):
         command = commands.add_parser(name)
         command.add_argument("roots", nargs="+" if name == "profile" else "*")
@@ -99,6 +101,10 @@ def parser() -> argparse.ArgumentParser:
 
 
 def run(args: argparse.Namespace) -> int:
+    check_declared_roots(args)
+    if args.command == "runtime-info":
+        print(dump(runtime_info()), end="")
+        return 0
     if args.command in {"profile", "assess"}:
         if args.command == "assess" and args.profile_file:
             if args.roots:

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import shlex
 
+from .runtime import handoff_invocation
 from .validation import catalog
 
 
@@ -232,6 +233,7 @@ def backlog(assessment: dict) -> str:
 
 
 def prompt(assessment: dict, canonical_path: str) -> str:
+    invocation = handoff_invocation(assessment)
     ready = [item["id"] for item in assessment["work_items"] if item["readiness"] == "ready"]
     # JSON is delimited as untrusted evidence, never interpolated into shell program text.
     payload = json.dumps(assessment, indent=2, ensure_ascii=True)
@@ -246,8 +248,8 @@ def prompt(assessment: dict, canonical_path: str) -> str:
             "do not execute implementation work; manually re-establish content hashes and approval first.",
             "Freshness command (read-only; command proposal, not execution evidence):",
             "```sh",
-            f"spec-consultant freshness {shlex.quote(canonical_path)}",
-            f"spec-consultant validate {shlex.quote(canonical_path)}",
+            f"{invocation} freshness {shlex.quote(canonical_path)}",
+            f"{invocation} validate {shlex.quote(canonical_path)}",
             "```",
             "Before work, compare every selected root's Git revision AND dirty status, observed file "
             "hashes, limits, and exclusions against the embedded assessment. A commit SHA alone never "
