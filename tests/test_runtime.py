@@ -2,6 +2,7 @@ import hashlib
 import json
 import os
 import platform
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -47,7 +48,9 @@ def install(tmp_path):
 
     def invoke(*args, **env):
         return subprocess.run(
-            [*base, *args], text=True, capture_output=True,
+            [*base, *args],
+            text=True,
+            capture_output=True,
             env={**os.environ, "HOME": str(root), "TMPDIR": str(root), "PATH": str(root), **env},
         )
 
@@ -89,9 +92,93 @@ def test_boundary_alias_manifest_and_wrong_digest_fail_closed(install):
     assert "invalid digest" in invoke("status").stderr
     overlap = subprocess.run(
         ["/bin/sh", str(launcher), "--root", str(launcher.parents[2]), "--cache", str(cache), "status"],
-        text=True, capture_output=True,
+        text=True,
+        capture_output=True,
     )
     assert "overlaps" in overlap.stderr
+
+
+@pytest.mark.parametrize("name", ["[a]", "*", "?"])
+@pytest.mark.parametrize("multiple_roots", [False, True])
+@pytest.mark.parametrize("existing_cache", [False, True])
+def test_literal_glob_roots_reject_inside_cache_and_allow_outside(
+    install, tmp_path, name, multiple_roots, existing_cache
+):
+    _, ordinary_root, cache, engine, digest, _, launcher = install
+    root = tmp_path / name
+    root.mkdir()
+    (tmp_path / "a").mkdir()  # A sibling matching each literal root's glob.
+    (root / "source.txt").write_text("read-only target data\n")
+    inside = root / "cache"
+    if existing_cache:
+        inside.mkdir(mode=0o700)
+    bundled = launcher.parents[1] / "runtime"
+    bundled.mkdir()
+    (bundled / "engine").write_bytes(engine.read_bytes())
+    roots = [ordinary_root, root] if multiple_roots else [root]
+    root_args = [arg for selected in roots for arg in ("--root", str(selected))]
+    before = sorted(
+        (p.relative_to(root), p.stat().st_mode, p.read_bytes() if p.is_file() else None) for p in root.rglob("*")
+    )
+
+    def invoke(storage, operation):
+        return subprocess.run(
+            ["/bin/sh", str(launcher), *root_args, "--cache", str(storage), operation],
+            cwd=tmp_path,
+            env={"PATH": str(root), "HOME": str(root), "TMPDIR": str(root)},
+            capture_output=True,
+            text=True,
+        )
+
+    rejected = invoke(inside, "prepare")
+    assert rejected.returncode == 2, rejected
+    assert "overlaps selected root" in rejected.stderr
+    assert inside.exists() == existing_cache
+    prepared = invoke(cache, "prepare")
+    assert prepared.returncode == 0, prepared.stderr
+    assert (cache / digest).read_bytes() == engine.read_bytes()
+    assert invoke(cache, "status").returncode == 0
+    run = invoke(cache, "run")  # Only the trusted external fixture engine executes.
+    assert run.returncode == 0, run.stderr
+    assert str(root) not in run.stdout
+    assert not list(cache.glob(".runtime.*"))
+    after = sorted(
+        (p.relative_to(root), p.stat().st_mode, p.read_bytes() if p.is_file() else None) for p in root.rglob("*")
+    )
+    assert after == before
+    assert list(ordinary_root.iterdir()) == []
+
+
+@pytest.mark.parametrize("boundary", ["installation", "manifest", "local-runtime"])
+def test_literal_glob_root_protects_other_storage_boundaries(install, tmp_path, boundary):
+    _, _, cache, engine, _, manifest, launcher = install
+    root = tmp_path / "[a]"
+    root.mkdir()
+    (tmp_path / "a").mkdir()
+    options = []
+    if boundary == "installation":
+        skill = root / "skill"
+        shutil.copytree(launcher.parents[1], skill)
+        launcher = skill / "scripts/spec-consultant"
+    elif boundary == "manifest":
+        copied = root / "runtime-manifest"
+        copied.write_bytes(manifest.read_bytes())
+        options = ["--manifest", str(copied)]
+    else:
+        copied = root / "engine"
+        copied.write_bytes(engine.read_bytes())
+        options = ["--from", str(copied)]
+    before = {p.relative_to(root): p.read_bytes() for p in root.rglob("*") if p.is_file()}
+    result = subprocess.run(
+        ["/bin/sh", str(launcher), "--root", str(root), "--cache", str(cache), *options, "prepare"],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 2, result
+    assert "overlaps selected root" in result.stderr
+    assert not cache.exists()
+    assert {p.relative_to(root): p.read_bytes() for p in root.rglob("*") if p.is_file()} == before
 
 
 def test_unpublished_and_noconsent_leave_no_storage(install):
@@ -131,15 +218,32 @@ def test_download_boundary_contract(install, tmp_path, download_result):
     assert not record.exists()
     assert not cache.exists()
     result = invoke(
-        "--allow-download", "prepare", HTTPS_PROXY="http://untrusted.invalid",
-        CURL_HOME=str(tmp_path), CURL_CA_BUNDLE="/untrusted/ca",
+        "--allow-download",
+        "prepare",
+        HTTPS_PROXY="http://untrusted.invalid",
+        CURL_HOME=str(tmp_path),
+        CURL_CA_BUNDLE="/untrusted/ca",
     )
     call = json.loads(record.read_text())
     args = call["args"]
     assert args == [
-        "--disable", "--fail", "--silent", "--show-error", "--proto", "=https",
-        "--tlsv1.2", "--max-time", "300", "--location", "--max-redirs", "5",
-        "--proto-redir", "=https", "--output", args[-2], url,
+        "--disable",
+        "--fail",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "300",
+        "--location",
+        "--max-redirs",
+        "5",
+        "--proto-redir",
+        "=https",
+        "--output",
+        args[-2],
+        url,
     ]
     output = Path(args[-2])
     assert output.name == "runtime"

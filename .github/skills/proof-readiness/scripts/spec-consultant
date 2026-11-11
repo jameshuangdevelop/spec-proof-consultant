@@ -1,6 +1,7 @@
 #!/bin/sh
 # Trusted installation only. Never copy this launcher out of an assessed target.
-set -eu
+# Selected paths are literal; newline-only root splitting must not expand globs.
+set -efu
 PATH=/usr/bin:/bin
 export PATH
 umask 077

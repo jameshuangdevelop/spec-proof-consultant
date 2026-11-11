@@ -27,7 +27,8 @@ def main() -> None:
     def fingerprint() -> dict:
         return {
             str(p): hashlib.sha256(p.read_bytes()).hexdigest()
-            for root in roots for p in root.rglob("*")
+            for root in roots
+            for p in root.rglob("*")
             if p.is_file() and not p.is_symlink() and ".git" not in p.relative_to(root).parts
         }
 
@@ -44,8 +45,15 @@ def main() -> None:
 
     def run(command: list[str], expected: int = 0, child_env: dict | None = None) -> str:
         result = subprocess.run(command, env=child_env or env, capture_output=True, text=True, cwd="/")
-        records.append({"command": command, "env": child_env or env, "returncode": result.returncode,
-                        "stdout": result.stdout, "stderr": result.stderr})
+        records.append(
+            {
+                "command": command,
+                "env": child_env or env,
+                "returncode": result.returncode,
+                "stdout": result.stdout,
+                "stderr": result.stderr,
+            }
+        )
         (output / "commands.json").write_text(json.dumps(records, indent=2))
         assert result.returncode == expected, records[-1]
         return result.stdout
@@ -89,8 +97,21 @@ def main() -> None:
     (fake_root / ".curlrc").write_text("url = https://example.invalid/never-fetch\n")
     (fake_root / "lib.rs").write_text("pub fn f(x: u8) -> u8 { x + 1 }\n")
     fake_env = {**env, "PATH": str(fake_root), "HOME": str(fake_root), "TMPDIR": str(fake_root)}
-    run([str(launcher), "--cache", str(cache), "--root", str(fake_root), "run",
-         "assess", str(fake_root), "--out", str(output / "fake-target-assessment")], child_env=fake_env)
+    run(
+        [
+            str(launcher),
+            "--cache",
+            str(cache),
+            "--root",
+            str(fake_root),
+            "run",
+            "assess",
+            str(fake_root),
+            "--out",
+            str(output / "fake-target-assessment"),
+        ],
+        child_env=fake_env,
+    )
     assert not marker.exists()
     invalid = output / "invalid.json"
     invalid.write_text("{}")

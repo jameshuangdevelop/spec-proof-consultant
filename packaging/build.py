@@ -40,8 +40,15 @@ def main() -> None:
 
     def run(command: list[str], cwd: Path = root) -> str:
         result = subprocess.run(command, cwd=cwd, env=env, capture_output=True, text=True)
-        records.append({"command": command, "cwd": str(cwd), "returncode": result.returncode,
-                        "stdout": result.stdout, "stderr": result.stderr})
+        records.append(
+            {
+                "command": command,
+                "cwd": str(cwd),
+                "returncode": result.returncode,
+                "stdout": result.stdout,
+                "stderr": result.stderr,
+            }
+        )
         (output / "commands.json").write_text(json.dumps(records, indent=2))
         if result.returncode:
             raise RuntimeError(f"command failed; see {output / 'commands.json'}: {command}")
@@ -79,7 +86,8 @@ def main() -> None:
         if dist.version != expected:
             raise ValueError(f"builder dependency differs from lock: {name}")
         texts = [
-            f for f in dist.files or []
+            f
+            for f in dist.files or []
             if any(part.endswith(".dist-info") for part in f.parts)
             and f.name.lower().startswith(("license", "copying", "notice", "authors"))
         ]
@@ -94,14 +102,21 @@ def main() -> None:
     notices.append("\n===== Python (includes third-party notices) =====\n" + python_license.read_text())
     (data / "THIRD-PARTY-NOTICES.txt").write_text("\n".join(notices))
     info = {
-        "format": 1, "source_revision": revision, "source_dirty": bool(status), "source_status": status,
+        "format": 1,
+        "source_revision": revision,
+        "source_dirty": bool(status),
+        "source_status": status,
         "source_files_sha256": hashlib.sha256(json.dumps(file_hashes, sort_keys=True).encode()).hexdigest(),
-        "launcher_sha256": sha(launcher), "lock_sha256": sha(lock),
-        "python": sys.version, "interpreter_executable": str(Path(sys.executable).resolve()),
+        "launcher_sha256": sha(launcher),
+        "lock_sha256": sha(lock),
+        "python": sys.version,
+        "interpreter_executable": str(Path(sys.executable).resolve()),
         "interpreter_executable_sha256": sha(Path(sys.executable).resolve()),
-        "platform": platform.platform(), "target": "macos-arm64",
+        "platform": platform.platform(),
+        "target": "macos-arm64",
         "dependencies": {name: metadata.version(name) for name in notice_inventory},
-        "notice_inventory": notice_inventory, "python_license_sha256": sha(python_license),
+        "notice_inventory": notice_inventory,
+        "python_license_sha256": sha(python_license),
         "release_qualified": False,
         "release_gates": [
             "native-library provenance and notice inventory require independent review",
@@ -113,14 +128,35 @@ def main() -> None:
     (data / "runtime-build.json").write_text(json.dumps(info, indent=2))
     run([sys.executable, "-m", "pip", "install", "--no-deps", "--no-build-isolation", str(snapshot)], output)
     dist = output / "dist"
-    run([
-        sys.executable, "-m", "PyInstaller", "--onefile", "--console", "--noupx", "--clean",
-        "--name", "spec-consultant-macos-arm64", "--distpath", str(dist),
-        "--workpath", str(output / "work"), "--specpath", str(output),
-        "--collect-data", "spec_consultant", "--collect-data", "jsonschema_specifications",
-        "--copy-metadata", "spec-consultant", "--copy-metadata", "jsonschema",
-        str(snapshot / "packaging/entrypoint.py"),
-    ], output)
+    run(
+        [
+            sys.executable,
+            "-m",
+            "PyInstaller",
+            "--onefile",
+            "--console",
+            "--noupx",
+            "--clean",
+            "--name",
+            "spec-consultant-macos-arm64",
+            "--distpath",
+            str(dist),
+            "--workpath",
+            str(output / "work"),
+            "--specpath",
+            str(output),
+            "--collect-data",
+            "spec_consultant",
+            "--collect-data",
+            "jsonschema_specifications",
+            "--copy-metadata",
+            "spec-consultant",
+            "--copy-metadata",
+            "jsonschema",
+            str(snapshot / "packaging/entrypoint.py"),
+        ],
+        output,
+    )
     binary = dist / "spec-consultant-macos-arm64"
     # Preserve the collected native inventory and load commands for later notice/provenance review.
     shutil.copy2(output / "work/spec-consultant-macos-arm64/Analysis-00.toc", output / "native-analysis.toc")
@@ -143,9 +179,7 @@ def main() -> None:
                 bundle.write(path, str(path.relative_to(output)))
     external = {
         "build": info,
-        "artifacts": {
-            p.name: {"sha256": sha(p), "bytes": p.stat().st_size} for p in (binary, archive)
-        },
+        "artifacts": {p.name: {"sha256": sha(p), "bytes": p.stat().st_size} for p in (binary, archive)},
         "skill_manifest_sha256": sha(skill / "runtime-manifest"),
     }
     (output / "artifact-manifest.json").write_text(json.dumps(external, indent=2))
