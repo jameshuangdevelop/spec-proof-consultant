@@ -161,8 +161,15 @@ The workflow retains manual `workflow_dispatch` and also runs on ordinary
 `pull_request` events for relevant source, packaging, skill, workflow, example,
 project metadata and license changes. It checks out the exact PR head, builds
 unqualified macOS ARM64 evaluation artifacts, then runs `packaging/check_bundle.py`
-against that build and trusted read-only `examples/rust-buffer`, with check output
-under `RUNNER_TEMP`. Available build/check evidence is uploaded even on failure;
+against that build's exact `proof-readiness-macos-arm64.zip` and trusted read-only
+`examples/rust-buffer`, with new private check output under `RUNNER_TEMP`. The
+checker validates relative ZIP members under `proof-readiness` (rejecting
+traversal, duplicate paths, symlinks and special files), extracts the whole archive
+into that output, and restores archived executable bits. Both launcher and direct
+engine smoke commands use those installed ZIP bytes, never the pre-ZIP skill or
+`dist/` staging directories. A missing/corrupt ZIP or missing/non-executable
+launcher or engine fails without a staging fallback. Available build/check
+evidence is uploaded even on failure;
 it is qualification evidence, not a public release. The workflow never tags,
 releases, publishes packages or receives write permissions/secrets, and checkout
 does not persist credentials. No installed automatic hooks, services or updater
