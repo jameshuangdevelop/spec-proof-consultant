@@ -1,14 +1,28 @@
 name: Build runtime evaluation artifacts (no publication)
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'packaging/**'
+      - '.github/skills/proof-readiness/**'
+      - '.github/workflows/build-runtime-bundles.yml'
+      - 'examples/rust-buffer/**'
+      - 'pyproject.toml'
+      - 'LICENSE'
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   macos-arm64:
     runs-on: macos-15
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
@@ -20,7 +34,15 @@ jobs:
       - name: Build unqualified evaluation artifacts
         run: |
           "$RUNNER_TEMP/runtime-builder/bin/python" packaging/build.py --development --output "$RUNNER_TEMP/runtime-artifacts"
+      - name: Check built bundle against trusted read-only example
+        timeout-minutes: 10
+        run: |
+          "$RUNNER_TEMP/runtime-builder/bin/python" packaging/check_bundle.py \
+            --build "$RUNNER_TEMP/runtime-artifacts" \
+            --root "$GITHUB_WORKSPACE/examples/rust-buffer" \
+            --output "$RUNNER_TEMP/runtime-check"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: proof-readiness-macos-arm64-unqualified
           path: |
@@ -30,3 +52,4 @@ jobs:
             ${{ runner.temp }}/runtime-artifacts/commands.json
             ${{ runner.temp }}/runtime-artifacts/source-files.json
             ${{ runner.temp }}/runtime-artifacts/native-analysis.toc
+            ${{ runner.temp }}/runtime-check/**

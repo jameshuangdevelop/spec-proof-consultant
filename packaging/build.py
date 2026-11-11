@@ -16,6 +16,13 @@ import sysconfig
 import zipfile
 from pathlib import Path
 
+from native_provenance import (
+    inspect_origin,
+    native_inventory,
+    retain_evidence,
+    wheel_origins,
+)
+
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -97,9 +104,69 @@ def main() -> None:
         for item in texts:
             notices.append(f"\n===== {name} {dist.version}: {item} =====\n" + dist.locate_file(item).read_text())
     python_license = Path(sysconfig.get_path("stdlib")) / "LICENSE.txt"
-    if not python_license.is_file():
-        raise ValueError("release gate: interpreter LICENSE.txt unavailable")
-    notices.append("\n===== Python (includes third-party notices) =====\n" + python_license.read_text())
+    interpreter_gates = []
+    if python_license.is_file() and python_license.stat().st_size:
+        notices.append(
+            "\n===== Python top-level license (not complete incorporated-code notices) =====\n"
+            + python_license.read_text()
+        )
+    else:
+        interpreter_gates.append("interpreter top-level LICENSE.txt missing/empty; coverage unresolved")
+    # Data-only discovery from this interpreter's native files and Mach-O load commands.
+    # Do not infer collected files from Homebrew formula runtime_dependencies.
+    wheels = wheel_origins(metadata.distribution("rpds-py"))
+    stdlib = Path(sysconfig.get_path("stdlib"))
+    framework = stdlib.parent.parent / "Python"
+    pending = list((stdlib / "lib-dynload").glob("*.so")) + [Path(p) for p in wheels]
+    if framework.is_file():
+        pending.append(framework)
+    else:
+        libdir, library = sysconfig.get_config_var("LIBDIR"), sysconfig.get_config_var("LDLIBRARY")
+        if libdir and library and (Path(libdir) / library).is_file():
+            pending.append(Path(libdir) / library)
+    candidates = {}
+    discovery_gaps = []
+    while pending:
+        source = pending.pop().resolve()
+        if str(source) in candidates:
+            continue
+        candidates[str(source)] = inspect_origin(source, wheels)
+        if not source.is_file():
+            discovery_gaps.append(f"missing discovery source: {source}")
+            continue
+        loads = run(["/usr/bin/otool", "-L", str(source)], output)
+        for line in loads.splitlines()[1:]:
+            dependency = line.strip().split(" (", 1)[0]
+            if dependency.startswith(("/usr/lib/", "/System/Library/")):
+                continue
+            if dependency.startswith("/"):
+                pending.append(Path(dependency))
+            else:
+                discovery_gaps.append(f"unresolved pre-freeze load path in {source.name}: {dependency}")
+    native_evidence = output / "native-provenance-evidence"
+    evidence_records = retain_evidence(list(candidates.values()), native_evidence)
+    seen_texts = set()
+    for origin in candidates.values():
+        for text in origin["notice_texts"]:
+            if text["sha256"] not in seen_texts:
+                seen_texts.add(text["sha256"])
+                notices.append(
+                    f"\n===== Native local text: {origin['component']} {origin['version']}: "
+                    f"{Path(text['path']).name}; sha256={text['sha256']} =====\n" + Path(text["realpath"]).read_text()
+                )
+    discovery = {
+        "format": 1,
+        "scope": "pre-freeze candidates, NOT the final collected inventory",
+        "sources": list(candidates.values()),
+        "discovery_gaps": sorted(set(discovery_gaps)),
+        "release_qualified": False,
+    }
+    discovery_path = data / "native-notice-discovery.json"
+    discovery_path.write_text(json.dumps(discovery, indent=2))
+    # Keep wheel SBOM bytes both inside the frozen package and in external evidence.
+    for name, record in evidence_records.items():
+        if "sboms" in Path(record["path"]).parts:
+            shutil.copy2(native_evidence / name, data / ("native-" + name))
     (data / "THIRD-PARTY-NOTICES.txt").write_text("\n".join(notices))
     info = {
         "format": 1,
@@ -116,13 +183,19 @@ def main() -> None:
         "target": "macos-arm64",
         "dependencies": {name: metadata.version(name) for name in notice_inventory},
         "notice_inventory": notice_inventory,
-        "python_license_sha256": sha(python_license),
+        "python_license_sha256": sha(python_license) if not interpreter_gates else None,
+        "native_notices": {
+            "discovery_sha256": sha(discovery_path),
+            "scope": "pre-freeze local texts only; not complete static/transitive coverage",
+            "final_inventory": "external native-inventory.json sidecar, NOT embedded; match binary_sha256",
+        },
         "release_qualified": False,
         "release_gates": [
             "native-library provenance and notice inventory require independent review",
             "interpreter distribution provenance is recorded, not reproducibly pinned",
             "platform qualification, license review and publication approval pending",
-        ],
+        ]
+        + interpreter_gates,
         "signing": "PyInstaller macOS ad-hoc only; not Developer ID signed or notarized",
     }
     (data / "runtime-build.json").write_text(json.dumps(info, indent=2))
@@ -160,6 +233,14 @@ def main() -> None:
     binary = dist / "spec-consultant-macos-arm64"
     # Preserve the collected native inventory and load commands for later notice/provenance review.
     shutil.copy2(output / "work/spec-consultant-macos-arm64/Analysis-00.toc", output / "native-analysis.toc")
+    from PyInstaller.archive.readers import CArchiveReader
+
+    inventory = native_inventory(
+        output / "native-analysis.toc", binary, candidates, wheels, CArchiveReader(str(binary))
+    )
+    inventory["evidence_files"] = retain_evidence(inventory["entries"], native_evidence)
+    inventory_path = output / "native-inventory.json"
+    inventory_path.write_text(json.dumps(inventory, indent=2))
     run(["/usr/bin/otool", "-L", str(binary)], output)
     run(["/usr/bin/codesign", "-d", "--verbose=4", str(binary)], output)
     skill = output / "proof-readiness"
@@ -171,6 +252,9 @@ def main() -> None:
     (skill / "runtime-manifest").write_text(f"spec-runtime-v1\nmacos-arm64|{digest}|{binary.name}|-\n")
     shutil.copy2(data / "THIRD-PARTY-NOTICES.txt", skill / "THIRD-PARTY-NOTICES.txt")
     shutil.copy2(data / "runtime-build.json", skill / "runtime-build.json")
+    shutil.copy2(inventory_path, skill / "native-inventory.json")
+    shutil.copy2(data / "native-notice-discovery.json", skill / "native-notice-discovery.json")
+    shutil.copytree(native_evidence, skill / "native-provenance-evidence")
     shutil.copy2(snapshot / "LICENSE", skill / "LICENSE")
     archive = output / "proof-readiness-macos-arm64.zip"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as bundle:
@@ -181,6 +265,7 @@ def main() -> None:
         "build": info,
         "artifacts": {p.name: {"sha256": sha(p), "bytes": p.stat().st_size} for p in (binary, archive)},
         "skill_manifest_sha256": sha(skill / "runtime-manifest"),
+        "native_inventory_sha256": sha(inventory_path),
     }
     (output / "artifact-manifest.json").write_text(json.dumps(external, indent=2))
     print(json.dumps(external, indent=2))

@@ -96,14 +96,59 @@ by the end-user launcher.
 MIT licensing is tightly coupled to artifact redistribution (same authorized
 copyright/text intended by the unmerged licensing contribution); it does not
 incorporate that contribution's other work. Full installed dependency license
-texts and Python's license/third-party text are collected; missing distribution
-or interpreter texts stop the builder. PyInstaller's GPL exception permits
+texts and Python's top-level license text are collected; missing distribution
+texts stop the builder, and unavailable interpreter texts remain explicit
+release gates. PyInstaller's GPL exception permits
 generated applications subject to its terms, not a waiver of Python/native
 dependency obligations.
 
-`native-analysis.toc` preserves collected library paths. Independent review must
-complete the native/transitive notice inventory and interpreter/library
-provenance before publication. Wheel hashes and executable hashes are **not**
+### Native notices and provenance (partial, not release certification)
+
+Before freezing, the builder discovers this interpreter's extension/framework
+files and their Mach-O load paths, plus recorded rpds wheel members. It reads
+only local data, never runs Homebrew/formula code, fetches licenses, or assumes
+that all formula runtime dependencies are shipped. Resolved keg ancestors,
+`INSTALL_RECEIPT.json` and matching `.brew/*.rb` identify local versions; full
+local Python, mpdecimal, OpenSSL and liblzma texts are collected when available.
+liblzma uses the local `COPYING` package explanation and `COPYING.0BSD`, not a
+blanket GPL label inferred from xz's separately licensed scripts. The combined
+`THIRD-PARTY-NOTICES.txt` is embedded in the frozen runtime and copied into the
+installed skill ZIP. The rpds wheel SBOM is retained/hashed and embedded as data.
+
+`native-notice-discovery.json` is embedded **candidate** evidence, not a claim
+that every discovered file was collected. After freezing, `native-analysis.toc`
+is parsed as literal data (not executed). `native-inventory.json` records **every**
+actual BINARY/EXTENSION destination, source realpath/source SHA-256, component,
+version, notice hashes, receipt/formula hashes and explicit status/gates. It is
+bound to the final executable and Analysis hashes. When CArchive extraction
+succeeds, a separate `final_member_sha256` hashes the actual collected bytes:
+PyInstaller relocation/ad-hoc signing can change them from source bytes.
+Unavailable final correspondence is explicitly unresolved, never silently
+represented by the source hash.
+
+The final inventory is an **external sidecar**, at the build output and in the
+full installed skill ZIP, not inside the frozen executable. Match its
+`binary_sha256` before use. `native-provenance-evidence/` retains content-hashed
+local notice/receipt/formula/SBOM bytes in the output and ZIP for offline review.
+Paths describe this build environment, not portable identities; use hashes.
+Embedded `runtime-info` identifies pre-freeze discovery and explicitly points
+to the external final inventory; it does not assert complete coverage.
+
+Unknown origins (including other hosted-Python distributions), missing/empty
+texts, missing origin records and post-discovery changes remain explicit
+unresolved release gates, not CI failures for development artifacts merely
+because a prefix/distribution differs. CPython's top PSF license is **not**
+complete incorporated-code coverage: Mersenne Twister, select/kqueue, SipHash24,
+dtoa, cfuhash, asyncio and other incorporated/static notices still need review.
+OpenSSL upstream NOTICE presence/absence is not proven by a keg lacking NOTICE.
+rpds's top MIT text and wheel SBOM do **not** close Rust transitive obligations:
+archery, rpds, libc, pyo3, unicode-ident including Unicode-3.0, and
+Cargo.lock/portable-atomic reconciliation remain unresolved. The SBOM's
+`all_targets=true` is not proof of compiled inclusion. No static/transitive
+completeness or legal certification is claimed.
+
+Independent review must complete native/transitive coverage and
+interpreter/library provenance before publication. Wheel and executable hashes are **not**
 reproducible-build, legal-compliance or complete native-provenance certificates.
 The builder records those unresolved release gates and defaults to refusing
 release qualification even from a clean tree. `--development` makes working
@@ -112,6 +157,13 @@ ID signing or notarization; Gatekeeper/quarantine must never be disabled.
 Distribution/version URLs, signatures, full platform qualification and owner
 approval remain orchestrator release responsibilities.
 
-The manual `workflow_dispatch` workflow builds unqualified macOS evaluation
-artifacts only. It never tags, releases, publishes packages or receives write
-permissions/secrets. No automatic hooks, services or updater are installed.
+The workflow retains manual `workflow_dispatch` and also runs on ordinary
+`pull_request` events for relevant source, packaging, skill, workflow, example,
+project metadata and license changes. It checks out the exact PR head, builds
+unqualified macOS ARM64 evaluation artifacts, then runs `packaging/check_bundle.py`
+against that build and trusted read-only `examples/rust-buffer`, with check output
+under `RUNNER_TEMP`. Available build/check evidence is uploaded even on failure;
+it is qualification evidence, not a public release. The workflow never tags,
+releases, publishes packages or receives write permissions/secrets, and checkout
+does not persist credentials. No installed automatic hooks, services or updater
+are added.
