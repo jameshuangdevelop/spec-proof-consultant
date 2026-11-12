@@ -1,6 +1,6 @@
 {
   "name": "proof-readiness",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Offline, source-grounded specification and verification advice using your existing agent.",
   "license": "MIT",
   "skills": ["./.github/skills/"]

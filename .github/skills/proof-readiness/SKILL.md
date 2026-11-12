@@ -3,7 +3,7 @@ name: proof-readiness
 description: Assess a repository for useful specifications, verification opportunities, and source-grounded contracts. Use for proof readiness, prioritized verification advice, or an actionable agent handoff, including when no new verification work is warranted.
 compatibility: Uses the user's existing agent and read-only repository inspection tools. No required executable, Python, package installation, model API, or network access.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Proof readiness — advisory assessment
@@ -43,7 +43,11 @@ sandbox or enforced resource limiter.
    Inspect top-level structure and a few relevant manifests, architecture/requirement
    documents, assurance artifacts, and source entry points. Agree a practical
    budget: start with targeted searches and small file ranges, not recursive dumps.
-   Record inspected/skipped areas and any truncation; ask before materially
+   Prefer small explicit windows (e.g. 100 lines); for inclusive ranges, count
+   `end - start + 1` before each call and stay within the user/tool read budget.
+   Metadata and instruction files are not implicit exceptions to that budget.
+   Track inspected/skipped areas, truncation and any budget overruns; report
+   overruns rather than hiding them or claiming compliance. Ask before materially
    broadening scope. Do not claim comprehensive coverage or a hard scan limit.
 2. **Shortlist.** Use observed production symbols and project risk, not language
    alone. Read the [knowledge index](references/index.md); load only one or two
@@ -76,6 +80,12 @@ sandbox or enforced resource limiter.
    Rank by actual impact, cost, prerequisites and incremental assurance—not a
    tool hierarchy. Explain alternatives, rejected/deferred/no-new-work outcomes;
    do not force a quota of tasks. Include every selected root's coverage.
+   For tasks requiring future execution, include either a clearly unexecuted,
+   conditional invocation specification (tool, arguments, working directory,
+   version/configuration prerequisites) or a named read-only command-selection
+   task/artifact to resolve the tool version, configuration and invocation before
+   execution. Do not invent supported versions or imply execution approval.
+   Pure source-only tasks need no shell commands.
    [Worked examples](examples/assessments.md) illustrate decisions, not results.
 7. **Review the advisory.** Check citations against inspected files, root IDs,
    property/requirement distinctions, guide limits, dependencies and next-task
