@@ -11,20 +11,86 @@ Recommendations require semantic inspection and honest uncertainty; no assessmen
 grants implementation approval or proves correctness. The existing structured
 assessment CLI remains available as an **optional advanced path** below.
 
-## Start with the Agent Skill
+## Get the skill
 
-Copy the **entire** [proof-readiness directory](.github/skills/proof-readiness/SKILL.md),
-including its references, template, and examples, into a skill-discovery location
-already supported by your agent. For an agent configured to discover `.github/skills`,
-copy from this trusted checkout:
+Choose your existing client. The core skill needs **no engine, Python, or new
+model API**. Install the **whole** [proof-readiness folder](.github/skills/proof-readiness):
+nine Markdown files (skill, references, template, examples) plus its MIT `LICENSE`,
+not just `SKILL.md`. Remote commands below target this repository **after this
+installation change is merged**; this is not an official marketplace listing.
+
+<details>
+<summary><strong>Claude Code</strong> — plugin</summary>
+
+```text
+/plugin marketplace add jameshuangdevelop/spec-proof-consultant
+/plugin install proof-readiness@spec-proof-consultant
+/proof-readiness:proof-readiness
+```
+
+Uses Claude Code's plugin support. Prefer a plain folder? Copy the whole skill to
+`~/.claude/skills/proof-readiness`, then use `/proof-readiness`.
+
+</details>
+
+<details>
+<summary><strong>GitHub Copilot</strong> — GitHub CLI installer</summary>
+
+With a `gh` version supporting `gh skill` (help checked with 2.102.0):
+
+```sh
+gh skill install jameshuangdevelop/spec-proof-consultant proof-readiness --allow-hidden-dirs --agent github-copilot --scope user
+```
+
+In Copilot CLI, `/skills reload`, then `/skills info proof-readiness` and
+`/proof-readiness`. In a supported VS Code Copilot version, start a fresh chat and
+check skill discovery. Without `gh skill`, use the whole-folder route below.
+
+</details>
+
+<details>
+<summary><strong>Codex</strong> — whole-folder install</summary>
+
+Copy the whole skill folder from a trusted checkout or repository ZIP to
+`~/.agents/skills/proof-readiness` (create the parent, not an existing destination).
+Use `/skills` to check discovery, then `$proof-readiness`.
+An optional [third-party installer command](docs/INSTALLATION.md#codex) is available
+if you already use Node.js; neither Node.js nor that installer is required.
+
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong> — native installer</summary>
+
+```sh
+gemini skills install https://github.com/jameshuangdevelop/spec-proof-consultant.git --path .github/skills/proof-readiness --scope user
+```
+
+Then `/skills reload`, `/skills list`, and ask Gemini to use `proof-readiness`.
+Review the activation consent request; do not bypass it.
+
+</details>
+
+<details>
+<summary><strong>Other / editable</strong> — copy the whole folder</summary>
+
+Download a trusted repository ZIP or use an existing checkout. Copy
+`.github/skills/proof-readiness` with all its contents into your agent's supported
+skill location. A file manager is enough. For example, on POSIX, from that checkout
+(the destination skill folder must not already exist):
 
 ```sh
 mkdir -p /path/to/agent-workspace/.github/skills
 cp -R .github/skills/proof-readiness /path/to/agent-workspace/.github/skills/
 ```
 
-Do this before assessment, not as a modification during assessment. No package
-installation is needed. Ask your agent:
+</details>
+
+See [installation, updates, prerequisites, and trust](docs/INSTALLATION.md).
+These are documented client routes, not a claim that every client/version was
+tested. Install before assessment, not as a target modification. Review source
+and preserve local edits before updating; installed copies do not track upstream
+automatically. Ask your agent:
 
 > Use proof-readiness to assess `/absolute/repo`. Use bounded read-only inspection,
 > load only relevant bundled guides, and write one advisory Markdown assessment

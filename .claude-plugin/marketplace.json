@@ -1,0 +1,12 @@
+{
+  "name": "spec-proof-consultant",
+  "owner": {
+    "name": "jameshuangdevelop"
+  },
+  "plugins": [
+    {
+      "name": "proof-readiness",
+      "source": "./"
+    }
+  ]
+}
