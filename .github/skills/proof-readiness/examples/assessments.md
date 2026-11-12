@@ -35,8 +35,11 @@ coverage, actual approvals and the full handoff. Citations are not reusable fact
   `foreign_fill`; `r2:include/bridge.h:9` declares it but body/configuration is
   unavailable. Both roots' revisions unavailable; binary vendor payload skipped.
 - `cbmc-c-buffer` `1.0.0` ([guide](../references/cbmc.md)) is not an established
-  match: FFI is a hard exclusion. Compatibility unknown; do not replace the
-  external body with a success stub to claim supported verification.
+  match: the unavailable body/configuration leaves compatibility unknown.
+  An ordinary external C declaration or missing body does not establish FFI;
+  if a foreign-language implementation is later established, the FFI hard
+  exclusion applies. Do not replace the external body with a success stub to
+  claim supported verification.
 - Requirement unresolved: test at `r1:tests/decode.c:30` observes truncation but
   does not approve it. Candidate domain (byte input length `0..=32`, capacity
   `0..=32`), precondition (valid storage), postcondition (reject or truncate) need
