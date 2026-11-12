@@ -1,14 +1,47 @@
 # Spec Consultant
 
-An agent-neutral, offline-first assessment CLI and Agent Skill for existing
-repositories. It identifies **provisional** specification/proof opportunities,
-creates a dependency-aware backlog, and generates a repository-specific execution
-prompt. Curated verification knowledge ships with the package; normal assessments
-do not research tools, call a model, or require model credentials.
+An agent-native, offline-first **Agent Skill** for source-grounded specification
+and verification advice. Use your existing agent's read-only tools to inspect a
+repository, consult bundled curated guidance, and produce one advisory Markdown
+assessment with a prioritized, actionable handoff. **No Python, CLI, runtime
+installation, new model API, or network access is required for the core skill.**
 
-This is an initial working version, not a universal proof-readiness detector.
-Static rules do not understand intent. Use the skill with your existing agent to
-inspect source, propose precise contracts, and resolve requirements.
+This is a prototype, not a universal proof-readiness detector or verifier.
+Recommendations require semantic inspection and honest uncertainty; no assessment
+grants implementation approval or proves correctness. The existing structured
+assessment CLI remains available as an **optional advanced path** below.
+
+## Start with the Agent Skill
+
+Copy the **entire** [proof-readiness directory](.github/skills/proof-readiness/SKILL.md),
+including its references, template, and examples, into a skill-discovery location
+already supported by your agent. For an agent configured to discover `.github/skills`,
+copy from this trusted checkout:
+
+```sh
+mkdir -p /path/to/agent-workspace/.github/skills
+cp -R .github/skills/proof-readiness /path/to/agent-workspace/.github/skills/
+```
+
+Do this before assessment, not as a modification during assessment. No package
+installation is needed. Ask your agent:
+
+> Use proof-readiness to assess `/absolute/repo`. Use bounded read-only inspection,
+> load only relevant bundled guides, and write one advisory Markdown assessment
+> to `/outside/all/selected/roots/assessment.md`. Detail at most three opportunities;
+> no-new-work is valid. Do not execute or modify the target.
+
+The skill progresses from orientation and shortlisting through source/callee/
+configuration inspection, curated scenario matching, precise properties, and a
+prioritized handoff. Requirements may be documented, inferred, or unresolved;
+tests show behavior, not automatically approved intent. Unknown compatibility
+stays unknown and blocks implementation. Guides are documented catalog knowledge,
+not reproduced proof results. Outputs belong outside **all** selected roots.
+The workflow is tool/vendor-neutral guidance, not an enforced filesystem sandbox,
+no-follow scanner, or cross-platform compatibility guarantee. If safe path/read
+bounds cannot be established, skip the affected area or stop and report it.
+See the [template](.github/skills/proof-readiness/templates/assessment.md) and
+[illustrative decisions](.github/skills/proof-readiness/examples/assessments.md).
 
 ## One-session agent team
 
@@ -18,7 +51,10 @@ researcher without requiring extra terminals. See the
 [org chart, role boundaries, and startup prompt](docs/AGENT-ORGANIZATION.md).
 Contributions still require a new branch, pull request, and approval.
 
-## Install
+## Optional advanced CLI: install
+
+Everything from here through the CLI example describes the existing Python engine,
+not requirements or guarantees of the agent-native Markdown workflow.
 
 Requires **Python 3.11+**, pip, and a POSIX platform (tested on macOS; uses
 descriptor-relative, no-follow file access available on macOS/Linux).
@@ -37,7 +73,7 @@ Install the package from a trusted checkout, not from code being assessed.
 After dependencies are installed, assessment needs no network. Nothing is
 published, pushed, or scheduled by this package.
 
-## Assess repositories
+## Optional CLI: assess repositories
 
 Choose an output directory **outside every assessed root**:
 
@@ -80,7 +116,7 @@ spec-consultant schema assessment
 ```
 
 An agent can then inspect the referenced source and requirements and edit
-`assessment.json` (see the skill). Add project-specific properties, requirement
+`assessment.json` in this optional engine workflow. Add project-specific properties, requirement
 references, actual adoption constraints, trusted boundaries, uncertainty, and
 priority rationale. Preserve deterministic matching evidence and exact catalog
 assurance wording. Change `analysis` to `agent-reviewed` only after real inspection.
@@ -213,26 +249,7 @@ reproduce them, and no recommendation accuracy was measured.
 See [catalog contribution and evaluation](docs/CATALOG.md). There is no autonomous
 research system, hosted service, frontend, vector database, or proprietary SDK.
 
-## Install the Agent Skill
-
-After installing the trusted package, copy the complete skill directory into the
-skill location supported by your agent. For an agent discovering `.github/skills`:
-
-```sh
-mkdir -p /path/to/agent-workspace/.github/skills
-cp -R .github/skills/proof-readiness /path/to/agent-workspace/.github/skills/
-```
-
-Do this **before** assessing that workspace, not as a modification during assessment.
-The [skill](.github/skills/proof-readiness/SKILL.md) uses official Agent Skills YAML
-frontmatter and an agent-neutral workflow: profile, retrieve local scenarios,
-inspect source/tests/specs, propose contracts, validate, and render. Ask your agent:
-
-> Use proof-readiness to assess `/absolute/repo`. Keep discovery bounded, detail at
-> most three scenarios, and write outputs to `/outside/roots/assessment`. Do not
-> execute or modify the target.
-
-## Reproducible provisional example
+## Optional CLI: reproducible provisional example
 
 From the package checkout after installation:
 
