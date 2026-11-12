@@ -286,3 +286,7 @@ target examples. Generated local outputs and development environments are ignore
 
 The [repair evaluation](docs/REPAIR-EVALUATION.md) documents retained evaluator
 failures, semantic dispositions, regression evidence and independent reproduction.
+
+## License
+
+Licensed under the [MIT License](LICENSE).
