@@ -1,0 +1,85 @@
+{
+  "v1": {
+    "known_overrun": "Evaluator reports a H1 identity metadata view returning more than 200 lines.",
+    "adjudication": "The frozen maximum has no metadata exception. Do not reinterpret it for a passing result. Affected report is blocked/unscorable; no v1 campaign acceptance is possible.",
+    "v1_overall_acceptance": "NOT ACCEPTED"
+  },
+  "v1_additional_limit": "Read/time resource violations invalidate campaign assurance; numerical development observations retained.",
+  "v2_initial": {
+    "status": "blocked",
+    "stage": "independent source mapping, before any reports",
+    "reason": "Detected read-bound violation: native view of D2/lfs.h used inclusive range [30,230], 201 lines, exceeding the mandatory maximum 200. No silent retry or acceptance claim. Stopped on detection.",
+    "reports_read": false,
+    "scores_issued": false
+  },
+  "v2_post_grade": {
+    "status": "blocked",
+    "verdict": "BLOCKED",
+    "question": "Can explicit repair round1 restore acceptance eligibility after initial v2 evaluator overran a per-read resource bound?",
+    "scope": "Procedural classification on parent-supplied history, not rescoring immutable advisory grades or authorizing subsequent cohorts.",
+    "normative_citations": [
+      {
+        "path": "RUBRIC.md:9",
+        "text": "RUBRIC.md and RULES.json are jointly normative; ambiguity or inconsistency blocks acceptance, never resolves in favor of a desired score.",
+        "effect": "No favorable interpretation invented to preserve10 scores."
+      },
+      {
+        "path": "RUBRIC.md:73-75 (Fixed campaign items3-5)",
+        "effect": "Initial as-is three-development cycle; up to THREE explicit repair rounds and latest-dev threshold permit bounded development refinement. Latest score is not sole gate."
+      },
+      {
+        "path": "RUBRIC.md:77 (Fixed campaign item7)",
+        "text": "Overall acceptance also requires all completed campaign runs retained, identity/authorization/log completeness, no contamination, no rule changes and resource compliance.",
+        "effect": "An unqualified additional resource-compliance condition, not expressly scoped to latest valid reports."
+      },
+      {
+        "path": "RUBRIC.md:84 (Fixed resource bounds and stopping)",
+        "text": "Budget overrun, unavailable tools/source or interrupted/incomplete reports are honestly blocked/unscorable and cannot count toward acceptance.",
+        "effect": "Initial overrun cannot count as a successful report. Wording does not expressly restore campaign eligibility after repair."
+      },
+      {
+        "path": "RULES.json:6,190-200,260-304; JSON pointers /conflict_policy, /protocol/sequence, /protocol/acceptance/unscorable_counts_as_pass, /protocol/bounds/overrun_or_incomplete",
+        "effect": "Explicit repair sequence; latest-development thresholds; retained runs; unscorable_counts_as_pass=false; blocked_unscorable_no_silent_retry. JSON does not contain explicit resource-overrun-repair exception to jointly normative overall condition."
+      }
+    ],
+    "reasoning": [
+      "201 inclusive lines is a resource violation under the unchanged200 rule, even though dev1 conservative100 guidance is compliant. Later instruction/product changes do not retroactively alter that event.",
+      "An explicit repair within the3-round limit avoids treating dev1 as a hidden retry; retaining and not counting old unscorable reports satisfies those particular requirements. It does not by itself establish the separate overall resource-compliance condition.",
+      "Literal broad reading of RUBRIC item7 leaves campaign resource compliance unsatisfied. A narrower reading could apply compliance only to countable reports and allow the bounds provision plus explicit repair sequence to restore eligibility. The joint text does not expressly say which scope governs an evaluator infrastructure/read overrun.",
+      "Therefore I cannot certify permission to lock/proceed toward acceptance. The unqualified condition is at least an unresolved material ambiguity, triggering mandatory BLOCKED under RUBRIC9 and RULES conflict_policy. A score of10, no holdout leakage and agent agreement do not resolve it.",
+      "This classification is not a new K-cap or recalculation of valid dev1 source-advice grades; original grades/manifest remain intact. It also does not claim that every ordinary failed development score permanently ends a campaign: numeric-quality repair is explicitly authorized, while prior resource noncompliance lacks a clear forgiveness provision."
+    ],
+    "grade_preservation": {
+      "GRADE_MANIFEST_sha256": "65f1b7f9176af7a339b58a32a2690ff4cb0dc81675508734e007d200f420f2b2",
+      "MAP_MANIFEST_sha256": "2a4c8767c6a7ecf828fc9563cb40618107f1c141718c60ed1a3cbcb7638b1e7a",
+      "scores": "unchanged10/10/10 static advisory judgments, not campaign acceptance"
+    },
+    "limitations": [
+      "No independent old-v2 action transcript or global counter audit; supplied operational facts labeled as such.",
+      "Old E1 canonical assessment files not read: dispositions compare their retained finding definitions against current advice.",
+      "No causal skill-only repair, runtime/tool support, industrial reliability, approval or new-campaign reuse claim.",
+      "Interpretation ambiguity is a blocker, not license to choose a convenient reading or silently edit criteria."
+    ]
+  },
+  "H01": [
+    {
+      "defect_id": "DEV0-D1-H01",
+      "disposition": "corrected_in_new_advisory",
+      "evidence": "D1-W2 names D1-command-plan.md for O1 Kani and optional native tests; acceptance fixes exact pinned versions, cwd r1, arguments/harness location, features/target/panic, finite sequence/unwind bounds and exclusions before any execution. W1 decisions and separate approval remain prerequisites.",
+      "advisory_citation": "D1-assessment.md:101-200, Actionable handoff, D1-W2 and blocked future-work paragraph (already independently read before old findings)"
+    },
+    {
+      "defect_id": "DEV0-D2-H01",
+      "disposition": "corrected_in_new_advisory",
+      "evidence": "D2-W2 names D2-command-plan.md selecting pinned CBMC/compiler model and optional native test invocation; acceptance fixes cwd r1, versions/includes/C99/defines/machine model/static-entry wrapper, callback/libc model/checks and complete-unwind strategy. W1 and owner/isolation grants remain prerequisites to W3.",
+      "advisory_citation": "D2-assessment.md:101-200, Actionable handoff, D2-W2 and blocked future-work paragraph (already independently read before old findings)"
+    },
+    {
+      "defect_id": "DEV0-D3-H01",
+      "disposition": "corrected_in_new_advisory",
+      "evidence": "D3-W2 names D3-command-plan.md selecting native regression invocation and dependency/platform pins; acceptance fixes pytest/Python/freezegun versions, cwd r1, arguments/selectors/proposed files, OS/timezone/clock control and isolated/no-live-key/no-network plan. W1 and owner/execution grants still block W3.",
+      "advisory_citation": "D3-assessment.md:101-200, Actionable handoff, D3-W2 and blocked future-work paragraph (already independently read before old findings)"
+    }
+  ],
+  "next_action": "Stop before lock, confirmation or new holdouts. No third campaign without human steering. Independent evaluation of a committed fixed publication revision remains required."
+}
