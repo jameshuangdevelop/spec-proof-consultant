@@ -92,8 +92,14 @@ DO_NOT_TRACK=1 npx skills@1.8.1 add jameshuangdevelop/spec-proof-consultant --sk
 
 This pins the installer version, not the skill revision. `--copy` installs all
 assets rather than a symlink; `DO_NOT_TRACK=1` disables installer telemetry.
-Review the installer as well as the skill before running it. Manual update for
-this route (preserve local edits first):
+Review the installer as well as the skill before running it. Version 1.8.1 needs
+interactive installation confirmation: a pipe-only run can exit zero without
+installing anything, so verify the ten installed files rather than the exit code.
+After copying the requested skill, it may offer the unrelated `find-skills`
+skill. Decline unless separately wanted; it is not needed for proof-readiness.
+The local check copied all ten assets, then was terminated at that extra prompt
+without accepting it: this qualifies the filesystem copy, not clean process
+completion. Manual update for this route (preserve local edits first):
 
 ```sh
 DO_NOT_TRACK=1 npx skills@1.8.1 update proof-readiness --global
@@ -117,7 +123,9 @@ do not bypass consent.
 
 Repeat the install command to update. This replaces the installed snapshot:
 local edits and destination-only files can be lost. Save them separately first.
-Reloading skills does not fetch upstream changes.
+This replacement behavior is based on [pinned `skillUtils.ts` source](https://github.com/google-gemini/gemini-cli/blob/aeb6c04b093eb00c33585ba587c4889ae4c5e957/packages/cli/src/utils/skillUtils.ts)
+(recursive copy and removal of the existing destination), not a native-client
+update experiment. Reloading skills does not fetch upstream changes.
 
 ## Other / editable
 
@@ -140,11 +148,20 @@ execute assessed code, run proof tools, modify targets, browse during assessment
 or transmit private code. Your existing agent's data policies still apply;
 offline guidance is not a promise of an offline model or an enforced sandbox.
 
-Repository tests check relocated asset/reference closure, license retention, and
-manifest paths without the Python engine. They do not prove external installer
-behavior or client activation. The commands above are documentation-grounded;
-external client install/update/activation runs were **not executed** for this
-implementation. Check discovery in your own supported client before assessment.
+Bounded local evaluation, not universal client qualification:
+
+- All 20 focused product tests passed, including asset/reference closure,
+  license retention, manifest paths, and optional-engine CLI regressions.
+- `gh` 2.102.0 installed all ten local assets; Copilot 1.0.109 discovered the
+  skill in staged and relocated minimal plugins and a standalone copy.
+- `skills` 1.8.1 copied all ten local assets, but no actual Codex discovery or
+  clean installer exit was established (see the interactive warning above).
+- Remote installation pinned to approved base `70a3695` retained nine Markdown
+  files without `LICENSE`; it does not qualify this contribution's ten assets
+  or establish that the exact remote commands above were tested.
+- Claude, Codex, Gemini, and VS Code were absent; their native behavior and
+  real update lifecycles remain untested. Check discovery in your own supported
+  client before assessment.
 
 Primary references (research checked **2026-11-12 UTC**):
 
