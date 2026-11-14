@@ -1,0 +1,43 @@
+{
+  "version": "3.0.0",
+  "campaign": "headroom-benchmark-20261114",
+  "frozen_utc": "2026-11-14T22:35:35.922962+00:00",
+  "selection_started": false,
+  "source_mapping_started": false,
+  "quality_block_sha256": "a013b447f8792036fd7b8c3a86a42dea9d932fd939ab821e915a7493eb82d942",
+  "scoring_canonical_sha256": "061ecc18b991a7bea67b16af438e6502c740a30f8ff7f4856fd013e2713e903e",
+  "payload_sha256": {
+    "RUBRIC.md": "8e78039df2b7d3102195180e0dcee8e6183b289727250cd88848da33552ca130",
+    "RULES.json": "45161af5b7fc01cdd265fddedfa99a8d0317c1b1773e983bc6119dcf277eb08a",
+    "CHANGESET.md": "71ece1dafcbf62b858124b8d5761bf9c3b9334d3e09af7ef267ade30676a38c7",
+    "CHECKS.md": "f128f91db5777b05dda1b49d84a0ca6fd81028565c4aa315620a07615fbb7263",
+    "SOURCES.json": "e508c0779cc3dd1c56ea089d92fbd17225ce714196734b933d42552392a929ac",
+    "RESULT.json": "cdab187af16887738a6528097a4e0c2f491e216c156aeff259646c925c0fc0de"
+  },
+  "exclusions_sha256": "6df9c8d489f26c02e28d5104a4eb4f95d460fb614d6a935cec4130838572a673",
+  "skill_payload_digest": "00590d90781e66d1522d49a507f9bbb11e80b53ff3b89c8536bf519d5fd0e02a",
+  "independent_design_review": "protocol-review-fixed-v3; design acceptable, original accounting prerequisite retained",
+  "independent_accounting_review": {
+    "result_sha256": "e8dbfec67d986710b6f9f9793c4c1af81740f3d797fcd3b6dd5596bb8512768b",
+    "verdict": "PASS_REMAINING_ACCOUNTING_PREREQUISITE_AS_OF_CUTOFF",
+    "limitations": "As-of-cutoff evidence, not future compliance, campaign acceptance or human approval"
+  },
+  "fresh_preparation_reconciliation": {
+    "sha256": "632eaa60e827b32d796335365897d877a08fa717497f20e10f039e55c2a396d3",
+    "source_sha256": "042799bc512abd46823d334b49e94b683712360c4027d4358d620df952c7c08e",
+    "method": "Reran exact independently assessed source, recovered byte-for-byte from original tool patch; later exploratory counter versions retained separately, not silently substituted",
+    "pending_completion_actual_characters": 7493,
+    "parent_additional_conservative_stage_action_margin": 200,
+    "freeze_and_next_batch_reserve": {
+      "characters": 60000,
+      "operations": 100,
+      "active_minutes": 10
+    },
+    "time_bound": "Assessed source sums overlapping resumed dispatch windows conservatively; not exact physical active time"
+  },
+  "measurement_scope": "Harness-visible new semantic delivery; hidden native startup/injection, provider serialization/tokenization/replay and pre-boundary loaded history unknown, not zero; no complete-model-input/cost/independence certification",
+  "authority": "Human authorized continued prospective benchmarking and more liberal spending; orchestrator selected concrete operational caps and observable measurement scope before any selection. No exact cap attributed directly to human.",
+  "prior_campaigns": "Unaccepted/blocked, unchanged; no retrospective waiver",
+  "contribution_policy": "Branch, PR, human approval; no merge or catalog promotion",
+  "absolute_deadline": "2026-11-15T04:11:18Z"
+}

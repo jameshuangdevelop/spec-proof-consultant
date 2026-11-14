@@ -1,0 +1,184 @@
+{
+  "task_id": "generous-publication-author-1",
+  "package_status": "BLOCKED_benchmark_evidence_ready_for_independent_publication_review",
+  "benchmark_verdict": "BLOCKED",
+  "quality_score": null,
+  "approved_base": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+  "approved_base_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+  "initial_dirty_identity": "clean",
+  "accounting_cutoff_utc": "2026-11-14T22:48:04.280913+00:00",
+  "freeze_utc": "2026-11-14T22:35:35.922962+00:00",
+  "source_namespace": "/external/evidence/headroom-benchmark-20261114",
+  "normalization_policy": "UTF-8 literal substitutions only, without reserialization. Absolute private evidence/controller/candidate paths become documented /external placeholders. Dispatch event/call and pending-call runtime IDs become public aliases. Other bytes, including historical status fields, remain unchanged.",
+  "original_vs_public": "Original digests identify private source bytes. Public digests identify normalized mirrors. FREEZE and ORIGINAL-SHA256SUMS retain historical original hashes, including omitted artifacts; they are not public-package checksums.",
+  "files": [
+    {
+      "source_relative_to_private_evidence_root": "protocol/RUBRIC.md",
+      "public_path": "protocol/RUBRIC.md",
+      "original_sha256": "8e78039df2b7d3102195180e0dcee8e6183b289727250cd88848da33552ca130",
+      "public_sha256": "b2aff4829ed599e9d1827b64759721609ae63864ef7ff986bf13a11ff1bfec25",
+      "byte_identical": false,
+      "normalization": [
+        {
+          "replacement": "/external/candidate-project",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "source_relative_to_private_evidence_root": "protocol/RULES.json",
+      "public_path": "protocol/RULES.json",
+      "original_sha256": "45161af5b7fc01cdd265fddedfa99a8d0317c1b1773e983bc6119dcf277eb08a",
+      "public_sha256": "f33d12a17e21f11ce1f81f8901f67d2a1434729781067d023e55b28a701304eb",
+      "byte_identical": false,
+      "normalization": [
+        {
+          "replacement": "/external/candidate-project",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "source_relative_to_private_evidence_root": "protocol/FREEZE.json",
+      "public_path": "protocol/FREEZE.json",
+      "original_sha256": "e4b6ed458b5b73dc783b88f03b111e747f52c9a1645a046e010ecda25c2f8f4b",
+      "public_sha256": "e4b6ed458b5b73dc783b88f03b111e747f52c9a1645a046e010ecda25c2f8f4b",
+      "byte_identical": true,
+      "normalization": []
+    },
+    {
+      "source_relative_to_private_evidence_root": "protocol/SHA256SUMS",
+      "public_path": "protocol/ORIGINAL-SHA256SUMS",
+      "original_sha256": "7ea40c6dd05a0349ef023e1ddc0d1d60e3bf6f71b9c14ca66c327a8daab14934",
+      "public_sha256": "7ea40c6dd05a0349ef023e1ddc0d1d60e3bf6f71b9c14ca66c327a8daab14934",
+      "byte_identical": true,
+      "normalization": []
+    },
+    {
+      "source_relative_to_private_evidence_root": "INCIDENT-PARENT-WINDOW-1.json",
+      "public_path": "INCIDENT-PARENT-WINDOW-1.json",
+      "original_sha256": "a40412e73b70c8e7186997f2d58a76ab2d503a2687eaccc58a8ea82eb0efa131",
+      "public_sha256": "a40412e73b70c8e7186997f2d58a76ab2d503a2687eaccc58a8ea82eb0efa131",
+      "byte_identical": true,
+      "normalization": []
+    },
+    {
+      "source_relative_to_private_evidence_root": "protocol-review-window-incident/REPORT.md",
+      "public_path": "evaluator/REPORT.md",
+      "original_sha256": "3cf1c60e82d3fca7d719736716e136fbddeed04d999ea561a3930bd637afcd17",
+      "public_sha256": "3cf1c60e82d3fca7d719736716e136fbddeed04d999ea561a3930bd637afcd17",
+      "byte_identical": true,
+      "normalization": []
+    },
+    {
+      "source_relative_to_private_evidence_root": "protocol-review-window-incident/RESULT.json",
+      "public_path": "evaluator/RESULT.json",
+      "original_sha256": "520688fc253d7c1b6ab685ae435ae72fe659f6eb166ac6fe5349223bef0dbc1b",
+      "public_sha256": "520688fc253d7c1b6ab685ae435ae72fe659f6eb166ac6fe5349223bef0dbc1b",
+      "byte_identical": true,
+      "normalization": []
+    },
+    {
+      "source_relative_to_private_evidence_root": "protocol-review-window-incident/DISPATCH-EVIDENCE.json",
+      "public_path": "evaluator/DISPATCH-EVIDENCE.json",
+      "original_sha256": "f5b1e054466e57a2629310df66ae93b82b774891d24ea76ac2ad33cbfd972cb3",
+      "public_sha256": "19472a135cb44c07b4943d2b71d032a04175e0f55a4e3b6fab5a9bca5cc2f937",
+      "byte_identical": false,
+      "normalization": [
+        {
+          "replacement": "/external/evidence/headroom-benchmark-20261114",
+          "occurrences": 2
+        },
+        {
+          "replacement": "/external/controller-project",
+          "occurrences": 1
+        },
+        {
+          "replacement": "dispatch-event-1",
+          "occurrences": 1
+        },
+        {
+          "replacement": "dispatch-event-2",
+          "occurrences": 1
+        },
+        {
+          "replacement": "dispatch-event-3",
+          "occurrences": 1
+        },
+        {
+          "replacement": "dispatch-call-1",
+          "occurrences": 1
+        },
+        {
+          "replacement": "dispatch-call-2",
+          "occurrences": 1
+        },
+        {
+          "replacement": "dispatch-call-3",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "source_relative_to_private_evidence_root": "CAMPAIGN-RECONCILIATION-2026-11-14T22-48-04.280913+00-00.json",
+      "public_path": "accounting/CAMPAIGN-RECONCILIATION.json",
+      "original_sha256": "6a6469d178eb73f63f4bdbfb96f7034432386c3f75b75b295125eec6c07a7f57",
+      "public_sha256": "0e09b08679fce255b50d6e22313979cd4a23d71a41a97e93ca2e500612d5dc4a",
+      "byte_identical": false,
+      "normalization": [
+        {
+          "replacement": "pending-parent-call-1",
+          "occurrences": 1
+        }
+      ]
+    }
+  ],
+  "additional_consulted_evidence_not_mirrored": [
+    {
+      "source": "selection/RESULT.json",
+      "original_sha256": "a06c460c778a901238ce4395960447212cdf70d194df3aa12f534bf9cb2bcb95",
+      "purpose": "Accounting only; no manifest or repository identities consulted.",
+      "selected_count": 8,
+      "acceptance_status": "unaccepted_research_proposal",
+      "native_event_count_from_accounting": 54,
+      "reported_operations_including_parallel_wrappers": 62,
+      "parallel_wrappers": 8,
+      "operation_reconciliation": "max_not_sum",
+      "retained_character_bound": 495938
+    },
+    {
+      "source": "protocol-review-window-incident/MATERIALIZATION.json",
+      "original_sha256": "480f25dda729cdfff624121eaf7bc49d00fd544ca809f694a10d1973ac3be35c",
+      "purpose": "Verify original evaluator and dispatch file digests.",
+      "recorded_materialization_utc": "2026-11-14T22:48:04.002313+00:00",
+      "source_method": "Independent fenced bodies extracted verbatim plus newline. Separate parent-extracted dispatch evidence contains no source output.",
+      "no_prior_reason_evidence_limitation": "Parent admits none recorded; dispatch metadata independently confirms requested windows, not the absence of all possible prior statements."
+    }
+  ],
+  "quality_preservation_checks": {
+    "quality_block_sha256": "a013b447f8792036fd7b8c3a86a42dea9d932fd939ab821e915a7493eb82d942",
+    "canonical_scoring_sha256": "061ecc18b991a7bea67b16af438e6502c740a30f8ff7f4856fd013e2713e903e",
+    "matches_freeze": true
+  },
+  "source_verification_scope": "Recomputed original hashes for mirrored files, compared RUBRIC/RULES/FREEZE with original SHA256SUMS, RUBRIC/RULES with FREEZE, and evaluator REPORT/RESULT/dispatch with MATERIALIZATION. Other frozen payloads and private archives were not opened or independently verified.",
+  "accounting_limitations": [
+    "Parent-authored extension; not independently certified.",
+    "Fixed-cutoff conservative visible-envelope bounds, not actual spend, tokens, cost or full model input.",
+    "Reviewer 671912 exceeds earlier 640099 planning reservation; reservation was not actual measurement.",
+    "Fixed context caps not exceeded as of cutoff; this does not establish procedural compliance.",
+    "Hidden runtime traffic unknown and outside metric, never zero.",
+    "Later publication work is outside this fixed accounting snapshot."
+  ],
+  "no_target_assessment_execution_or_tests": true,
+  "not_claimed": [
+    "campaign_acceptance",
+    "countable_continuation",
+    "recovery_authority",
+    "source_quality_grade",
+    "product_defect",
+    "exact_target_compatibility",
+    "proof",
+    "human_approval",
+    "catalog_promotion"
+  ]
+}
