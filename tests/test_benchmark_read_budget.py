@@ -143,6 +143,35 @@ def test_invalid_declared_scopes(tmp_path, scopes):
     assert not budget.check_plan(plan(cost(0), scopes=scopes), tmp_path)["ok"]
 
 
+@pytest.mark.parametrize(
+    ("character", "allowed"),
+    [
+        ("\x00", False),
+        ("\x1f", False),
+        ("\x7f", False),
+        ("\x80", False),
+        ("\x9b", False),
+        ("\x9f", False),
+        ("\x7e", True),
+        ("\xa0", True),
+        ("\u2028", True),
+        ("\u2029", True),
+        ("\t", True),
+        ("\r\n", True),
+    ],
+)
+def test_control_character_hygiene(tmp_path, character, allowed):
+    body = f"A{character}31mB\n"
+    (tmp_path / "owned.txt").write_bytes(body.encode("utf-8"))
+    result = budget.check_plan(plan(read(path="owned.txt", end=2)), tmp_path)
+    assert result["ok"] is allowed
+    if allowed:
+        assert result["totals"]["selector"]["source_chars"] == len(body)
+    else:
+        assert result["reasons"] == ["snapshot contains non-text control characters"]
+        assert result["totals"] == {} and body not in json.dumps(result)
+
+
 def test_unsafe_nontext_and_io_failures_without_bodies(tmp_path, monkeypatch):
     secret = b"PRIVATE_BODY"
     (tmp_path / "snapshot.txt").write_bytes(secret)

@@ -64,7 +64,7 @@ def _window(root, operation):
     _require(len(data) <= MAX_FILE_BYTES, "snapshot exceeds 256 KiB")
     text = data.decode("utf-8")
     _require(
-        all(ord(char) >= 32 or char in "\t\r\n" for char in text) and "\x7f" not in text,
+        all(char in "\t\r\n" or (ord(char) >= 32 and not 0x7F <= ord(char) <= 0x9F) for char in text),
         "snapshot contains non-text control characters",
     )
     # Only LF separates lines. Retain CR and LF, including the final LF at EOF.
