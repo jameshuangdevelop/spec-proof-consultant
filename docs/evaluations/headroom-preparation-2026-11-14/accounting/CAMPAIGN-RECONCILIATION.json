@@ -1,0 +1,88 @@
+{
+  "helper_sha256": "5c07d6dd4298107f64376ba398510a0852298d338d4777f0910b1964b24e7e38",
+  "cutoff_utc": "2026-11-14T22:48:04.280913+00:00",
+  "boundary_utc": "2026-11-14T21:41:39.337Z",
+  "metric": "Conservative harness-visible semantic delivery envelopes; NOT actual spend/full model inputs",
+  "provenance": "New helper extending independently assessed042799bc event association to selector and running intervals; this extension itself is parent-authored, not independently certified.",
+  "operation_method": "Retains old command-category bounds and extra200 parent stage-metadata margin. Selector uses max(native event counts, independently reported62 including8 parallel wrappers); character bounds likewise max, never sum overlapping measures. New generic controller commands<=20 explicit content/metadata operations per command, no target execution.",
+  "active_time_method": "Parent full wall time; specialist union of dispatch-to-idle-witness intervals, live through cutoff when pending. Union corrects overlapping follow-up intervals, not a reset.",
+  "outside_metric_unknown": "Hidden runtime/system/startup injection, provider serialization/tokenization/automatic replay, pre-boundary parent history",
+  "contexts": {
+    "parent": {
+      "tool_invocations": 152,
+      "argument_envelope_bound": 214908,
+      "result_envelope_bound": 711234,
+      "internal_action_bound": 935,
+      "non_tool_delivery_envelope_bound": 45197,
+      "character_charge_bound": 971339,
+      "operation_charge_bound": 1287,
+      "active_seconds_bound": 3984.943913,
+      "limits_chars_ops_seconds": [
+        4000000,
+        2000,
+        14400
+      ],
+      "within_bounds_as_of_cutoff": true
+    },
+    "protocol-author": {
+      "tool_invocations": 20,
+      "argument_envelope_bound": 5702,
+      "result_envelope_bound": 216453,
+      "internal_action_bound": 50,
+      "non_tool_delivery_envelope_bound": 52704,
+      "character_charge_bound": 274859,
+      "operation_charge_bound": 70,
+      "active_seconds_bound": 606.1,
+      "limits_chars_ops_seconds": [
+        1000000,
+        500,
+        2700
+      ],
+      "within_bounds_as_of_cutoff": true
+    },
+    "protocol-reviewer": {
+      "tool_invocations": 62,
+      "argument_envelope_bound": 41072,
+      "result_envelope_bound": 573995,
+      "internal_action_bound": 350,
+      "non_tool_delivery_envelope_bound": 56845,
+      "character_charge_bound": 671912,
+      "operation_charge_bound": 412,
+      "active_seconds_bound": 1493.3129999999999,
+      "limits_chars_ops_seconds": [
+        1000000,
+        500,
+        2700
+      ],
+      "within_bounds_as_of_cutoff": true
+    },
+    "selector": {
+      "tool_invocations": 54,
+      "argument_envelope_bound": 6312,
+      "result_envelope_bound": 180126,
+      "non_tool_delivery_envelope_bound": 26006,
+      "character_charge_bound": 495938,
+      "operation_charge_bound": 62,
+      "reported_operation_bound_including_wrappers": 62,
+      "reported_character_bound": 495938,
+      "active_seconds_bound": 337.399,
+      "limits_chars_ops_seconds": [
+        1000000,
+        500,
+        2700
+      ],
+      "within_bounds_as_of_cutoff": true
+    }
+  },
+  "pending_events": [
+    {
+      "call": "pending-parent-call-1",
+      "owner": "parent",
+      "tool": "bash"
+    }
+  ],
+  "invalid_records": 0,
+  "unassociated_tool_ids": 0,
+  "pending_wrapper_reserve_chars": 16000,
+  "status": "Accounting only, NOT procedural compliance or campaign acceptance"
+}

@@ -1,0 +1,22 @@
+{
+  "task_id": "generous-protocol-parent-window-incident",
+  "status": "BLOCKED_PENDING_FROZEN_RULE_DISPOSITION",
+  "campaign": "headroom-benchmark-20261114",
+  "actor": "parent",
+  "after_protocol_freeze": true,
+  "before_acquisition_mapping_or_author_assignment": true,
+  "facts": [
+    "Parent dispatched three view calls with inclusive view_range [1,200] without recording a reason before dispatch.",
+    "Paths were cwd docs/AGENT-ORGANIZATION.md, H/acquire.py, and H/reconcile_preparation_assessed.py.",
+    "A fourth parallel view of H/protocol/RULES.json requested [1,100].",
+    "No individual request exceeded the 200-line absolute ceiling.",
+    "This is a missing required prospective reason, not a claimed absolute-window or cumulative character/operation/time overrun.",
+    "No selected target implementation/test body has been interpreted by the parent or accessed by a trial author/evaluator.",
+    "Researcher completed metadata-only eight-repository selection; original output materialized verbatim and unaccepted.",
+    "No target snapshots acquired, evaluator maps produced, advisories assigned, grades awarded or candidate locked."
+  ],
+  "normative_reference": "Frozen RUBRIC.md line240 requires a recorded reason before dispatch for planned windows above100 inclusive lines; RULES.json conflict_policy BLOCK_no_favorable_interpretation.",
+  "requested_disposition": "Apply the frozen rules, without waiver, retrospective reason, edited protocol or desired acceptance outcome. Decide whether this prevents any countable continuation and identify exact authority or unresolved intent.",
+  "containment": "Acquisition and all trials paused. Preserve original operations and researcher evidence; do not silently relabel or replace the campaign.",
+  "not_claimed": "No retrospective compliance, quality score, permission from human to waive rules, or product defect."
+}

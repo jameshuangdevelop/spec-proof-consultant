@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "dispatch-event-1",
+    "call_id": "dispatch-call-1",
+    "utc": "2026-11-14T22:41:57.692Z",
+    "arguments": {
+      "path": "/external/controller-project/docs/AGENT-ORGANIZATION.md",
+      "view_range": [
+        1,
+        200
+      ]
+    }
+  },
+  {
+    "event_id": "dispatch-event-2",
+    "call_id": "dispatch-call-2",
+    "utc": "2026-11-14T22:41:57.692Z",
+    "arguments": {
+      "path": "/external/evidence/headroom-benchmark-20261114/acquire.py",
+      "view_range": [
+        1,
+        200
+      ]
+    }
+  },
+  {
+    "event_id": "dispatch-event-3",
+    "call_id": "dispatch-call-3",
+    "utc": "2026-11-14T22:41:57.692Z",
+    "arguments": {
+      "path": "/external/evidence/headroom-benchmark-20261114/reconcile_preparation_assessed.py",
+      "view_range": [
+        1,
+        200
+      ]
+    }
+  }
+]
