@@ -1,0 +1,297 @@
+{
+  "task_id": "practical-dev-grade-0",
+  "status": "completed",
+  "verdict": "qualifies_under_frozen_advisory_quality_gate",
+  "output_mode": "complete_inline_REPORT.md_and_RESULT.json",
+  "changed_files": [],
+  "source_identity": {
+    "scope_sha256": "06b2dc593d5f86316fc55f95fe5de8e5bfaa6919d372cb7aa955aa7fffc84ab5",
+    "named_source_hashes_unchanged": true,
+    "git_pin_and_cleanliness_provenance": "Supplied frozen metadata; named-file hashes independently rechecked",
+    "D1": {
+      "commit": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+      "tree": "d0c2d891838c3c188f084bdafa0442e063b04d62"
+    },
+    "D2": {
+      "commit": "3febcb8561554927155923da335ac0549235b0b3",
+      "tree": "d1ee844cac447bf4d93c75de52532e79e5529c35"
+    },
+    "D3": {
+      "commit": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+      "tree": "5e56720c8ea36b1d385362668605d0b40aa645e8"
+    }
+  },
+  "skill_identity": {
+    "version": "0.2.1",
+    "path": "Q/skills/candidate-0.2.1/proof-readiness",
+    "supplied_assets_digest": "00590d90781e66d1522d49a507f9bbb11e80b53ff3b89c8536bf519d5fd0e02a",
+    "aggregate_digest_independently_recomputed": false,
+    "limitation": "Aggregate recipe unavailable; staged individual asset hashes retained",
+    "legacy_cli_used": false
+  },
+  "independence": {
+    "map_produced_utc": "2026-11-15T07:09:06.838224Z",
+    "parent_map_received_utc": "2026-11-15T07:11:00.156734Z",
+    "map_sha256": "174ce27868db4bed911e992e4d1eb85e5ccd4dc712af832ced876bf875c528ff",
+    "before_author_assignment": true,
+    "original_maps_preserved": true,
+    "author_reports_modified": false
+  },
+  "scoring": {
+    "weights": {
+      "G": 2,
+      "C": 2,
+      "M": 1.5,
+      "A": 1.5,
+      "D": 1.5,
+      "H": 1.5
+    },
+    "allowed_factors": [0, 0.25, 0.5, 0.75, 1],
+    "quality_sha256": "a013b447f8792036fd7b8c3a86a42dea9d932fd939ab821e915a7493eb82d942",
+    "no_rounding_or_na_renormalization": true
+  },
+  "reports": [
+    {
+      "root_id": "D1",
+      "assessment_sha256": "257dffdba57602f127994bd23b0caeb3827ac7e27b11d6c17fb75da1e1f8c5f4",
+      "factors": {"G": 1, "C": 1, "M": 1, "A": 1, "D": 1, "H": 1},
+      "raw_score": 10,
+      "final_score": 10,
+      "triggered_caps": [],
+      "hard_fail": false,
+      "countable": true,
+      "unresolved_high_or_critical": false,
+      "anchor_reasons": {
+        "G": "Wrapper, features, tests and adjacent non-helper independently grounded; unresolved backend and Value closure explicit.",
+        "C": "Removal mapping/return/order, borrowed keys, empty and positional cases, append collisions and exceptional behavior separated from approval.",
+        "M": "Reasoned noncatalog source/native-test choice; no language-only supported verifier claim.",
+        "A": "Source, inference, tests and future execution distinct; compatibility and approvals unknown.",
+        "D": "Removal/nonempty append add concrete incremental coverage; one prioritized opportunity is sufficient.",
+        "H": "All leads covered; source dossier, named command-selection artifact and blocked implementation have measurable acceptance."
+      },
+      "findings": [
+        {
+          "id": "D1-PRECISION",
+          "severity": "low",
+          "summary": "Nearby line pointers for generated include and adjacent iterator declaration; no material semantic error.",
+          "citations": [
+            "D1:src/lib.rs:396 include!",
+            "D1:src/iter.rs:54 LineColIterator::next"
+          ],
+          "reproduction": {
+            "kind": "independent_source_search",
+            "executed": true,
+            "evidence": "Grading-phase targeted functions.rg declaration search, complete arguments/output retained in transcript",
+            "outcome": "Actual symbols agree with advisory meaning; references :392 and :48 are nearby rather than declaration-exact",
+            "score_effect": "none"
+          }
+        }
+      ],
+      "map_challenge_dispositions": [
+        {
+          "challenge_id": "D1-C1",
+          "disposition": "addressed",
+          "evidence": "O1 distinguishes swap versus shift survivor ordering, returned values, missing keys and positional cases."
+        },
+        {
+          "challenge_id": "D1-C2",
+          "disposition": "not_selected_no_material_contradiction",
+          "evidence": "No recursive canonicalization or serializer-wide guarantee claimed; shallow sorting remains a legitimate deferred lead, not a mandatory extra task."
+        }
+      ],
+      "held_out_cases": [
+        {
+          "case": "preserve_order middle removal in [a,b,c,d,e]",
+          "citations": ["D1:src/map.rs:155-174", "D1:src/map.rs:235-251"],
+          "source_prediction": "remove b swaps e into position, while shift_remove b preserves survivor order",
+          "target_executed": false,
+          "disposition": "Consistent with advisory contract"
+        }
+      ]
+    },
+    {
+      "root_id": "D2",
+      "assessment_sha256": "ed1d3f7969cbfea019274ca0f8021cbf8d97422de48d0b75cc94795e68723208",
+      "factors": {"G": 1, "C": 1, "M": 1, "A": 1, "D": 1, "H": 1},
+      "raw_score": 10,
+      "final_score": 10,
+      "triggered_caps": [],
+      "hard_fail": false,
+      "countable": true,
+      "unresolved_high_or_critical": false,
+      "anchor_reasons": {
+        "G": "Timer/common/heap/public/configuration supported; unread queue/platform/callback bodies block dependent implementation.",
+        "C": "Rejection, saturation, wrap, cancellation, rearming and transient phases explicitly represented without evading unresolved original domains.",
+        "M": "Accurate conditional finite TLC safety scenario with correspondence/adoption prerequisites; whole-loop CBMC excluded and native traces relevant.",
+        "A": "No C implementation proof, pointer safety, fairness or liveness inferred from finite safety investigation.",
+        "D": "Ready-queue/reentrant callback transitions are concrete, prioritized incremental leads.",
+        "H": "Source state dossier and command-selection artifact precede separately blocked model/test implementation."
+      },
+      "findings": [
+        {
+          "id": "D2-PRECISION",
+          "severity": "low",
+          "summary": "Several declaration/configuration pointers are offset by one to three lines; symbols and behavior remain unambiguous.",
+          "citations": [
+            "D2:src/timer.c:57 uv_timer_init",
+            "D2:src/timer.c:112 uv_timer_again",
+            "D2:src/timer.c:164 uv__run_timers",
+            "D2:src/heap-inl.h:106 heap_insert",
+            "D2:configure.ac:36 gnu11 flag"
+          ],
+          "reproduction": {
+            "kind": "independent_source_search_and_views",
+            "executed": true,
+            "evidence": "Grading-phase targeted functions.rg searches and timer rereads; complete arguments/output retained",
+            "outcome": "Correct real symbols located within inspected windows; substantive statements confirmed",
+            "score_effect": "none"
+          }
+        }
+      ],
+      "map_challenge_dispositions": [
+        {
+          "challenge_id": "D2-C1",
+          "disposition": "addressed",
+          "evidence": "O1 and W1-W2 retain deadline saturation, failed-start preservation, counter wrap and arithmetic-model correspondence."
+        },
+        {
+          "challenge_id": "D2-C2",
+          "disposition": "addressed",
+          "evidence": "O1 explicitly includes ready-queue phases, cancel-other/self and rearming before callback."
+        }
+      ],
+      "held_out_cases": [
+        {
+          "case": "Null-callback start on previously scheduled timer",
+          "citations": ["D2:src/timer.c:68-94"],
+          "source_prediction": "EINVAL precedes stop and scheduling mutation",
+          "target_executed": false,
+          "disposition": "Consistent with advisory rejection contract"
+        },
+        {
+          "case": "Due A restarts pending ready B during A callback",
+          "citations": [
+            "D2:src/timer.c:97-121",
+            "D2:src/timer.c:164-191",
+            "D2:src/queue.h:79-91"
+          ],
+          "source_prediction": "B ready membership is removed before its new heap insertion; immutable snapshot delivery is insufficient",
+          "target_executed": false,
+          "disposition": "Covered by proposed phase/action investigation; native support remains untested"
+        }
+      ]
+    },
+    {
+      "root_id": "D3",
+      "assessment_sha256": "7e2713d9d22115f4faf62a7dea2018c1c1f0ce92f882da051feae7809e4d95cc",
+      "factors": {"G": 1, "C": 1, "M": 1, "A": 1, "D": 1, "H": 1},
+      "raw_score": 10,
+      "final_score": 10,
+      "triggered_caps": [],
+      "hard_fail": false,
+      "countable": true,
+      "unresolved_high_or_critical": false,
+      "anchor_reasons": {
+        "G": "Parser/interface/internal adapter/test/caller/configuration citations supported; external decoder/storage bodies explicitly unread.",
+        "C": "Status plus callback prefix, short/header/count/extreme-size cases, sequence and self-aliasing retained; no unjustified rollback contract.",
+        "M": "Recording-handler tests/source inspection fit; CBMC remains blocked on bodies, language features, model/bounds and exclusions.",
+        "A": "Test expectations not passing results; no storage-wide proof or exact tool support invented.",
+        "D": "Parser side effects first, append domain second, with concrete incremental evidence beyond existing tests.",
+        "H": "Scoped source dossier and command-selection tasks include acceptance evidence and separately blocked implementation."
+      },
+      "findings": [
+        {
+          "id": "D3-PRECISION",
+          "severity": "low",
+          "summary": "MemTableInserter pointer is within its body rather than declaration start; InsertInto pointer identifies a body statement.",
+          "citations": [
+            "D3:db/write_batch.cc:116 MemTableInserter",
+            "D3:db/write_batch.cc:132-136 InsertInto"
+          ],
+          "reproduction": {
+            "kind": "independent_source_search_and_views",
+            "executed": true,
+            "evidence": "Grading-phase declaration search and write_batch.cc rereads; complete arguments/output retained",
+            "outcome": "Sequence is read before Iterate, exactly as advisory states; no material citation failure",
+            "score_effect": "none"
+          }
+        }
+      ],
+      "map_challenge_dispositions": [
+        {
+          "challenge_id": "D3-C1",
+          "disposition": "addressed",
+          "evidence": "O1 explicitly preserves partial callback effects and rejects transferring public atomic DB wording to Iterate rollback."
+        },
+        {
+          "challenge_id": "D3-C2",
+          "disposition": "addressed",
+          "evidence": "O2 retains count overflow, sequence preservation, aliasing and standalone-versus-group-size obligations."
+        }
+      ],
+      "held_out_cases": [
+        {
+          "case": "Fully decoded records with wrong header count",
+          "citations": ["D3:db/write_batch.cc:42-79"],
+          "source_prediction": "Callbacks precede count-mismatch corruption",
+          "target_executed": false,
+          "disposition": "Consistent with status-plus-prefix contract"
+        },
+        {
+          "case": "INT_MAX Count followed by positive append",
+          "citations": ["D3:db/write_batch.cc:144-148"],
+          "source_prediction": "Signed-sum obligation requires explicit machine/domain analysis",
+          "target_executed": false,
+          "disposition": "Correctly unresolved; not represented as reproduced bug or safe unrestricted operation"
+        }
+      ]
+    }
+  ],
+  "exact_mean": 10,
+  "cohort_qualifies": true,
+  "original_failure_dispositions": [
+    {
+      "failure": "Reported missing python executable",
+      "disposition": "Metadata diagnostic; no target execution demonstrated"
+    },
+    {
+      "failure": "Initially absent outside-root output directory",
+      "disposition": "Expected output-creation condition, not target mutation"
+    },
+    {
+      "failure": "Reported plutil JSON-as-plist lint failure",
+      "disposition": "Diagnostic only; independent stdlib JSON parse succeeded",
+      "limitation": "Exact raw plutil invocation/output unavailable in permitted artifacts"
+    },
+    {
+      "failure": "Nearby citation pointers",
+      "disposition": "Independently audited, nonmaterial; originals preserved"
+    },
+    {
+      "failure": "Overlapping or preferred-window overruns",
+      "disposition": "Administrative diagnostics; no invented resource cap"
+    }
+  ],
+  "tools_and_results": {
+    "grading_tool_calls": 20,
+    "environment": "Darwin; Python 3.10.6, Clang 13.1.6",
+    "hash_json_command_shell": "779",
+    "hash_json_command_result": "exit 0; all supplied hashes match, author JSON valid, 22 named source hashes unchanged",
+    "exact_arithmetic_command_shell": "782",
+    "exact_arithmetic_command_result": "exit 0; scores 10,10,10; exact mean 10",
+    "complete_commands_and_source_tool_arguments": "Retained in task transcript; complete Bash commands also included in REPORT.md",
+    "target_execution": false,
+    "network": false,
+    "writes": false,
+    "agent_invocations": false
+  },
+  "limitations": [
+    "Author actions assessed from supplied RESULT and handoff, not independently available raw execution logs.",
+    "No concrete safety/authority/blinding/identity breach evidenced; action-log absence is neither accusation nor proof of a clean execution baseline.",
+    "Target execution, exact runtime compatibility, dependency/platform closure and proposed model correspondence remain unknown.",
+    "No enforced sandbox, atomic no-follow certification or exhaustive ancestor-alias audit.",
+    "Exact cost, tokens, full injected context and performance savings unavailable or unmeasured.",
+    "Positive advisory evaluation does not approve implementation, candidate locking, promotion, publication or merge."
+  ],
+  "recommended_next_action": "Orchestrator records the initial qualifying cohort and applies the separate campaign sequence; evaluator stops without repair, promotion, locking or further author feedback."
+}

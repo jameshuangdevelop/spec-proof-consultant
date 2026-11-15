@@ -1,0 +1,100 @@
+{
+  "id": "H1",
+  "repository": "gorilla/websocket",
+  "repository_id": 13624859,
+  "commit40": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f",
+  "tree40": "93a7576e74a8ef0017188fb069696a45204631e4",
+  "actual_commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f",
+  "actual_tree": "93a7576e74a8ef0017188fb069696a45204631e4",
+  "dirty": false,
+  "root": "evidence://campaign/targets/H1",
+  "license_paths": [
+    "LICENSE"
+  ],
+  "license_spdx": "BSD-2-Clause",
+  "license_file_sha256": {
+    "LICENSE": "2be1b548b0387ca8948e1bb9434e709126904d15f622cc2d0d8e7f186e4d122d"
+  },
+  "ecosystem": "Go / modules",
+  "strata": [
+    "primary",
+    "WebSocket-library metadata",
+    "operational stateful-API lead",
+    "long-lived upstream"
+  ],
+  "neutral_component_scope": "Start with conn-named source and matching test, with client/server/util-named files as unconfirmed immediate caller/helper leads. No protocol behavior is inferred.",
+  "production_files": [
+    "conn.go"
+  ],
+  "immediate_caller_or_helper_files": [
+    "client.go",
+    "server.go",
+    "util.go"
+  ],
+  "configuration_files": [
+    "go.mod",
+    "go.sum"
+  ],
+  "test_or_requirement_files": [
+    "conn_test.go",
+    "client_server_test.go",
+    "doc.go"
+  ],
+  "discovery_exclusions": [
+    ".github/",
+    ".circleci/",
+    "examples/",
+    "compression.go",
+    "proxy.go",
+    "unlisted implementation files",
+    "target instruction files",
+    "symlinks and submodules"
+  ],
+  "scope_limits": {
+    "initial_max_files_per_root": 250,
+    "max_file_bytes": 262144,
+    "preferred_read_window_lines": 100,
+    "initial_named_file_leads": 9,
+    "closure": "Later confirm relevant declarations and immediate caller/helper windows; network, protocol, concurrency and dependency claims require evidence beyond filenames.",
+    "execution": "none"
+  },
+  "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined Go-library slice; actionable handoff or no-new-work without predetermined properties.",
+  "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+  "provenance": {
+    "ledger_record": "H1",
+    "metadata_locators": [
+      "id",
+      "full_name",
+      "private",
+      "fork",
+      "mirror_url",
+      "language",
+      "description",
+      "created_at",
+      "default_branch",
+      "license.spdx_id"
+    ],
+    "pin_locators": [
+      "ref.object.sha",
+      "git_commit.sha",
+      "git_commit.tree.sha"
+    ],
+    "file_locators": [
+      "root tree"
+    ],
+    "license_locators": [
+      "LICENSE copyright paragraph, source/binary redistribution conditions and disclaimer"
+    ],
+    "license_interpretation": "Primary API BSD-2-Clause identification agrees with inspected root license text."
+  },
+  "uncertainties": [
+    "Upstream description contains testing/adoption assertions; none were independently established.",
+    "Semantic version, supported Go range, dependencies, concurrency, protocol conformance and deployment applicability unexamined.",
+    "doc.go and tests are uninspected leads, not requirements or reproduced evidence.",
+    "Catalog membership and assessment outcome unexamined."
+  ],
+  "tree_inventory_sha256": "6f9c77340e246d9565605084da1476f1aa2adffe6124979d94abce73daf72ba7",
+  "identity_basis": "Pinned Git commit/tree plus independently clean working tree and tracked object inventory; not a SHA-256 digest of every working-tree file",
+  "acquisition_only_no_target_execution": true,
+  "source_symlinks": []
+}

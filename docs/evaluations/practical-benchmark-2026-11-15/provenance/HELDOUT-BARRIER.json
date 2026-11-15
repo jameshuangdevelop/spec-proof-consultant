@@ -1,0 +1,41 @@
+{
+  "released_utc": "2026-11-15T07:57:38.373364+00:00",
+  "both_authors_and_both_grades_completed": true,
+  "feedback_between_authors": "None supplied; opaque judgments retained until barrier",
+  "grade_receipts": {
+    "heldout-a": {
+      "agent_id": "runtime-id-1",
+      "turn": 1,
+      "kind": "grades",
+      "root_ids": [
+        "H1",
+        "H2",
+        "H3"
+      ],
+      "sha256": "395dd5f78c2aa414e291c85840a10a2e5c9f2cd881318977b093fb25f6b13508",
+      "bytes": 19516,
+      "produced_utc": "2026-11-15T07:54:04.560798+00:00",
+      "received_utc": "2026-11-15T07:57:38.004513+00:00",
+      "path": "evidence://campaign/private/heldout-a/grades.json",
+      "source": "Opaque evaluator data packet; not a signature or confidentiality boundary",
+      "materialization": "Exact decoded bytes, hash verified; no semantic source/map interpretation"
+    },
+    "heldout-b": {
+      "agent_id": "runtime-id-2",
+      "turn": 1,
+      "kind": "grades",
+      "root_ids": [
+        "H1",
+        "H2",
+        "H3"
+      ],
+      "sha256": "9899c341327e5624aa034a960eb152fc409745322cdf32938d30b1083e2f8354",
+      "bytes": 21081,
+      "produced_utc": "2026-11-15T07:54:39.589200+00:00",
+      "received_utc": "2026-11-15T07:57:38.345374+00:00",
+      "path": "evidence://campaign/private/heldout-b/grades.json",
+      "source": "Opaque evaluator data packet; not a signature or confidentiality boundary",
+      "materialization": "Exact decoded bytes, hash verified; no semantic source/map interpretation"
+    }
+  }
+}

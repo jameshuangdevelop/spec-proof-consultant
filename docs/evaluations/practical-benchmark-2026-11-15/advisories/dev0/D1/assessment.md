@@ -1,0 +1,45 @@
+# Proof-readiness advisory
+
+Status: recommendation only; no target execution or verifier result.
+Date: 2026-11-15. Task: practical-dev-author-0, slot D1.
+User goal: later bounded source-grounded verification/specification assessment of the filename-defined library slice, with actionable handoff or justified no-new-work. Adoption: read-only planning; no owner grant for implementation, execution, source adaptation or dependency installation.
+
+## Scope and evidence
+
+| Root ID | Selected absolute root | Revision / dirty state | Inspected areas | Skipped / unknown areas and why |
+|---|---|---|---|---|
+| r1 | evidence://campaign/targets/D1 | commit `8c535a260ce561eaab4111aafc29038eb9f77ff3`; tree `d0c2d891838c3c188f084bdafa0442e063b04d62`; status --short empty before and after inspection | Selected windows of src/map.rs and src/lib.rs; src/iter.rs, Cargo.toml feature/dependency window, build.rs and tests/map.rs | Unlisted source, Value/error/serde implementations, std/alloc/IndexMap/foldhash bodies, fuzz, UI/regression tests, lexical, .github, target instructions, vendor/generated/build/nested trees and symlinks excluded or unread |
+
+Output: `evidence://campaign/advisories/dev0/D1/assessment.md`, outside all three selected roots. Native stat identified the root, src/tests directories and all six leads as directories/regular files; largest lead 35,610 bytes, under 256 KiB. Output ancestors inspected as directories; advisories did not yet exist. No known source symlinks supplied. Shared environment is not a sandbox: metadata checks are not atomic no-follow or secret detection.
+
+Budget: six named target files, no recursive source dump; source windows requested 1–100, 130–290 and 344–410 in map.rs, 365–450 in lib.rs, and 1–100 in each other lead. The 161-line map window exceeds the preferred 100 but not ordinary 200-line guidance; EOF shortened several reads. Targeted searches scanned only map.rs/lib.rs. No tool truncation observed, no hard cumulative counter maintained. Git metadata is optional evidence, not proof of an atomic snapshot.
+
+Existing assurance: r1:tests/map.rs:4 `test_preserve_order`, :20 `test_shift_insert`, :30 `test_append`, :50 `test_retain` are test definitions only. The append case starts with an empty destination and checks donor emptiness; it does not demonstrate collision behavior. No test results supplied or reproduced.
+
+Observed boundaries: r1:src/map.rs:38 `MapImpl` selects BTreeMap or IndexMap; :43–46 changes the hasher with std. r1:Cargo.toml:14–18 names optional foldhash/IndexMap dependencies; :53–66 declares std/alloc/preserve_order. r1:src/lib.rs:372 requires std or alloc, :392 includes generated private code, :431 exposes map. r1:build.rs:19 `main` writes generated files when built; it was read, never run. r1:src/iter.rs:48 `LineColIterator::next` tracks input line/column, not map iteration: adjacency did not establish a map helper relationship.
+
+## Decisions
+
+Prefer one small contract-and-native-test investigation over a verifier pilot. Actual map operations predominantly delegate to collection implementations; no supported isolated arithmetic/slice/unsafe-memory kernel was established for this map slice. Bundled index version 1, scenarios 1.0.0, records documented guidance checked 2026-11-05, not reproduced recommendations. CBMC and TLC guides were loaded for the other cohort roots, not treated as Rust-map compatibility evidence. A separate abstract map model would mainly restate collection semantics and currently adds less assurance than feature-specific wrapper tests.
+
+### O1 — Feature-sensitive removal and append contracts
+
+- Priority: first within this slice. Ordering differences are public API behavior, while the inspected tests leave removal and nonempty append interactions uncovered. Cost appears modest for contract examples, but complete caller/dependency coverage is unknown.
+- Target/boundary: r1:src/map.rs:137 `insert`, :166 `remove`, :210 `swap_remove`, :246 `shift_remove`, :274 `append`. Remove dispatches on preserve_order; append delegates to BTreeMap::append or IndexMap::extend after replacing the donor. Borrowed keys require matching ordering (:157–159); Hash/Eq constraints also appear in signatures. Collection internals, allocation/panic behavior and Value bodies are unread. No complete caller graph established; tests use from_str and Value::as_object_mut outside the inspected semantic closure.
+- Requirement: **documented** removal distinction at r1:src/map.rs:160–164 and shift-removal relative order at :237–240; **documented** donor emptiness at :272. Existing-value replacement for insert is documented at :134–135. Nonempty append collision value precedence and position are **inferred/unresolved** from delegation, not specified by the donor-emptiness sentence. Owner authority and approval remain absent. Test assertions are observations of intended examples, not approvals.
+- Property: for a finite initialized map of unique String keys and Value values, a well-formed borrowed lookup and normal return, present removal returns the old value and deletes exactly that key; absent removal returns None and preserves all entries. With preserve_order, removal at position i replaces that position with the old last entry (unless already last), whereas shift_remove preserves the surviving sequence. Without it, remaining iteration stays lexically sorted. For distinct mutable maps on normal append return, donor is empty and destination contains the union of keys; duplicate-key value/position policy must be resolved before fixing an oracle. Include empty maps, missing keys, first/middle/last removal, Unicode keys and overlapping/nonoverlapping donors. Rust's mutable borrows prevent simultaneous safe self/donor aliasing here; this is not a claim about unsafe callers. Allocation failures, predicate panics and recursive Value operations are unresolved, not silently excluded from the API contract. For a later finite trace test, the invariant is unique keys and a reference mapping/order after each operation. Counterexamples are wrong returned values, lost unrelated entries, wrong survivor order, nonempty donor, or disagreement with an owner-approved collision policy.
+- Method: explicit noncatalog source inspection followed, only if approved, by native regression tests in tests/map.rs. Tests establish behavior of executed cases, not bounded exhaustive checks or proof. Exact compiler/dependency/feature compatibility unknown; Cargo's rust-version 1.71 is product metadata, not a tested verifier release.
+- Alternatives: defer Kani/Verus pilots; index patterns and supported-source/callee compatibility are not established, nor is adaptation approved. Defer TLC map abstraction because implementation correspondence and incremental benefit are unestablished. No knowledge promotion.
+- Readiness: read-only contract gathering can be separately assigned now within named files; test implementation/execution blocked by owner intent, feature matrix/dependency resolution and separate authorized isolation. No production repair is recommended from this inspection.
+
+## Actionable handoff
+
+| Work ID | Next bounded task / proposed files | Depends on | Approval and readiness | Acceptance / evidence required |
+|---|---|---|---|---|
+| W1 | Read-only contract dossier for remove/shift_remove/append in src/map.rs, Cargo.toml and tests/map.rs; ask orchestrator to obtain owner collision/order and exceptional-return intent | This evidence | Proposed next assignment only; no owner implementation grant | Cite each feature branch, explain ordinary return versus panic, record missing caller/dependency closure and approved or unresolved collision oracle |
+| W2 | Read-only command-selection artifact `D1-native-test-plan.md` outside targets: select Rust/Cargo versions, dependency identities, test invocation arguments, cwd, std/alloc/preserve_order matrix and isolated checkout/output layout | W1 | Selection is not execution permission; no target tools run | Exact conditional invocation specification for tests/map.rs and complete preconditions; note unavailable configurations rather than invent support |
+| W3 | Conditional native regression cases in tests/map.rs for O1, without changing product contracts | W1, W2, actual owner grant and isolated execution authorization | Blocked | Approved positive/negative oracles, source/test identity, exact versions/commands/configuration, all output and failures; no proof claim |
+
+## Review and limitations
+
+Manually checked citations against inspected windows and r1 assignment; identity recheck matched initial commit/tree and empty status. Requirement provenance is source documentation or inference, not owner acceptance. No comprehensive call closure, compiler support, dependency assurance, passing tests, compatibility or correctness certificate established. Unread areas remain unknown. Contribution publication belongs to the orchestrator: no branch creation, staging, commits, pushes or PR occurred. Stop at this cohort, with any implementation decision escalated separately.

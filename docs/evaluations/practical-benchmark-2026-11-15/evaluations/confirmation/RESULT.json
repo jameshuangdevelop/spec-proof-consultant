@@ -1,0 +1,175 @@
+{
+  "task_id": "practical-confirm-grade",
+  "status": "completed",
+  "phase": "confirmation",
+  "verdict": "cohort qualifies under frozen advisory-quality criteria; not human approval",
+  "report_destination": "inline REPORT.md and RESULT.json",
+  "changed_files": [],
+  "weights": {"G": 2, "C": 2, "M": 1.5, "A": 1.5, "D": 1.5, "H": 1.5},
+  "allowed_factors": [0, 0.25, 0.5, 0.75, 1],
+  "maps_sha256": "b317632b53ec9b9fbff0e39d110807b4afb274b160a9a5d46af86071d87d8de9",
+  "scope_sha256": "06b2dc593d5f86316fc55f95fe5de8e5bfaa6919d372cb7aa955aa7fffc84ab5",
+  "skill": {
+    "version": "0.2.1",
+    "source_commit": "29df86f38291093e90055f30c00361930d5d27cd",
+    "all_LOCK_file_hashes_match": true,
+    "compatibility_proved": false
+  },
+  "reports": [
+    {
+      "root_id": "D1",
+      "assessment_sha256": "5d6bf1bbd1d8c913deb4a13544cf558e3eb9eca4214e764c388575a28160fb3b",
+      "source_commit": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+      "source_tree_supplied": "d0c2d891838c3c188f084bdafa0442e063b04d62",
+      "named_file_hashes_match_original_map": true,
+      "factors": {"G": 1, "C": 1, "M": 1, "A": 1, "D": 1, "H": 1},
+      "raw_score": 10,
+      "final_score": 10,
+      "triggered_caps": [],
+      "hard_fail": false,
+      "countable": true,
+      "unresolved_high_or_critical": false,
+      "findings": [],
+      "map_challenge_dispositions": [
+        {
+          "id": "D1-order",
+          "disposition": "addressed",
+          "evidence": "O1 distinguishes swap removal from stable shift removal, including missing and position cases."
+        },
+        {
+          "id": "D1-merge-hash",
+          "disposition": "bounded defer/partial",
+          "evidence": "Append collisions and shift-insert indices deferred; hash/nested-sort branch outside selected bounded opportunity, with no contrary guarantee."
+        }
+      ]
+    },
+    {
+      "root_id": "D2",
+      "assessment_sha256": "fbcbfd2b3816557204e55fe1efe98da29f367dc500c0fb781fa0a1672d7ebaee",
+      "source_commit": "3febcb8561554927155923da335ac0549235b0b3",
+      "source_tree_supplied": "d1ee844cac447bf4d93c75de52532e79e5529c35",
+      "named_file_hashes_match_original_map": true,
+      "factors": {"G": 1, "C": 1, "M": 1, "A": 1, "D": 1, "H": 1},
+      "raw_score": 10,
+      "final_score": 10,
+      "triggered_caps": [],
+      "hard_fail": false,
+      "countable": true,
+      "unresolved_high_or_critical": false,
+      "findings": [
+        {
+          "id": "D2-L1",
+          "severity": "low",
+          "citations": [
+            "D2:configure.ac:36-37",
+            "D2:src/heap-inl.h:149-152",
+            "D2:assessment.md:O1 Target/boundary"
+          ],
+          "finding": "Two line pointers are off by one; correct symbols and meanings remain inspectable.",
+          "reproduction": "Session 802 numbered inert reads show gnu11 at 36 and heap_remove at 150.",
+          "score_effect": "none",
+          "resolved_for_grading": true
+        }
+      ],
+      "map_challenge_dispositions": [
+        {
+          "id": "D2-deadline",
+          "disposition": "bounded defer",
+          "evidence": "Saturation and rollover identified; FIFO/liveness not claimed; numeric abstraction resolution remains W1 prerequisite."
+        },
+        {
+          "id": "D2-ready-lifecycle",
+          "disposition": "addressed",
+          "evidence": "Ready cancellation/restart and repeat rearm before callback are represented; implementation correspondence remains blocked."
+        }
+      ]
+    },
+    {
+      "root_id": "D3",
+      "assessment_sha256": "4af7eead67044562bdb73f03e59f7dd92cbfc86c711dc90c22ae9941a880174e",
+      "source_commit": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+      "source_tree_supplied": "5e56720c8ea36b1d385362668605d0b40aa645e8",
+      "named_file_hashes_match_original_map": true,
+      "factors": {"G": 1, "C": 1, "M": 1, "A": 1, "D": 1, "H": 1},
+      "raw_score": 10,
+      "final_score": 10,
+      "triggered_caps": [],
+      "hard_fail": false,
+      "countable": true,
+      "unresolved_high_or_critical": false,
+      "findings": [
+        {
+          "id": "D3-L1",
+          "severity": "low",
+          "citations": [
+            "D3:assessment.md:Scope and evidence coverage table and window paragraph",
+            "advisories/confirmation/RESULT.json:source_view_parameters.D3"
+          ],
+          "finding": "No-window-over-150 sentence contradicts disclosed 1-180 window; diagnostic bookkeeping, not material safety or semantic defect.",
+          "reproduction": "Read canonical assessment and cohort RESULT.json; both disclose write_batch.cc 1-180.",
+          "score_effect": "none",
+          "resolved_for_grading": true
+        }
+      ],
+      "map_challenge_dispositions": [
+        {
+          "id": "D3-corruption-prefix",
+          "disposition": "addressed",
+          "evidence": "Explicit prefix effects and all-callbacks-before-count-error; rollback inference rejected."
+        },
+        {
+          "id": "D3-append-count",
+          "disposition": "bounded defer",
+          "evidence": "Self-alias/count/sequence issues deferred; no append or DB-wide assurance claimed."
+        }
+      ]
+    }
+  ],
+  "exact_mean": 10,
+  "exact_mean_rational": "10/1",
+  "cohort_qualifies": true,
+  "arithmetic": "Each raw=2+2+1.5+1.5+1.5+1.5=10; no caps; mean=(10+10+10)/3=10.",
+  "citation_audit": {
+    "all_decision_driving_citations_audited": true,
+    "at_least_three_other_citations_per_report_audited": true,
+    "details": "REPORT.md citation audit and exact same-task command transcript"
+  },
+  "action_evidence": {
+    "evaluator_command_sessions": [800, 801, 802, 803, 804, 805],
+    "all_completed_exit_codes": 0,
+    "literal_commands_and_full_outputs": "Preserved in same-task tool transcript; command purposes and citation ranges in REPORT.md.",
+    "author_recorded_actions_reviewed": true,
+    "author_raw_action_logs_available": false,
+    "author_unlisted_actions_certified_absent": false,
+    "observed_unauthorized_action": false
+  },
+  "reproductions": {
+    "target_execution": "none; unauthorized",
+    "source_read_checks": "Citation pointers, representation effects and identity hashes independently inspected.",
+    "held_out_cases": "Unexecuted source-backed variations detailed in REPORT.md; no heldout scopes accessed."
+  },
+  "original_failure_dispositions": [
+    {
+      "failure": "Author metadata python command unavailable, exit 127",
+      "disposition": "Preserved diagnostic; supplied RESULT records subsequent metadata-only python3 operation. No automatic cap."
+    },
+    {
+      "failure": "Earlier development failures",
+      "disposition": "Not supplied or accessed; no regrade or deletion."
+    },
+    {
+      "failure": "Evaluator attempted per-root RESULT.json reads",
+      "disposition": "Three unavailable paths; correct cohort RESULT.json subsequently read. No author delivery defect."
+    }
+  ],
+  "limitations": [
+    "Read-only source assessment, no target execution or dynamic reproduction.",
+    "Exact target/tool compatibility and full dependency/caller closure remain unknown.",
+    "Named-file hashes and HEADs verified; full-tree dirty state/tree IDs supplied, not independently exhaustive.",
+    "Shared environment and non-atomic path checks are not execution isolation.",
+    "Author operational claims reviewed, but raw action logs unavailable; no invented clean-action certification.",
+    "No old grades, feedback, heldout/reserve scopes, network, agents, repairs, promotion or approval.",
+    "No evaluation files written; complete report and result delivered inline."
+  ],
+  "next_action": "Retain immutable confirmation grade; evaluator stops. No retry, new scope, implementation or approval authorized."
+}

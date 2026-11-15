@@ -1,0 +1,17 @@
+{
+  "agent_id": "runtime-id-2",
+  "turn": 0,
+  "kind": "maps",
+  "root_ids": [
+    "H1",
+    "H2",
+    "H3"
+  ],
+  "sha256": "579f3a92f7b24a0e4a4b09da273ad7593968f90d46139babb2744b8a68ea3519",
+  "bytes": 14462,
+  "produced_utc": "2026-11-15T07:40:49.843177+00:00",
+  "received_utc": "2026-11-15T07:42:54.581257+00:00",
+  "path": "evidence://campaign/private/heldout-b/maps.json",
+  "source": "Opaque evaluator data packet; not a signature or confidentiality boundary",
+  "materialization": "Exact decoded bytes, hash verified; no semantic source/map interpretation"
+}

@@ -1,0 +1,103 @@
+{
+  "id": "D1",
+  "repository": "serde-rs/json",
+  "repository_id": 35894511,
+  "commit40": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+  "tree40": "d0c2d891838c3c188f084bdafa0442e063b04d62",
+  "actual_commit": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+  "actual_tree": "d0c2d891838c3c188f084bdafa0442e063b04d62",
+  "dirty": false,
+  "root": "evidence://campaign/targets/D1",
+  "license_paths": [
+    "LICENSE-APACHE",
+    "LICENSE-MIT"
+  ],
+  "license_spdx": "Apache-2.0",
+  "license_file_sha256": {
+    "LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+    "LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+  },
+  "ecosystem": "Rust / Cargo",
+  "strata": [
+    "primary",
+    "JSON-library metadata",
+    "long-lived upstream",
+    "bounded library-module scope"
+  ],
+  "neutral_component_scope": "Start with the map-named module, library entry file, adjacent iterator-named file, and matching test filename. This is a filename-based boundary, not an established API/caller closure.",
+  "production_files": [
+    "src/map.rs"
+  ],
+  "immediate_caller_or_helper_files": [
+    "src/lib.rs",
+    "src/iter.rs"
+  ],
+  "configuration_files": [
+    "Cargo.toml",
+    "build.rs"
+  ],
+  "test_or_requirement_files": [
+    "tests/map.rs"
+  ],
+  "discovery_exclusions": [
+    ".github/",
+    "CONTRIBUTING.md",
+    "fuzz/",
+    "src/lexical/",
+    "tests/ui/",
+    "tests/regression/",
+    "unlisted source subtrees",
+    "target instruction files",
+    "symlinks and submodules"
+  ],
+  "scope_limits": {
+    "initial_max_files_per_root": 250,
+    "max_file_bytes": 262144,
+    "preferred_read_window_lines": 100,
+    "initial_named_file_leads": 6,
+    "closure": "Confirm actual declarations, immediate callers/helpers, dependency and feature boundaries later; document unresolved closure rather than expanding indefinitely.",
+    "execution": "none"
+  },
+  "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined library slice; actionable handoff or no-new-work without predetermined properties.",
+  "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+  "provenance": {
+    "ledger_record": "D1",
+    "metadata_locators": [
+      "id",
+      "full_name",
+      "private",
+      "fork",
+      "mirror_url",
+      "language",
+      "description",
+      "created_at",
+      "default_branch",
+      "license.spdx_id"
+    ],
+    "pin_locators": [
+      "ref.object.sha",
+      "git_commit.sha",
+      "git_commit.tree.sha"
+    ],
+    "file_locators": [
+      "root tree",
+      "src tree",
+      "tests tree"
+    ],
+    "license_locators": [
+      "LICENSE-APACHE title, version and sections 2-4",
+      "LICENSE-MIT permission and notice paragraphs"
+    ],
+    "license_interpretation": "Apache-2.0 is the primary API identification and inspected license. An additional MIT text is present; the complete alternative-license expression was not established from implementation/package bodies."
+  },
+  "uncertainties": [
+    "Semantic version and supported version range not established.",
+    "Feature-dependent source selection, dependency closure, concurrency, FFI and deployment applicability unexamined.",
+    "Helper/caller relationships are filename leads, not observed calls.",
+    "Catalog membership, existing proof coverage, customer value and assessment outcome unexamined."
+  ],
+  "tree_inventory_sha256": "d860f4d288c53e88f20160f4219f7ede64309980f3a9645a1080ad14e66abd84",
+  "identity_basis": "Pinned Git commit/tree plus independently clean working tree and tracked object inventory; not a SHA-256 digest of every working-tree file",
+  "acquisition_only_no_target_execution": true,
+  "source_symlinks": []
+}

@@ -1,0 +1,22 @@
+{
+  "checked_utc": "2026-11-15T07:17:14.858001+00:00",
+  "artifacts": {
+    "D1": {
+      "path": "evidence://campaign/advisories/dev0/D1/assessment.md",
+      "sha256": "257dffdba57602f127994bd23b0caeb3827ac7e27b11d6c17fb75da1e1f8c5f4",
+      "bytes": 9275
+    },
+    "D2": {
+      "path": "evidence://campaign/advisories/dev0/D2/assessment.md",
+      "sha256": "ed1d3f7969cbfea019274ca0f8021cbf8d97422de48d0b75cc94795e68723208",
+      "bytes": 10386
+    },
+    "D3": {
+      "path": "evidence://campaign/advisories/dev0/D3/assessment.md",
+      "sha256": "7e2713d9d22115f4faf62a7dea2018c1c1f0ce92f882da051feae7809e4d95cc",
+      "bytes": 12140
+    }
+  },
+  "result_sha256": "64536d79380551f30e2fb75fb68eee3a2064fc2f00a10e679250e53e357b6603",
+  "scope": "Integrity-only; no semantic author-output review"
+}

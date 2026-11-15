@@ -1,0 +1,469 @@
+{
+  "format": 1,
+  "purpose": "Bounded original-private versus public-normalized artifact provenance; not a correctness certificate",
+  "normalization": {
+    "encoding": "UTF-8; original bytes retained except declared substitutions/projections",
+    "campaign_path": "Original campaign absolute prefix -> evidence://campaign",
+    "trusted_checkout_path": "Original benchmark checkout prefix -> checkout://trusted-product",
+    "startup_checkout_path": "Original agents checkout prefix -> checkout://agent-startup",
+    "runtime_ids": "UUID runtime identifiers -> runtime-id-N consistently in deterministic processing order",
+    "selection_projection": "Only records with id D1 D2 D3 H1 H2 H3; all selection header fields omitted",
+    "identity_projection": "Primary pin/license/scope/provenance fields only; tracked_tree_inventory omitted, its original digest retained",
+    "embedded_hashes": "All hashes inside normalized evidence refer to original private artifacts or original supplied evidence, NOT normalized bytes",
+    "logical_uris": "Logical provenance locators, not executable paths or clickable local-file links; unpublished maps/runtime/targets remain unavailable",
+    "no_grade_changes": true,
+    "omitted": "Raw maps, private packets, source bodies, raw logs/prompts, reserve identities, exclusions and historical selection/allocation input"
+  },
+  "artifacts": [
+    {
+      "original_artifact": "protocol/QUALITY.md",
+      "public_artifact": "protocol/QUALITY.md",
+      "original_private_sha256": "a013b447f8792036fd7b8c3a86a42dea9d932fd939ab821e915a7493eb82d942",
+      "original_bytes": 12181,
+      "public_normalized_sha256": "a013b447f8792036fd7b8c3a86a42dea9d932fd939ab821e915a7493eb82d942",
+      "public_bytes": 12181,
+      "recipe": "exact frozen bytes"
+    },
+    {
+      "original_artifact": "protocol/SCORING.json",
+      "public_artifact": "protocol/SCORING.json",
+      "original_private_sha256": "c30e9186ce8ad71db7908a1173a93eb5cff79cfe8dc77248f887b889894c3dce",
+      "original_bytes": 5124,
+      "public_normalized_sha256": "c30e9186ce8ad71db7908a1173a93eb5cff79cfe8dc77248f887b889894c3dce",
+      "public_bytes": 5124,
+      "recipe": "exact frozen bytes"
+    },
+    {
+      "original_artifact": "protocol/OPERATIONS.md",
+      "public_artifact": "protocol/OPERATIONS.md",
+      "original_private_sha256": "c3f41c2d3e619ee10d79ef22e86a18c8ed32521403d5028b3c39c61e3d479124",
+      "original_bytes": 5817,
+      "public_normalized_sha256": "c3f41c2d3e619ee10d79ef22e86a18c8ed32521403d5028b3c39c61e3d479124",
+      "public_bytes": 5817,
+      "recipe": "exact frozen bytes"
+    },
+    {
+      "original_artifact": "protocol/FREEZE.json",
+      "public_artifact": "protocol/FREEZE.json",
+      "original_private_sha256": "8e63e81278a4de71745a4ff411e5e8adb9b10a021f8ba7e5a2025c659aaa79d0",
+      "original_bytes": 884,
+      "public_normalized_sha256": "8e63e81278a4de71745a4ff411e5e8adb9b10a021f8ba7e5a2025c659aaa79d0",
+      "public_bytes": 884,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "protocol-review/REPORT.md",
+      "public_artifact": "protocol-review/REPORT.md",
+      "original_private_sha256": "2fb707b907f0db3be440547ab1f80659828f5f0312590e648e38fbd005011123",
+      "original_bytes": 4491,
+      "public_normalized_sha256": "9bcbc0269f253ded9644ea2d58c499fae4b4e96b023f00b8e07eec2bccf85766",
+      "public_bytes": 4458,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "protocol-review/RESULT.json",
+      "public_artifact": "protocol-review/RESULT.json",
+      "original_private_sha256": "c756801bc46e84d577e1df6b2f34ce3ded8152b3dd2879f65ec52c607bed717d",
+      "original_bytes": 1547,
+      "public_normalized_sha256": "c756801bc46e84d577e1df6b2f34ce3ded8152b3dd2879f65ec52c607bed717d",
+      "public_bytes": 1547,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "COHORT-FREEZE.json",
+      "public_artifact": "provenance/COHORT-FREEZE.json",
+      "original_private_sha256": "fd0836ff0420812e1a6fcc1838ba356e05febcbc44738c172ee02b65a2f6cdc7",
+      "original_bytes": 759,
+      "public_normalized_sha256": "fd0836ff0420812e1a6fcc1838ba356e05febcbc44738c172ee02b65a2f6cdc7",
+      "public_bytes": 759,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "LOCK.json",
+      "public_artifact": "provenance/LOCK.json",
+      "original_private_sha256": "ca4891cd1a7a88e48b8abe9878f30df1b980bde62533d4241fdc31e0fe588d5a",
+      "original_bytes": 1632,
+      "public_normalized_sha256": "ca4891cd1a7a88e48b8abe9878f30df1b980bde62533d4241fdc31e0fe588d5a",
+      "public_bytes": 1632,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "PRODUCT-VALIDATION.json",
+      "public_artifact": "provenance/PRODUCT-VALIDATION.json",
+      "original_private_sha256": "a4694a36865277d96fbe5f3636b805afc0b3fb5ef00e75501b9cdcdc132fe390",
+      "original_bytes": 465,
+      "public_normalized_sha256": "a4694a36865277d96fbe5f3636b805afc0b3fb5ef00e75501b9cdcdc132fe390",
+      "public_bytes": 465,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "HELDOUT-BARRIER.json",
+      "public_artifact": "provenance/HELDOUT-BARRIER.json",
+      "original_private_sha256": "a05b3cb4e3396fb3e2177c4af0580320cd149794edb6702100347be057a7eefd",
+      "original_bytes": 1763,
+      "public_normalized_sha256": "0173a12545257d928b56d7d118e5932c29bc09e85963ab158945344c647228b3",
+      "public_bytes": 1529,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/dev0/D1/assessment.md",
+      "public_artifact": "advisories/dev0/D1/assessment.md",
+      "original_private_sha256": "257dffdba57602f127994bd23b0caeb3827ac7e27b11d6c17fb75da1e1f8c5f4",
+      "original_bytes": 9275,
+      "public_normalized_sha256": "4f8c263fe1879b2c4e90497e2548b0073231f655f25d370e0d07510cfd163d9f",
+      "public_bytes": 9089,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/dev0/D2/assessment.md",
+      "public_artifact": "advisories/dev0/D2/assessment.md",
+      "original_private_sha256": "ed1d3f7969cbfea019274ca0f8021cbf8d97422de48d0b75cc94795e68723208",
+      "original_bytes": 10386,
+      "public_normalized_sha256": "dd01ece4e47e11490207f4300f0c6829961f4ef3d05454189ed8d19ee6aa743c",
+      "public_bytes": 10200,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/dev0/D3/assessment.md",
+      "public_artifact": "advisories/dev0/D3/assessment.md",
+      "original_private_sha256": "7e2713d9d22115f4faf62a7dea2018c1c1f0ce92f882da051feae7809e4d95cc",
+      "original_bytes": 12140,
+      "public_normalized_sha256": "870ac38152de946594ad0fc7f23d640808d78b8cd3187a0bd0677431d7cae856",
+      "public_bytes": 11954,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/dev0/RESULT.json",
+      "public_artifact": "advisories/dev0/RESULT.json",
+      "original_private_sha256": "64536d79380551f30e2fb75fb68eee3a2064fc2f00a10e679250e53e357b6603",
+      "original_bytes": 11137,
+      "public_normalized_sha256": "4dc47fa67af9657a71a6d6ccf1482e1569fa6f495fd350163fc423a8f3dae575",
+      "public_bytes": 10299,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/dev0/REPORT.md",
+      "public_artifact": "evaluations/dev0/REPORT.md",
+      "original_private_sha256": "994e180e4e6214ed58d8f112653036dd893f0c1338b7044eaea4b9fcc10c72bd",
+      "original_bytes": 14943,
+      "public_normalized_sha256": "ad9e77d8a936dd49a46a4983321e8ccd05f798ffd22a72d8c91e430444958889",
+      "public_bytes": 14850,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/dev0/RESULT.json",
+      "public_artifact": "evaluations/dev0/RESULT.json",
+      "original_private_sha256": "bd3f8ee9a8435f17a305a1b1739b9d0e091641c0b9753ce3ee0ba03efd309bb3",
+      "original_bytes": 14187,
+      "public_normalized_sha256": "bd3f8ee9a8435f17a305a1b1739b9d0e091641c0b9753ce3ee0ba03efd309bb3",
+      "public_bytes": 14187,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "private/dev0/maps.json.receipt.json",
+      "public_artifact": "provenance/receipts/dev0-maps.json",
+      "original_private_sha256": "2aeab06687799a54fbdd8eeb9ef8736e6d9560ad42148b464e3fb87f781e2dc1",
+      "original_bytes": 680,
+      "public_normalized_sha256": "58beca66f625c96d5a153f7c9befcf2df1bd1f97fcda777b22370be86e904e7b",
+      "public_bytes": 563,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "author-handover-dev0.json",
+      "public_artifact": "provenance/author-handover-dev0.json",
+      "original_private_sha256": "6f3c44f483cb675ffee0fac8be8c643c39dc08a76fb9a1be59bdcb8684516252",
+      "original_bytes": 1087,
+      "public_normalized_sha256": "e500a04368d8882c28da92462a178a1b524ffc953f109596d56c4c4ddfec5796",
+      "public_bytes": 808,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/confirmation/D1/assessment.md",
+      "public_artifact": "advisories/confirmation/D1/assessment.md",
+      "original_private_sha256": "5d6bf1bbd1d8c913deb4a13544cf558e3eb9eca4214e764c388575a28160fb3b",
+      "original_bytes": 10092,
+      "public_normalized_sha256": "c0d6c48f40d3196e9dc5a95e4a950c2b54c2be77c9e5d64d869abc6432521b8e",
+      "public_bytes": 9906,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/confirmation/D2/assessment.md",
+      "public_artifact": "advisories/confirmation/D2/assessment.md",
+      "original_private_sha256": "fbcbfd2b3816557204e55fe1efe98da29f367dc500c0fb781fa0a1672d7ebaee",
+      "original_bytes": 10900,
+      "public_normalized_sha256": "918b5c77b01007593bb059e68eb22bb0a2ea550f3c9d4b450352a580f3e664d3",
+      "public_bytes": 10714,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/confirmation/D3/assessment.md",
+      "public_artifact": "advisories/confirmation/D3/assessment.md",
+      "original_private_sha256": "4af7eead67044562bdb73f03e59f7dd92cbfc86c711dc90c22ae9941a880174e",
+      "original_bytes": 11516,
+      "public_normalized_sha256": "d403c8065a232f6ac0c7b69d98897aca79e91530b972e563d6930b6401423787",
+      "public_bytes": 11330,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/confirmation/RESULT.json",
+      "public_artifact": "advisories/confirmation/RESULT.json",
+      "original_private_sha256": "9d0567e72047611467fe16bd53129371e88e21ffaa22c50bb520f837b7636245",
+      "original_bytes": 12718,
+      "public_normalized_sha256": "20e6ec88f8ecca6b8f6473df5756557706b6d4304d20cfdf0d68feb7632fa214",
+      "public_bytes": 11700,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/confirmation/REPORT.md",
+      "public_artifact": "evaluations/confirmation/REPORT.md",
+      "original_private_sha256": "dbc1889874f32aedbaabd96e0f194ef51094cf7f054dae3e5def666111cc9718",
+      "original_bytes": 15420,
+      "public_normalized_sha256": "55335776eeb3e186a99d405090359c5307aeb2c26724973cd97f83f8ac5d6e78",
+      "public_bytes": 15327,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/confirmation/RESULT.json",
+      "public_artifact": "evaluations/confirmation/RESULT.json",
+      "original_private_sha256": "2bf3756cbbeb26240307ba6fd2a4956b267a962ec27182e23bd74949547fb253",
+      "original_bytes": 7737,
+      "public_normalized_sha256": "2bf3756cbbeb26240307ba6fd2a4956b267a962ec27182e23bd74949547fb253",
+      "public_bytes": 7737,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "private/confirmation/maps.json.receipt.json",
+      "public_artifact": "provenance/receipts/confirmation-maps.json",
+      "original_private_sha256": "5785d9a69e845492a2fd2cf539d76e185441887fff7ad6016d09f1aa317465a9",
+      "original_bytes": 688,
+      "public_normalized_sha256": "e1c8a23c45b6060fc6207cef5e8f19116d565d867862e7f8aa1481e634c4d075",
+      "public_bytes": 571,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-a/H1/assessment.md",
+      "public_artifact": "advisories/heldout-a/H1/assessment.md",
+      "original_private_sha256": "a843e4d4a7c0b7583a869ea370656fb27c9b0dd2e723b275445390bbdcfe025a",
+      "original_bytes": 10274,
+      "public_normalized_sha256": "c7edf31889020e53295b5853a4888a5987f2b71c333b0325494039684861dca0",
+      "public_bytes": 10088,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-a/H2/assessment.md",
+      "public_artifact": "advisories/heldout-a/H2/assessment.md",
+      "original_private_sha256": "d65e4f0d17f914ec6622e8db3253dd5e14ca02a5d6b43fb54b6aae031d8f9b99",
+      "original_bytes": 11007,
+      "public_normalized_sha256": "3abd82f6d11fe3926f76751969756975db8d1e030a036b22e5f141c136f2b5ce",
+      "public_bytes": 10821,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-a/H3/assessment.md",
+      "public_artifact": "advisories/heldout-a/H3/assessment.md",
+      "original_private_sha256": "f89ed2a47532337cef80325c14200e63335d122e9944f25cfd2573ea49498768",
+      "original_bytes": 12206,
+      "public_normalized_sha256": "6901b66db9fca58deb331a64649dbaaaa3fbe341f86dd23cc03b626de3c45e60",
+      "public_bytes": 12020,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-a/RESULT.json",
+      "public_artifact": "advisories/heldout-a/RESULT.json",
+      "original_private_sha256": "5c17067a1ab365acb0e06c1fa867ad9a34b0f01a680a08a8e8028bfbe9847282",
+      "original_bytes": 19388,
+      "public_normalized_sha256": "d3c19fccfe2f69cded28d18b0d4bfd64c47deee94e510367275015cd66621255",
+      "public_bytes": 17932,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/heldout-a/REPORT.md",
+      "public_artifact": "evaluations/heldout-a/REPORT.md",
+      "original_private_sha256": "56e576218fbcbb857e2a2a3a27599af8026b0ad3bdfa206d44bae66ec7e62f43",
+      "original_bytes": 12690,
+      "public_normalized_sha256": "56e576218fbcbb857e2a2a3a27599af8026b0ad3bdfa206d44bae66ec7e62f43",
+      "public_bytes": 12690,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/heldout-a/RESULT.json",
+      "public_artifact": "evaluations/heldout-a/RESULT.json",
+      "original_private_sha256": "395dd5f78c2aa414e291c85840a10a2e5c9f2cd881318977b093fb25f6b13508",
+      "original_bytes": 19516,
+      "public_normalized_sha256": "73dab9ed8bddef06d07c6b0b5dad1a7acd7d9be841850b09a05f63e1dca45ba2",
+      "public_bytes": 19423,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "private/heldout-a/maps.json.receipt.json",
+      "public_artifact": "provenance/receipts/heldout-a-maps.json",
+      "original_private_sha256": "51e47f7971ca37cc1c8a6fd8ae19cc35e37186f1a078c34b0e9ce0b51b89b27f",
+      "original_bytes": 685,
+      "public_normalized_sha256": "19e8f3b44002a8482ab7b3f51085ac842636afdaa9441879d9d4854a4c11b68f",
+      "public_bytes": 568,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "author-handover-heldout-a.json",
+      "public_artifact": "provenance/author-handover-heldout-a.json",
+      "original_private_sha256": "d7d146307f94dca987bbcf3b01fb43c7e131369b49c55dd7a8b03d7494f1e952",
+      "original_bytes": 359,
+      "public_normalized_sha256": "83f2ce4577c13bac69f096ce8ed5cd12ebcc106df5d47073e93e1690e01612bd",
+      "public_bytes": 335,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-b/H1/assessment.md",
+      "public_artifact": "advisories/heldout-b/H1/assessment.md",
+      "original_private_sha256": "324ec2c67f6325c83533ff57c22cecccf6044745be6f5e362f30b323b3db7297",
+      "original_bytes": 9200,
+      "public_normalized_sha256": "64252a1ca68e32ff5536f12ccc7d393ca113efc410e32871c1dab54eef61f816",
+      "public_bytes": 9014,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-b/H2/assessment.md",
+      "public_artifact": "advisories/heldout-b/H2/assessment.md",
+      "original_private_sha256": "d11be72310aa1c41a54c88758d31244ee371cf369219b05452f6070da4773e35",
+      "original_bytes": 9483,
+      "public_normalized_sha256": "050fcfabb7199923e7cc3e4f53f04913a3704c8442a382447c1aa9a2178a0a81",
+      "public_bytes": 9297,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-b/H3/assessment.md",
+      "public_artifact": "advisories/heldout-b/H3/assessment.md",
+      "original_private_sha256": "d1d9236b504076d46194052036ecf92eba526ee3213d065b234e530a4175e679",
+      "original_bytes": 10553,
+      "public_normalized_sha256": "71999f1e00089cd6f13a49d7406eb502f9d94938611b41a5f5768af604c15cde",
+      "public_bytes": 10367,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "advisories/heldout-b/RESULT.json",
+      "public_artifact": "advisories/heldout-b/RESULT.json",
+      "original_private_sha256": "32a397fe8c9a8787227f803ed9fc0b718d71ebcc9d3a72e287a3226ed4eb4bf1",
+      "original_bytes": 20070,
+      "public_normalized_sha256": "8f3a331f810cbe6bb0e7b7fa7eaeb84f0b4fe40466abfc9aa6882a901f61f9ba",
+      "public_bytes": 18504,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/heldout-b/REPORT.md",
+      "public_artifact": "evaluations/heldout-b/REPORT.md",
+      "original_private_sha256": "f13208c3f9b48447c09d5c153083c1f3fe40a3ff88d34edfcaea856231818129",
+      "original_bytes": 11600,
+      "public_normalized_sha256": "ec014485b7364306f7bd66523571e94e66322376c159ee4d626117a6ba3056ef",
+      "public_bytes": 11485,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "evaluations/heldout-b/RESULT.json",
+      "public_artifact": "evaluations/heldout-b/RESULT.json",
+      "original_private_sha256": "9899c341327e5624aa034a960eb152fc409745322cdf32938d30b1083e2f8354",
+      "original_bytes": 21081,
+      "public_normalized_sha256": "394b70b820d30073796c9b30d80a5cdcb946c8cdf8ea6c5414b43958ec8e208a",
+      "public_bytes": 20687,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "private/heldout-b/maps.json.receipt.json",
+      "public_artifact": "provenance/receipts/heldout-b-maps.json",
+      "original_private_sha256": "d8561cae0715362240e5b52aedb4495d9d85ea577773b66c2e0d3977e2c4743d",
+      "original_bytes": 685,
+      "public_normalized_sha256": "79b28f1341da29620b4cf57536c69d7643482dad078f91b3a06b5e35bb5879ac",
+      "public_bytes": 568,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "author-handover-heldout-b.json",
+      "public_artifact": "provenance/author-handover-heldout-b.json",
+      "original_private_sha256": "b728ae366296b06847cde551ba26d55907efe411e832346bc4e1f377366c2d8e",
+      "original_bytes": 359,
+      "public_normalized_sha256": "89d3fd79fbc587a73a824954ed4348919b4e2ca06928fb1334c7bb90d204175e",
+      "public_bytes": 335,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "selection/MANIFEST.json",
+      "public_artifact": "sources/SOURCE.json",
+      "original_private_sha256": "3f1e647be37f119ca030346409eb1223329050fadcd9d7681a1120044e2975d1",
+      "original_bytes": 27128,
+      "public_normalized_sha256": "51b5c5f7650643e128ed3d343b7514169bb16c0c2f41aab877a878a1915b6715",
+      "public_bytes": 20960,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "selection/D1-identity.json",
+      "public_artifact": "sources/D1-identity.json",
+      "original_private_sha256": "bcf571d764709ee7cc19300b05d9f82efc10585c4ba1c6e7dd930ff568594532",
+      "original_bytes": 20489,
+      "public_normalized_sha256": "1d2a731e940edf8ce17d1b79a9929896ad2ddb121394d8d547ae17d39f0f167b",
+      "public_bytes": 3819,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "selection/D2-identity.json",
+      "public_artifact": "sources/D2-identity.json",
+      "original_private_sha256": "bebce497923a7904f7cd9f093ff86c55152449803945ca337b245ff414110a0c",
+      "original_bytes": 93671,
+      "public_normalized_sha256": "4a0e286acc2e417fffb9c788cbb09e3484f694adc63c51d9948d58ab7e6e9c21",
+      "public_bytes": 4070,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "selection/D3-identity.json",
+      "public_artifact": "sources/D3-identity.json",
+      "original_private_sha256": "af9d554cafdc71457f19978363eee6094e5e0e8b77e89a55ac4010ea2be49e71",
+      "original_bytes": 30897,
+      "public_normalized_sha256": "e17a3a1feda4e9070b7b6100557103068a033001e5d969f80faf11c96f791f88",
+      "public_bytes": 3817,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "selection/H1-identity.json",
+      "public_artifact": "sources/H1-identity.json",
+      "original_private_sha256": "2d34bdbd09ee90d85054b2b2acf43e84596a2b72f359e3bd548801059ecc00cd",
+      "original_bytes": 12184,
+      "public_normalized_sha256": "d5b5caf4c7109e1661cb9249d1428006678079cf933c358d9985173fcc9a91cd",
+      "public_bytes": 3561,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "selection/H2-identity.json",
+      "public_artifact": "sources/H2-identity.json",
+      "original_private_sha256": "0d7e5bb60b7d9b850e7ac50f56951be68353a8568e529f51fd4cd2472ef3d101",
+      "original_bytes": 8471,
+      "public_normalized_sha256": "9a311d12d73b47ea050343f6e6b0381dd14a8526765c62bfd65ac7fb3f98ae3c",
+      "public_bytes": 3536,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "selection/H3-identity.json",
+      "public_artifact": "sources/H3-identity.json",
+      "original_private_sha256": "276de6030bead65827eefb813d68a3fc2114fa486f0180f5f7eca001f6cf6f3d",
+      "original_bytes": 19690,
+      "public_normalized_sha256": "2b207058bf96ed33ef76c65fcbfdede22eb89a4460c5b1c35d1a50fe90453641",
+      "public_bytes": 3895,
+      "recipe": "declared projection then JSON indent=2 UTF-8 LF then normalization"
+    },
+    {
+      "original_artifact": "scopes/development.json",
+      "public_artifact": "scopes/development.json",
+      "original_private_sha256": "06b2dc593d5f86316fc55f95fe5de8e5bfaa6919d372cb7aa955aa7fffc84ab5",
+      "original_bytes": 6813,
+      "public_normalized_sha256": "94e288586ffac3cd92e799ad848285c62ef2eae6bcd1f7982454cb3f94ff3acd",
+      "public_bytes": 6534,
+      "recipe": "normalization only"
+    },
+    {
+      "original_artifact": "scopes/heldout.json",
+      "public_artifact": "scopes/heldout.json",
+      "original_private_sha256": "515e9ed9b0ca0c8c468643eecb6f277a072fa0e37ff6783190ec61c4414e1204",
+      "original_bytes": 6620,
+      "public_normalized_sha256": "50a0586ec52c154826a0c5cb847bf5f04dec28d89ae2fdd39146ae092a337748",
+      "public_bytes": 6341,
+      "recipe": "normalization only"
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "task": "practical-heldout-author-b",
+  "status": "completed",
+  "assessment_status": "recommendation only; ready for independent evaluation, not approved for implementation or merge",
+  "canonical_truth": "The three assessment.md artifacts only. This JSON is operational evidence, not a rewritten advisory or correctness certificate.",
+  "scope_path": "evidence://campaign/scopes/heldout.json",
+  "output_path": "evidence://campaign/advisories/heldout-b",
+  "artifacts": [
+    {
+      "slot": "H1",
+      "root_id_within_assessment": "r1",
+      "path": "evidence://campaign/advisories/heldout-b/H1/assessment.md",
+      "sha256": "324ec2c67f6325c83533ff57c22cecccf6044745be6f5e362f30b323b3db7297",
+      "bytes": 9200
+    },
+    {
+      "slot": "H2",
+      "root_id_within_assessment": "r1",
+      "path": "evidence://campaign/advisories/heldout-b/H2/assessment.md",
+      "sha256": "d11be72310aa1c41a54c88758d31244ee371cf369219b05452f6070da4773e35",
+      "bytes": 9483
+    },
+    {
+      "slot": "H3",
+      "root_id_within_assessment": "r1",
+      "path": "evidence://campaign/advisories/heldout-b/H3/assessment.md",
+      "sha256": "d1d9236b504076d46194052036ecf92eba526ee3213d065b234e530a4175e679",
+      "bytes": 10553
+    }
+  ],
+  "changed_files": [
+    "H1/assessment.md",
+    "H2/assessment.md",
+    "H3/assessment.md",
+    "RESULT.json"
+  ],
+  "rationale": "Single authorized three-root read-only cohort using the exact locked skill and canonical template. All product/model/test changes remain proposals blocked on owner decisions and separate grants.",
+  "startup": {
+    "runtime_cwd": "checkout://agent-startup",
+    "trusted_project": "checkout://trusted-product",
+    "observed_project_head": "544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89",
+    "brief_checkout": "feat/practical-skill-benchmark, approved base 544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89; branch/clean designation supplied by brief, not independently checked",
+    "skill_path": "evidence://campaign/locked/proof-readiness",
+    "skill_version": "0.2.1",
+    "skill_md_sha256": "68ae68b8b2fecd9067ddc169522c495a6080c66da6bc08fcbc93f8c5d55c8a37",
+    "skill_md_bytes": 7987,
+    "loaded_bundled_assets": [
+      "SKILL.md",
+      "templates/assessment.md",
+      "references/index.md",
+      "references/tlc.md",
+      "examples/assessments.md"
+    ],
+    "notes": [
+      "Read cwd docs/AGENT-ORGANIZATION.md initially, then brief-selected trusted project's organization and contribution instructions.",
+      "No obsolete cwd CLI-era skill or spec-consultant executable read or used.",
+      "No mandatory CLI, model API, installer or product test is part of this locked agent-native skill.",
+      "Shared Darwin host; no execution sandbox.",
+      "No branch creation, staging, commit, push, PR, merge, product edits or promotion."
+    ]
+  },
+  "authorization": {
+    "allowed": [
+      "Only immutable H1/H2/H3 selected roots, named-file read-only inspection",
+      "Read-only Git/native metadata",
+      "Data-only JSON and hashing",
+      "Create canonical assessment and bookkeeping artifacts only under output_path"
+    ],
+    "target_execution": "none; no build, test, script, import, install, proof tool, target executable or network operation",
+    "future_owner_grants": "absent",
+    "agents_or_models_invoked": false,
+    "excluded_evaluation_material_read": false
+  },
+  "source_identity": [
+    {
+      "slot": "H1",
+      "root": "evidence://campaign/targets/H1",
+      "before": {
+        "commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f",
+        "tree": "93a7576e74a8ef0017188fb069696a45204631e4",
+        "tracked_status_stdout": ""
+      },
+      "after": {
+        "commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f",
+        "tree": "93a7576e74a8ef0017188fb069696a45204631e4",
+        "tracked_status_stdout": ""
+      }
+    },
+    {
+      "slot": "H2",
+      "root": "evidence://campaign/targets/H2",
+      "before": {
+        "commit": "c3364059663df1ddce32799d6b1922af89a345f6",
+        "tree": "2dc6021d44a8b2f512ce75e977fd2ea4355b3b3e",
+        "tracked_status_stdout": ""
+      },
+      "after": {
+        "commit": "c3364059663df1ddce32799d6b1922af89a345f6",
+        "tree": "2dc6021d44a8b2f512ce75e977fd2ea4355b3b3e",
+        "tracked_status_stdout": ""
+      }
+    },
+    {
+      "slot": "H3",
+      "root": "evidence://campaign/targets/H3",
+      "before": {
+        "commit": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b",
+        "tree": "458340823cb11be5a962b17b90c9bbcb43f0536d",
+        "tracked_status_stdout": ""
+      },
+      "after": {
+        "commit": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b",
+        "tree": "458340823cb11be5a962b17b90c9bbcb43f0536d",
+        "tracked_status_stdout": ""
+      }
+    }
+  ],
+  "actual_checks": {
+    "tools": [
+      "functions.view",
+      "functions.glob",
+      "functions.rg",
+      "functions.bash: host python3 standard-library data/metadata operations and read-only git subprocesses",
+      "functions.apply_patch: output artifacts only"
+    ],
+    "git_commands": {
+      "per_selected_root_before_and_after": [
+        ["git", "--no-pager", "--no-optional-locks", "-C", "<source_identity.root>", "rev-parse", "HEAD", "HEAD^{tree}"],
+        ["git", "--no-pager", "--no-optional-locks", "-C", "<source_identity.root>", "status", "--porcelain=v1", "--untracked-files=no"]
+      ],
+      "expansion": "Each command ran once per exact H1/H2/H3 root before source reads and once after source reads. The placeholder is a reporting shorthand, not a shell variable.",
+      "results": "All 12 target Git subprocesses returned 0; stdout recorded in source_identity; all stderr empty.",
+      "project_command": ["git", "--no-pager", "-C", "checkout://trusted-product", "rev-parse", "HEAD"],
+      "project_result": "stdout 544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89; wrapper exited 0"
+    },
+    "bash_wrappers": [
+      {
+        "shell_id": "818",
+        "command": "python3 -c 'import json,os,stat,subprocess; q=\"evidence://campaign\"; s=json.load(open(q+\"/scopes/heldout.json\")); print(\"OUTPUT\",os.path.realpath(q+\"/advisories/heldout-b\")); print(\"PROJECT\",subprocess.run([\"git\",\"--no-pager\",\"-C\",\"checkout://trusted-product\",\"rev-parse\",\"HEAD\"],capture_output=True,text=True).stdout.strip());\nfor r in s[\"records\"]:\n print(r[\"id\"], \"root_real\",os.path.realpath(r[\"root\"]));\n for args in ([\"rev-parse\",\"HEAD\",\"HEAD^{tree}\"],[\"status\",\"--porcelain=v1\",\"--untracked-files=no\"]):\n  p=subprocess.run([\"git\",\"--no-pager\",\"--no-optional-locks\",\"-C\",r[\"root\"]]+args,capture_output=True,text=True); print(args,p.returncode,repr(p.stdout),repr(p.stderr))\n for f in r[\"production_files\"]+r[\"immediate_caller_or_helper_files\"]+r[\"configuration_files\"]+r[\"test_or_requirement_files\"]:\n  p=r[\"root\"]+\"/\"+f; m=os.lstat(p); print(f,\"regular\",stat.S_ISREG(m.st_mode),\"bytes\",m.st_size,\"parent_real\",os.path.realpath(os.path.dirname(p)))'",
+        "result": "exit 0; root/output real paths unchanged, identities matched scope, 21 named files regular and below cap; parent real paths matched named parents"
+      },
+      {
+        "shell_id": "821",
+        "command": "python3 -c 'import os,stat; q=\"evidence://campaign\";\nfor p in [q,q+\"/advisories\",q+\"/advisories/heldout-b\",q+\"/locked\",q+\"/locked/proof-readiness\",q+\"/targets/H1\",q+\"/targets/H2/src\",q+\"/targets/H2/src/blinker\",q+\"/targets/H2/tests\",q+\"/targets/H3/src\",q+\"/targets/H3/test\"]:\n try:\n  m=os.lstat(p); print(p,\"symlink\",stat.S_ISLNK(m.st_mode),\"directory\",stat.S_ISDIR(m.st_mode))\n except FileNotFoundError: print(p,\"absent\")'",
+        "result": "exit 0; checked existing paths directories, not symlinks; output leaf absent before creation"
+      },
+      {
+        "shell_id": "822",
+        "command": "python3 -c 'import json,subprocess; q=\"evidence://campaign\";\nfor r in json.load(open(q+\"/scopes/heldout.json\"))[\"records\"]:\n for args in ([\"rev-parse\",\"HEAD\",\"HEAD^{tree}\"],[\"status\",\"--porcelain=v1\",\"--untracked-files=no\"]):\n  p=subprocess.run([\"git\",\"--no-pager\",\"--no-optional-locks\",\"-C\",r[\"root\"]]+args,capture_output=True,text=True); print(r[\"id\"],args,p.returncode,repr(p.stdout),repr(p.stderr))'",
+        "result": "exit 0; after inspection metadata matched before for all three roots"
+      },
+      {
+        "shell_id": "824",
+        "command": "python3 -c 'import hashlib,json,os; q=\"evidence://campaign\";\nfor slot in [\"H1\",\"H2\",\"H3\"]:\n p=q+\"/advisories/heldout-b/\"+slot+\"/assessment.md\"; b=open(p,\"rb\").read(); print(json.dumps({\"slot\":slot,\"path\":p,\"sha256\":hashlib.sha256(b).hexdigest(),\"bytes\":len(b)}))\np=q+\"/locked/proof-readiness/SKILL.md\"; b=open(p,\"rb\").read(); print(\"SKILL\",hashlib.sha256(b).hexdigest(),len(b))'",
+        "result": "exit 0; SHA-256 and byte counts recorded in artifacts and startup"
+      }
+    ],
+    "trusted_reads": [
+      "AUTHOR-BRIEF.txt at supplied exact path (full)",
+      "checkout://agent-startup/docs/AGENT-ORGANIZATION.md (full)",
+      "checkout://trusted-product/docs/AGENT-ORGANIZATION.md (full)",
+      "checkout://trusted-product/.github/copilot-instructions.md (full)",
+      "scope_path (full)",
+      "skill_path directory listing",
+      "skill_path/SKILL.md [1,200]",
+      "skill_path/templates/assessment.md (full)",
+      "skill_path/references/index.md (full)",
+      "skill_path/references/tlc.md (full)",
+      "skill_path/examples/assessments.md [1,200]"
+    ],
+    "glob_calls": [
+      {"pattern": "**/AGENTS.md", "paths": "checkout://agent-startup", "result": "no matches"},
+      {"pattern": "**/{AGENTS.md,CONTRIBUTING*,*instructions*}", "paths": "checkout://trusted-product", "result": ".github/copilot-instructions.md"},
+      {"pattern": "**/*", "paths": "<startup.skill_path>", "result": "10 locked bundled files listed; only five named assets read"}
+    ],
+    "source_view_calls": {
+      "notation": "Paths relative to exact source_identity root. Each pair is the exact inclusive view_range requested. Short files stop at EOF. All succeeded without tool truncation.",
+      "H1": {
+        "conn.go": [[484,583],[584,683],[684,788],[284,367],[379,414],[189,203]],
+        "doc.go": [[90,189]],
+        "client.go": [[318,334]],
+        "server.go": [[203,224]],
+        "go.mod": [[1,100]],
+        "conn_test.go": [[243,319],[347,391],[479,504],[22,55]]
+      },
+      "H2": {
+        "src/blinker/base.py": [[73,172],[168,254],[305,404],[255,304]],
+        "src/blinker/_utilities.py": [[1,100]],
+        "src/blinker/__init__.py": [[1,100]],
+        "tests/test_context.py": [[1,100]],
+        "tests/test_signals.py": [[460,490]],
+        "pyproject.toml": [[1,100]]
+      },
+      "H3": {
+        "src/index.ts": [[2160,2259],[2260,2359],[2360,2409],[3007,3104],[3105,3204],[1425,1524],[1,110],[1525,1594],[1760,1815],[3205,3238],[1816,1854],[2640,2652]],
+        "src/diagnostics-channel.ts": [[1,100]],
+        "src/perf.ts": [[1,100]],
+        "package.json": [[1,100],[101,200]],
+        "tsconfig.json": [[1,100]],
+        "test/basic.ts": [[28,123],[209,256]]
+      }
+    },
+    "rg_calls": [
+      {
+        "root": "H1",
+        "paths": ["conn.go"],
+        "pattern": "^(func |type )|NextWriter|NextReader|readLimit|readRemaining|messageWriter",
+        "output_mode": "content",
+        "-n": true,
+        "head_limit": 110,
+        "result": "90 reported matches"
+      },
+      {
+        "root": "H2",
+        "paths": ["src/blinker/base.py"],
+        "pattern": "^    (async )?def |^class ",
+        "output_mode": "content",
+        "-n": true,
+        "result": "25 matches"
+      },
+      {
+        "root": "H3",
+        "paths": ["src/index.ts"],
+        "pattern": "(^  (set|get|delete|clear|#evict|#addItemSize|#removeItemSize|#initializeSizeTracking|#requireSize)|maxSize|sizeCalculation|disposeAfter|export |constructor\\()",
+        "output_mode": "content",
+        "-n": true,
+        "head_limit": 100,
+        "result": "100 reported matches; head-limited discovery"
+      },
+      {
+        "root": "H3",
+        "paths": ["src/index.ts","test/basic.ts"],
+        "pattern": "^  (set|get|delete|clear|#evict|#moveToTail|#initializeSizeTracking|#addItemSize|#removeItemSize)|^t.test|^test\\(",
+        "output_mode": "content",
+        "-n": true,
+        "head_limit": 65,
+        "result": "30 matches"
+      },
+      {
+        "root": "H1",
+        "paths": ["conn_test.go","client.go","server.go","client_server_test.go"],
+        "pattern": "NextWriter|WriteControl|errWriteClosed|WriteBufferPool|newConn\\(|compression|func Test",
+        "output_mode": "content",
+        "-n": true,
+        "head_limit": 90,
+        "result": "tool reported 111 matches across four files despite requested head_limit 90; diagnostic limit not a hard bound"
+      },
+      {
+        "root": "H2",
+        "paths": ["tests/test_signals.py"],
+        "pattern": "muted|connected_to|disconnect|async|weak",
+        "output_mode": "content",
+        "-n": true,
+        "head_limit": 65,
+        "result": "48 matches"
+      },
+      {
+        "root": "H3",
+        "paths": ["src/index.ts"],
+        "pattern": "#isBackgroundFetch\\(|#rindexes\\(|#isStale:|#updateItemAge:",
+        "output_mode": "content",
+        "-n": true,
+        "head_limit": 35,
+        "result": "35 reported matches; head-limited discovery"
+      }
+    ],
+    "write_result": "functions.apply_patch created three assessment files and this operational JSON exclusively under output_path. No target/project writes.",
+    "manual_review": "Checked template sections, r1 per artifact, opportunity count (one each), observed/inferred/unresolved distinctions, guide provenance and assurance limits, missing grants, dependency ordering and post-inspection Git identity. Not an independent evaluator or verifier result.",
+    "final_data_check": {
+      "shell_id": "826",
+      "command": "python3 -c 'import json,hashlib; p=\"evidence://campaign/advisories/heldout-b/RESULT.json\"; b=open(p,\"rb\").read(); r=json.loads(b);\nfor a in r[\"artifacts\"]:\n d=open(a[\"path\"],\"rb\").read(); assert len(d)==a[\"bytes\"] and hashlib.sha256(d).hexdigest()==a[\"sha256\"]; assert d.count(b\"### O1\") == 1; print(a[\"slot\"],\"hash/bytes match\")\nprint(\"RESULT JSON parsed; bookkeeping, not correctness validation\",len(b),hashlib.sha256(b).hexdigest())'",
+      "result": "exit 0; operational JSON parsed and all three canonical hashes/bytes matched, with one O1 each. This check preceded addition of this self-record; assessments unchanged. RESULT self-hash deliberately not retained because self-record changes bytes."
+    }
+  },
+  "coverage": {
+    "H1": {"named_files_metadata": 9, "files_with_content_or_search": 7, "search_only": ["client_server_test.go"], "named_content_unread": ["util.go","go.sum"]},
+    "H2": {"named_files_metadata": 6, "files_with_content_or_search": 6, "partial": ["src/blinker/base.py","tests/test_signals.py","pyproject.toml"]},
+    "H3": {"named_files_metadata": 6, "files_with_content_or_search": 6, "index_file_bytes": 102267, "index_fully_read": false},
+    "budget": "21 named-file metadata checks total, well below initial 250/root cap; all files under 256 KiB. Explicit windows mostly <=100, largest 110; no >=200 windows. No cumulative-codepoint/syscall counter or hard scan guarantee.",
+    "deviations": [
+      "H1 one 105-line window, H3 one 110-line window rather than preferred 100.",
+      "H1 multi-file rg returned 111 reported matches with head_limit 90; disclosed, not treated as a bounded exhaustive scan.",
+      "Ancestor lstat checks partly occurred after source reads; initial realpath plus leaf metadata did not provide atomic no-follow enforcement.",
+      "Trusted instructions/template/scope sometimes read whole rather than 100-line windows; small enough not to trigger view truncation.",
+      "Progressive source closure used multiple windows; no cumulative read-volume forecast/counter recorded."
+    ],
+    "excluded": "All scope exclusions respected; symlinks/submodules, secrets/private data, special/binary/vendor/generated/build/nested trees, unlisted target files and target instruction files not intentionally read. No private maps, rubric, other outputs/replicas, logs/events, feedback or grades read."
+  },
+  "observations_vs_hypotheses": {
+    "observations": "Source assignments/control flow, tests as written, manifest declarations and unchanged Git metadata only; substantive citations live exclusively in canonical assessments.",
+    "hypotheses": "H2 source-derived context traces are unexecuted conditional counterexamples to unresolved restoration semantics. H1 trace benefit and H3 finite-model value/correspondence remain proposals, not established defects or verification success."
+  },
+  "failures": [],
+  "non_failure_discovery": [
+    "No cwd AGENTS.md matched the initial glob.",
+    "Output leaf absent before creation, as expected.",
+    "No supplied reproduction or owner grant was available; no unauthorized execution attempted."
+  ],
+  "limitations": [
+    "Metadata checks are non-atomic on a shared host; no OS sandbox, secret detector or enforced no-follow protection.",
+    "Tracked Git status excludes untracked files; identity recheck cannot prove absence of transient edits between observations.",
+    "No target tests, builds, proofs or runtime compatibility checks; presence of tests is not a passing run.",
+    "No source-model correspondence, exact tool-version support or recommendation correctness established.",
+    "No independent evaluation/schema workflow was run; locked skill makes canonical Markdown sufficient, and task additionally requested this bookkeeping JSON."
+  ],
+  "unresolved_blockers": [
+    "Actual owner grants for future implementation and execution absent for all roots.",
+    "H1 terminal-error/invalid replacement intent and unread helper/compression/pool boundaries.",
+    "H2 destructive-versus-restoration context semantics and compatibility decision.",
+    "H3 finite-model adoption, approved configuration/invariants and source correspondence.",
+    "All execution proposals require exact invocation selection and appropriate isolation under a new authorization record."
+  ],
+  "next_action": "Orchestrator may retain/evaluate these canonical artifacts and escalate named intent/adoption/grant decisions. No repair, retry, promotion or feedback search performed; stop after this single cohort."
+}
