@@ -1,0 +1,410 @@
+{
+  "candidate": "706868e2d18810687180bb79ea7b9d7826197633",
+  "candidate_tree": "30ea8295baea2f94da8ee62d1838493f9f002389",
+  "approved_base": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+  "approved_base_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+  "rubric_freeze": {
+    "benchmark": "real-repo-advisory",
+    "version": "1.0.0",
+    "task_id": "real-repo-rubric",
+    "frozen_at_utc": "2026-11-12T08:05:33.823203+00:00",
+    "selection_started": false,
+    "status": "FROZEN",
+    "payload_sha256": {
+      "RUBRIC.md": "7420a0ff0741e29351fa3f030d3366543ce11ea7c3734cba14c44597db0b59de",
+      "RULES.json": "c1c019802f9876e122fa2d71d6c6089eae01df5004b2b3103beb140be18008f9",
+      "SOURCES.json": "2b36ef3dc157afd8bd466eec27de956faf6935e498e58e6c84ec2a607dde4ce2"
+    },
+    "immutability": "exclusive_create_read_only_files_plus_hash_manifest_not_OS_sandbox",
+    "modification_policy": "Never_edit_this_bundle_new_version_and_campaign_only"
+  },
+  "rubric_sha256sums_digest": "8d10bc6088a51a7ecc7f46a3938f4397bdc72ec4502a064a87ca88b311e6e32d",
+  "copies": [
+    {
+      "input": "<E1>/assessments/dev0-ee8d0e6/D1-assessment.md",
+      "published": "advisories/v1-dev0/D1-assessment.md",
+      "raw_sha256": "2b88f72e46c71fb3769c0161afaf5c01b3d7454787cd790880b0c8655ae257fc",
+      "published_sha256": "d7dc3fe2d209d3725a7b45b6e5129bec590d33aade89a7d61c60b923ae55b4f7",
+      "raw_bytes": 13527,
+      "published_bytes": 13423,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D1>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/dev0-ee8d0e6/D2-assessment.md",
+      "published": "advisories/v1-dev0/D2-assessment.md",
+      "raw_sha256": "c7e559992260239b2a7be4856cdb3c3de93830013f70e2f2e279392b3d8c7dcd",
+      "published_sha256": "9f5c05491a437bf858c42a690152d685bc9114f3706d6fa3d6460323d2853403",
+      "raw_bytes": 15713,
+      "published_bytes": 15609,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D2>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/dev0-ee8d0e6/D3-assessment.md",
+      "published": "advisories/v1-dev0/D3-assessment.md",
+      "raw_sha256": "3ac2c40682e82223fe9f5ae3c8e7321e2c6da8428b509aa11d14062eb564bf40",
+      "published_sha256": "0f79fa5e9d5f489acedd0862740195c98c7a1861d710cf438219534a5721ed2d",
+      "raw_bytes": 16477,
+      "published_bytes": 16373,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D3>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/dev-confirm-ee8d0e6/D1-assessment.md",
+      "published": "advisories/v1-confirmation/D1-assessment.md",
+      "raw_sha256": "69b21155298a3059f85ee0dfe537e8747f767fcd8cd300b16b2629728c90dcd5",
+      "published_sha256": "c5151bfa55a92360666176f262e42d0adba470e28383db3602b3d9227aeb1ffb",
+      "raw_bytes": 13333,
+      "published_bytes": 13229,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D1>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/dev-confirm-ee8d0e6/D2-assessment.md",
+      "published": "advisories/v1-confirmation/D2-assessment.md",
+      "raw_sha256": "16e6d662bb86f5b3810f88e7d3adea155c5e56fc7438e8a1021681d770d58a1d",
+      "published_sha256": "22a01c10c0b3e9d049d6dc2a7f269dcc9cd5732c533c4031f57669016c44fd74",
+      "raw_bytes": 15703,
+      "published_bytes": 15599,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D2>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/dev-confirm-ee8d0e6/D3-assessment.md",
+      "published": "advisories/v1-confirmation/D3-assessment.md",
+      "raw_sha256": "86f2ddd631fc5211b50f17edebe7cdcaada20c7332e199e981d6c8319dd4e66b",
+      "published_sha256": "976dd5442e66764cbc0f5796bd3c220fd5d6476e1a1d46ec0ae6f2738d4b2cd6",
+      "raw_bytes": 15943,
+      "published_bytes": 15839,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D3>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/holdout1-ee8d0e6/H1-assessment.md",
+      "published": "advisories/v1-holdout1/H1-assessment.md",
+      "raw_sha256": "82238267015ef0b37395caa3a17c70580f8735dd099b66d87a0f3d27f7964c31",
+      "published_sha256": "66685d0729d4bffd4b05cf583b3acc71e8a181b640ac3402c32a45e8c2cafc44",
+      "raw_bytes": 13862,
+      "published_bytes": 13758,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-H1>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/holdout1-ee8d0e6/H2-assessment.md",
+      "published": "advisories/v1-holdout1/H2-assessment.md",
+      "raw_sha256": "f787b57ec41ffe9cb31aee67ed007bea303af2ce623ec5fd15727fa0c39bbe22",
+      "published_sha256": "301fb0e460269e9c0c5d01e5ea2f0add1e718aa95dad9dadb0b7ca0eef4fadcf",
+      "raw_bytes": 14078,
+      "published_bytes": 13974,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-H2>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/holdout1-ee8d0e6/H3-assessment.md",
+      "published": "advisories/v1-holdout1/H3-assessment.md",
+      "raw_sha256": "9a57fb402958184a3f5ad9075f3153795331699bae7b21fc66e8a42b19fee70d",
+      "published_sha256": "72fd12c4158187e00da1d77e853f1a87e63df8c10578d0857adfa696b5fd7a13",
+      "raw_bytes": 16575,
+      "published_bytes": 16471,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-H3>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/holdout2-ee8d0e6/H1-assessment.md",
+      "published": "advisories/v1-holdout2/H1-assessment.md",
+      "raw_sha256": "848553885fa716714deef5cb2ff7105c1a19f5ff8160526a2d6a9a9284d21179",
+      "published_sha256": "22af6434a9b954548f220ed0344d016505b743e869cb5beb672b7a61a11fab91",
+      "raw_bytes": 13063,
+      "published_bytes": 12959,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-H1>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/holdout2-ee8d0e6/H2-assessment.md",
+      "published": "advisories/v1-holdout2/H2-assessment.md",
+      "raw_sha256": "7a21682348cfe12bf4432c49eaa8f675591319b8797124a5309a0382133a7380",
+      "published_sha256": "2838de1f652a986bf38cf46bad116bbe9c7b214cb9925be1b7bb7e793b62c16e",
+      "raw_bytes": 15469,
+      "published_bytes": 15365,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-H2>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/assessments/holdout2-ee8d0e6/H3-assessment.md",
+      "published": "advisories/v1-holdout2/H3-assessment.md",
+      "raw_sha256": "c3883b15fd139d6813e3e31018a8f9ed1995026b98adee6540835a21b5bb45df",
+      "published_sha256": "6b17fbb58dd9d40fb7963a91b38fc68737b603757b547c727b58f161199a2ab2",
+      "raw_bytes": 16814,
+      "published_bytes": 16710,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-H3>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E2>/assessments/dev0-ee8d0e6/D1-assessment.md",
+      "published": "advisories/v2-dev0/D1-assessment.md",
+      "raw_sha256": "f0274fe52fe2b911e8728cf49b234af3f9890dbdd69a7e96a29f5beb444aabb7",
+      "published_sha256": "8b260a074f66ce4deeec4138fb878d5a13d34772e16cf8a8b59e667fec4da947",
+      "raw_bytes": 12405,
+      "published_bytes": 12301,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D1>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E2>/assessments/dev0-ee8d0e6/D2-assessment.md",
+      "published": "advisories/v2-dev0/D2-assessment.md",
+      "raw_sha256": "d4a77a3fc984a3fa4285099f77681b564ca36f19819bafd44c3f73a85d2cb585",
+      "published_sha256": "3020d9bc4238d06f5c3f748bcdbdfdf41dba94f2f54e52ebaf518a5aabf565ad",
+      "raw_bytes": 14284,
+      "published_bytes": 14180,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D2>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E2>/assessments/dev0-ee8d0e6/D3-assessment.md",
+      "published": "advisories/v2-dev0/D3-assessment.md",
+      "raw_sha256": "0f5210df41ec5edf19f470a93565cf60b7a7c0747342960b16d0d8c5fdddbd53",
+      "published_sha256": "b130c0438b81b2065d2204642529c4940dbdf551013767df49fd7d63784e4e7b",
+      "raw_bytes": 15022,
+      "published_bytes": 14918,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D3>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E2>/assessments/dev1-706868e2d188/D1-assessment.md",
+      "published": "advisories/v2-dev1/D1-assessment.md",
+      "raw_sha256": "e5a2fc2c5cb18e66c6f8de01477c00cc8348f399fc2391b82d52cf8dd2663638",
+      "published_sha256": "85eb628710ec936a55d70a55408b6dcd4a38ba0bccf11c81d530d06afdcba2e1",
+      "raw_bytes": 10534,
+      "published_bytes": 10430,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D1>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E2>/assessments/dev1-706868e2d188/D2-assessment.md",
+      "published": "advisories/v2-dev1/D2-assessment.md",
+      "raw_sha256": "48f30b778c25d56dd30b89c6e76e0fe03054456cd8375fe63847b3cbac6a3820",
+      "published_sha256": "abec6be9b6c2c65203fb0f07ded758ac7436606773060c730ffe854d3558059b",
+      "raw_bytes": 12356,
+      "published_bytes": 12252,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D2>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E2>/assessments/dev1-706868e2d188/D3-assessment.md",
+      "published": "advisories/v2-dev1/D3-assessment.md",
+      "raw_sha256": "41e170ecff112e59246805e3256d53de880f9b2fec381673e6dd1ab281d4da6c",
+      "published_sha256": "29c17db3fea2d1f686435140b10950d7aeeaa8630318fdb2d4f9897d1c22eadc",
+      "raw_bytes": 12975,
+      "published_bytes": 12871,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<SOURCE-D3>",
+        "<E1>",
+        "<SESSION-EVIDENCE>"
+      ]
+    },
+    {
+      "input": "<E1>/rubric/RUBRIC.md",
+      "published": "rubric/RUBRIC.md",
+      "raw_sha256": "7420a0ff0741e29351fa3f030d3366543ce11ea7c3734cba14c44597db0b59de",
+      "published_sha256": "7420a0ff0741e29351fa3f030d3366543ce11ea7c3734cba14c44597db0b59de",
+      "raw_bytes": 25814,
+      "published_bytes": 25814,
+      "transform": "byte-identical",
+      "reversible_prefix_check": true,
+      "applied_prefixes": []
+    },
+    {
+      "input": "<E1>/rubric/RULES.json",
+      "published": "rubric/RULES.json",
+      "raw_sha256": "c1c019802f9876e122fa2d71d6c6089eae01df5004b2b3103beb140be18008f9",
+      "published_sha256": "e988283836cabd034fb615ef58a0540b562d123525c7d9334978b1d11289d8f0",
+      "raw_bytes": 13356,
+      "published_bytes": 13321,
+      "transform": "mechanical-prefix-only",
+      "reversible_prefix_check": true,
+      "applied_prefixes": [
+        "<RUBRIC-BASELINE>"
+      ]
+    }
+  ],
+  "retained_input_sha256": {
+    "<E1>/selection/D1-identity.json": "ec42388cd299cfc059943bcbb9c2d00f71b7f6077fd8ed40ab55785f641fcfae",
+    "<E1>/selection/D2-identity.json": "e296a84d365b0d39ae5bf339f06a44c4b299e5ed5cb7c7906ef7efed19f0a2fb",
+    "<E1>/selection/D3-identity.json": "46b1437796bba83758b471c9b08848f67a17672275fd6b15742cd8dc436a00f4",
+    "<E1>/selection/H1-identity.json": "1b79b610989b0c99615fbd49716de200f28498658cddefca1944c770e42fdb7f",
+    "<E1>/selection/H2-identity.json": "abc7169dfa2e710c1793b2a72f5f5cbe7e1cf2c4280b509f2cf8baaf40fe855f",
+    "<E1>/selection/H3-identity.json": "678294df3425c77fa1cdfeac6c7c2187a897f23696cbd8de33076546697c8293",
+    "<E2>/skills/repair1-706868e2d188/identity.json": "ccfe223288c6a3d74ad931ebbf37dc83c8b369d8ad3ad41f240963f72dd0efa1",
+    "<E1>/audits/dev0-evaluation-scores.json": "b33e2b363b8e85d6676f1f7dabc905ae0c280b2ec1c16fc6cfb6f2036b40df32",
+    "<E1>/assessments/dev0-ee8d0e6/D1-assessment.md": "2b88f72e46c71fb3769c0161afaf5c01b3d7454787cd790880b0c8655ae257fc",
+    "<E1>/private/dev0-evaluation/dev0-D1-ee8d0e6.json": "890b9096467632bc2866ff520944ae07143b1d2e25d0c376ecda4e7c71fa590f",
+    "<E1>/assessments/dev0-ee8d0e6/D2-assessment.md": "c7e559992260239b2a7be4856cdb3c3de93830013f70e2f2e279392b3d8c7dcd",
+    "<E1>/private/dev0-evaluation/dev0-D2-ee8d0e6.json": "88d6ce7b8f05ab5843d4fded5271bfe81da7e005d16a70fcca5532d9e7ed412e",
+    "<E1>/assessments/dev0-ee8d0e6/D3-assessment.md": "3ac2c40682e82223fe9f5ae3c8e7321e2c6da8428b509aa11d14062eb564bf40",
+    "<E1>/private/dev0-evaluation/dev0-D3-ee8d0e6.json": "dd3ea24b759a8f50cd95e348fda187c1b709b789b52462eb68579a87d64a1496",
+    "<E1>/audits/dev-confirm-evaluation-scores.json": "b8539d37f9740c5ad192bccfbb977f8b48462e40fde41bfc4f74377007755570",
+    "<E1>/assessments/dev-confirm-ee8d0e6/D1-assessment.md": "69b21155298a3059f85ee0dfe537e8747f767fcd8cd300b16b2629728c90dcd5",
+    "<E1>/private/dev-confirm-evaluation/dev-confirm-D1-ee8d0e6.json": "f758b597b543634eba3d6ba672cc8ded297aad43475fd2f27d37500988b07d8f",
+    "<E1>/assessments/dev-confirm-ee8d0e6/D2-assessment.md": "16e6d662bb86f5b3810f88e7d3adea155c5e56fc7438e8a1021681d770d58a1d",
+    "<E1>/private/dev-confirm-evaluation/dev-confirm-D2-ee8d0e6.json": "3e3ecb994160188f46768010ced3202102302c13aec3d08fef2314ad7fe16681",
+    "<E1>/assessments/dev-confirm-ee8d0e6/D3-assessment.md": "86f2ddd631fc5211b50f17edebe7cdcaada20c7332e199e981d6c8319dd4e66b",
+    "<E1>/private/dev-confirm-evaluation/dev-confirm-D3-ee8d0e6.json": "14100298c1c7580f5161817d0076e57e70be2fb36abb1794364760148b2152be",
+    "<E1>/audits/holdout1-evaluation-scores.json": "b2bf0d7dc6b22a13d870157d638a7cbe2b0b1db266db3a3cacdb0cbe364422c0",
+    "<E1>/assessments/holdout1-ee8d0e6/H1-assessment.md": "82238267015ef0b37395caa3a17c70580f8735dd099b66d87a0f3d27f7964c31",
+    "<E1>/private/holdout1-evaluation/holdout1-H1-ee8d0e6.json": "34c61be3cfec4440b47d2620227bc7a2139c8b1ac3c2823f220a112309ea5d36",
+    "<E1>/assessments/holdout1-ee8d0e6/H2-assessment.md": "f787b57ec41ffe9cb31aee67ed007bea303af2ce623ec5fd15727fa0c39bbe22",
+    "<E1>/private/holdout1-evaluation/holdout1-H2-ee8d0e6.json": "6200dddb58ca1c51b73d42927f8caf34f6bcdb418406e087b3d0ed44609d5a9f",
+    "<E1>/assessments/holdout1-ee8d0e6/H3-assessment.md": "9a57fb402958184a3f5ad9075f3153795331699bae7b21fc66e8a42b19fee70d",
+    "<E1>/private/holdout1-evaluation/holdout1-H3-ee8d0e6.json": "02719108640a4e85a11a7649ab2edbe43c09c1b66c09a485971003610746f62b",
+    "<E1>/audits/holdout2-evaluation-scores.json": "b23b871d9a8583bd3a5e66c0e719f14bb18d391dd046f09816d531cd903db573",
+    "<E1>/assessments/holdout2-ee8d0e6/H1-assessment.md": "848553885fa716714deef5cb2ff7105c1a19f5ff8160526a2d6a9a9284d21179",
+    "<E1>/private/holdout2-evaluation/holdout2-H1-ee8d0e6.json": "545d36b8d42e51dda451ea65a23e04eae460d92978bdfc4ed0145e0be77c220b",
+    "<E1>/assessments/holdout2-ee8d0e6/H2-assessment.md": "7a21682348cfe12bf4432c49eaa8f675591319b8797124a5309a0382133a7380",
+    "<E1>/private/holdout2-evaluation/holdout2-H2-ee8d0e6.json": "8119612f13279e0e7941be39e485d958de2d4863f0550ed44c237fcfef9d550d",
+    "<E1>/assessments/holdout2-ee8d0e6/H3-assessment.md": "c3883b15fd139d6813e3e31018a8f9ed1995026b98adee6540835a21b5bb45df",
+    "<E1>/private/holdout2-evaluation/holdout2-H3-ee8d0e6.json": "3f04b549c5530005cd1980551cd4e5e086a7ebd666cfd49f3b453324582aa7aa",
+    "<E2>/assessments/dev0-ee8d0e6/D1-assessment.md": "f0274fe52fe2b911e8728cf49b234af3f9890dbdd69a7e96a29f5beb444aabb7",
+    "<E2>/assessments/dev0-ee8d0e6/D2-assessment.md": "d4a77a3fc984a3fa4285099f77681b564ca36f19819bafd44c3f73a85d2cb585",
+    "<E2>/assessments/dev0-ee8d0e6/D3-assessment.md": "0f5210df41ec5edf19f470a93565cf60b7a7c0747342960b16d0d8c5fdddbd53",
+    "<E2>/audits/dev1-evaluation-scores.json": "4a33ed8a6570a6ef689fe206c11841e996f3c418bac9135285d1dc9b3beda157",
+    "<E2>/assessments/dev1-706868e2d188/D1-assessment.md": "e5a2fc2c5cb18e66c6f8de01477c00cc8348f399fc2391b82d52cf8dd2663638",
+    "<E2>/private/dev1-evaluation/dev1-D1-706868e2d188.json": "66896dbb571f520eb435921fbe27602ab41a24d513cd21ea0bb52c284afc2327",
+    "<E2>/assessments/dev1-706868e2d188/D2-assessment.md": "48f30b778c25d56dd30b89c6e76e0fe03054456cd8375fe63847b3cbac6a3820",
+    "<E2>/private/dev1-evaluation/dev1-D2-706868e2d188.json": "74bea80d40cc7a443eeff8bae4542e0148b9ad16b7689fc9a4380348771748c7",
+    "<E2>/assessments/dev1-706868e2d188/D3-assessment.md": "41e170ecff112e59246805e3256d53de880f9b2fec381673e6dd1ab281d4da6c",
+    "<E2>/private/dev1-evaluation/dev1-D3-706868e2d188.json": "c24f70fff288d4525a9693e1b77a42bca04cc4385c83b6729eb63c934c9ff6ab",
+    "<E1>/rubric/RUBRIC.md": "7420a0ff0741e29351fa3f030d3366543ce11ea7c3734cba14c44597db0b59de",
+    "<E1>/rubric/RULES.json": "c1c019802f9876e122fa2d71d6c6089eae01df5004b2b3103beb140be18008f9",
+    "<E2>/private/dev0-evaluation/BLOCKED-metadata.json": "740d2d7c14ece71e28f0084696a850d9cc4eb4888f0af04a6f5db83159443f2a",
+    "<E2>/private/dev1-evaluation/POST-GRADE-PROTOCOL.json": "dbb1b8594feb93e04d531ec0a7a135ebfec21c892c605c841ab2b844644a8ee1",
+    "<E2>/private/dev1-evaluation/ORIGINAL-FINDING-DISPOSITIONS.json": "6250dffd7d97c2f82fbf75aa3786c0207eb384fbe6017557d8f5b165b2676076",
+    "<E1>/V1-PROTOCOL-DECISION.json": "cc0211578e9282f97dadfe846dd825a34b7c62149dadf26c13824bb0c0c905f5",
+    "<E1>/rubric/FREEZE.json": "c463450d64d956984ec5752c1f619e1df95aeb059e17974d6f7950fc5d4e3949",
+    "<E1>/rubric/SOURCES.json": "2b36ef3dc157afd8bd466eec27de956faf6935e498e58e6c84ec2a607dde4ce2",
+    "<E1>/rubric/SHA256SUMS": "8d10bc6088a51a7ecc7f46a3938f4397bdc72ec4502a064a87ca88b311e6e32d",
+    "<E2>/START.json": "99f3462f5043840d07ca43d620e8cf818990bced6758eb42d4914d8cc2bb1a1f",
+    "<E2>/repair1/RESULT.json": "84663f79ca7f86ff4f3da98d5ea93b8ee19050d6eaeab7d7dc34b1271126f116",
+    "<E2>/repair1/metadata-followup/RESULT.json": "f3927b13cfa43ba279bc7a0da4f567fd2b9a821d26ce1bdd7463ab9027b6a352",
+    "<E2>/repair1/TEMP-CLEANUP.json": "8d0eb79680be62a78515145af6a968eb34a0372131f6e7024108630889b02573",
+    "<E2>/private/dev1-evaluation/GRADE-MANIFEST.json": "65f1b7f9176af7a339b58a32a2690ff4cb0dc81675508734e007d200f420f2b2"
+  },
+  "normalization": {
+    "operation": "UTF-8 literal longest-prefix replacement only; reverse equality verified for each copy",
+    "prefixes": [
+      "<SOURCE-D1>",
+      "<SOURCE-D2>",
+      "<SOURCE-D3>",
+      "<SOURCE-H1>",
+      "<SOURCE-H2>",
+      "<SOURCE-H3>",
+      "<E2>",
+      "<E1>",
+      "<SESSION-EVIDENCE>",
+      "<RUBRIC-BASELINE>",
+      "<PROJECT>"
+    ],
+    "private_mapping": "<SOURCE-ID>=E1/targets/ID; <E1>/<E2>=respective retained campaign evidence; <PROJECT>=publication checkout; <RUBRIC-BASELINE>=original rubric baseline checkout; <SESSION-EVIDENCE>=common retained evidence parent",
+    "privacy": "Absolute private prefixes omitted intentionally. Original raw hashes, not published hashes, establish original identity.",
+    "rule_semantics": "RULES path metadata normalized only; no thresholds, constraints or normative prose changed."
+  },
+  "unchanged_skill_assets": {
+    ".github/skills/proof-readiness/LICENSE": "49e48a0a97d402c39f98287fb49ca20429f38e83e1dea6745927829519be50f0",
+    ".github/skills/proof-readiness/SKILL.md": "68ae68b8b2fecd9067ddc169522c495a6080c66da6bc08fcbc93f8c5d55c8a37",
+    ".github/skills/proof-readiness/examples/assessments.md": "d44cff46a12b245f5d924fc95e7be00eefa678691bc7716ee76619433341db64",
+    ".github/skills/proof-readiness/references/cbmc.md": "ae8c5f8fc5d2b53081fefec30db261fb7b97f4086a9c43ec962ca5f8bfa56249",
+    ".github/skills/proof-readiness/references/dafny.md": "d972de1087f881efc258d9f35e609a64b57fd5441455ab957637641b25572c15",
+    ".github/skills/proof-readiness/references/index.md": "57e253f5fd1a351bd6269f672fe305da6e9e59a6ccc1343183414962babe9457",
+    ".github/skills/proof-readiness/references/kani.md": "6987800dbfb55c3046827169f3d299df8a6157b614c11667dec9dc02f91fe5d7",
+    ".github/skills/proof-readiness/references/tlc.md": "94ea090e3b8c4622a56d35aaae1f29be015d92287e5ae4714f9f33f055af3487",
+    ".github/skills/proof-readiness/references/verus.md": "973602907bf043d550b1e0ae5e0190cabcf34cc3c481db6cf76b8c1ecbebbe8e",
+    ".github/skills/proof-readiness/templates/assessment.md": "16c9dce616f7970aeb4fadbf7c8b22b12075e77088989919df792ad4f3ca2a7e"
+  }
+}

@@ -10,7 +10,7 @@ Date / user goal / adoption constraints:
 | r1 | | | | |
 
 Output path (outside all selected roots); path/read safety limitations:
-Discovery budget used / truncation / concurrency or freshness limitations:
+Discovery budget used / truncation / overruns / concurrency or freshness limitations:
 Existing assurance: cite artifacts and any separately supplied result provenance;
 presence alone is not a pass. Do not claim independently reproduced results.
 
@@ -48,9 +48,16 @@ assurance. At most three detailed opportunities; zero is valid.
 | W1 | Read-only investigation, if warranted | | State actual grants or missing approval; no invented grant | Source-backed answers or explicit unknowns |
 
 Implementation, if proposed, is a separate blocked task until named prerequisites
-and actual approvals are satisfied. Describe future execution evidence (exact
-versions/commands, source/harness/model, bounds, assumptions, complete output,
-failures, correspondence) without claiming any execution here.
+and actual approvals are satisfied. For each task requiring future execution,
+provide a clearly unexecuted conditional invocation specification (tool, arguments,
+working directory, version/configuration prerequisites), or name a read-only
+command-selection task/artifact that resolves the tool version, configuration and
+invocation before execution. Keep unresolved support explicit; do not invent
+versions or treat command selection as execution approval. Pure source-only tasks
+need no shell commands.
+Separately describe future execution evidence (exact versions/commands,
+source/harness/model, bounds, assumptions, complete output, failures,
+correspondence) without claiming any execution here.
 If no work is warranted, say so and omit task rows.
 
 ## Review and limitations

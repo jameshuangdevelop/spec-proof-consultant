@@ -1,0 +1,207 @@
+{
+  "D1": {
+    "repository": "tokio-rs/bytes",
+    "url": "https://github.com/tokio-rs/bytes",
+    "commit": "f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c",
+    "tree": "8a832951605a44373017ac9abb8c125b8f02f2c6",
+    "license_spdx": "MIT",
+    "license_paths": [
+      "LICENSE"
+    ],
+    "production_files": [
+      "src/buf/chain.rs",
+      "src/buf/take.rs"
+    ],
+    "supporting_scope": [
+      "src/buf/buf_impl.rs: referenced Buf interface and adapter constructors only",
+      "src/buf/buf_mut.rs: referenced interface only",
+      "src/buf/mod.rs",
+      "src/lib.rs: relevant exports/configuration only",
+      "tests/test_chain.rs",
+      "tests/test_take.rs",
+      "tests/test_buf.rs: relevant callers only",
+      "Cargo.toml",
+      "README.md",
+      ".github/workflows/ci.yml"
+    ],
+    "component_brief": "Assess the Chain and Take buffer adapters and their public interface/caller boundary. Keep broader storage implementations outside the detailed opportunity scope unless a concrete dependency requires bounded inspection.",
+    "identity_record_sha256": "ec42388cd299cfc059943bcbb9c2d00f71b7f6077fd8ed40ab55785f641fcfae",
+    "pinned_links": {
+      "src/buf/chain.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/chain.rs",
+      "src/buf/take.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/take.rs",
+      "LICENSE": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/LICENSE"
+    }
+  },
+  "D2": {
+    "repository": "littlefs-project/littlefs",
+    "url": "https://github.com/littlefs-project/littlefs",
+    "commit": "6cb4e86540eca0d9ba62500a298385c9d863c8be",
+    "tree": "9079d55ac294f6b66c58147a215ea73779431cef",
+    "license_spdx": "BSD-3-Clause",
+    "license_paths": [
+      "LICENSE.md"
+    ],
+    "production_files": [
+      "lfs.c: caching block-device operations only",
+      "lfs.h: associated types, configuration and interfaces",
+      "lfs_util.h: referenced helpers only"
+    ],
+    "supporting_scope": [
+      "lfs.c: immediate callers of selected cache operations only",
+      "bd/lfs_rambd.c",
+      "bd/lfs_rambd.h",
+      "tests/test_bd.toml",
+      "tests/test_files.toml: relevant cases only",
+      "README.md",
+      "DESIGN.md: cache/block-device context only",
+      "SPEC.md: applicable format context only",
+      "Makefile: configuration only",
+      ".github/workflows/test.yml: configuration only"
+    ],
+    "component_brief": "Assess the caching block-device layer, beginning at lfs_bd_read and its immediate cache helpers/callers. Include the supplied block-device callback/configuration boundary; do not expand into a whole-filesystem assurance claim.",
+    "identity_record_sha256": "e296a84d365b0d39ae5bf339f06a44c4b299e5ed5cb7c7906ef7efed19f0a2fb",
+    "pinned_links": {
+      "lfs.c": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.c",
+      "lfs.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.h",
+      "lfs_util.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs_util.h",
+      "LICENSE.md": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/LICENSE.md"
+    }
+  },
+  "D3": {
+    "repository": "pallets/itsdangerous",
+    "url": "https://github.com/pallets/itsdangerous",
+    "commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+    "tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+    "license_spdx": "BSD-3-Clause",
+    "license_paths": [
+      "LICENSE.txt"
+    ],
+    "production_files": [
+      "src/itsdangerous/timed.py",
+      "src/itsdangerous/signer.py",
+      "src/itsdangerous/encoding.py"
+    ],
+    "supporting_scope": [
+      "src/itsdangerous/exc.py",
+      "src/itsdangerous/serializer.py: relevant callers/interface only",
+      "src/itsdangerous/url_safe.py: relevant callers only",
+      "tests/test_itsdangerous/test_timed.py",
+      "tests/test_itsdangerous/test_signer.py",
+      "tests/test_itsdangerous/test_encoding.py",
+      "docs/timed.rst",
+      "docs/signer.rst",
+      "docs/concepts.rst",
+      "README.md",
+      "pyproject.toml",
+      ".github/workflows/tests.yaml"
+    ],
+    "component_brief": "Assess timestamped signing/unsigning and the associated signer/encoding interfaces. Keep application-specific authentication policy and whole-system cryptographic assurance outside the selected component.",
+    "identity_record_sha256": "46b1437796bba83758b471c9b08848f67a17672275fd6b15742cd8dc436a00f4",
+    "pinned_links": {
+      "src/itsdangerous/timed.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/timed.py",
+      "src/itsdangerous/signer.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/signer.py",
+      "src/itsdangerous/encoding.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/encoding.py",
+      "LICENSE.txt": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/LICENSE.txt"
+    }
+  },
+  "H1": {
+    "repository": "google/double-conversion",
+    "url": "https://github.com/google/double-conversion",
+    "commit": "71b329c21e8255643e9c5a23e1013c6eba4f604b",
+    "tree": "b83f8b480a2707b0657aa95e8d74b8b25f45a442",
+    "license_spdx": "BSD-3-Clause",
+    "license_paths": [
+      "LICENSE",
+      "COPYING"
+    ],
+    "production_files": [
+      "double-conversion/string-to-double.cc",
+      "double-conversion/string-to-double.h"
+    ],
+    "supporting_scope": [
+      "double-conversion/strtod.h",
+      "double-conversion/strtod.cc: referenced callees only",
+      "double-conversion/ieee.h: referenced helpers only",
+      "double-conversion/utils.h: referenced helpers/configuration only",
+      "double-conversion/double-conversion.h",
+      "test/cctest/test-conversions.cc: relevant StringToDouble callers only",
+      "test/cctest/CMakeLists.txt",
+      "README.md",
+      "CMakeLists.txt",
+      ".github/workflows/ci.yml",
+      ".github/workflows/cifuzz.yml"
+    ],
+    "component_brief": "Assess the StringToDoubleConverter parsing interface and its implementation boundary. Use bounded relevant sections rather than reading the complete conversion corpus.",
+    "identity_record_sha256": "1b79b610989b0c99615fbd49716de200f28498658cddefca1944c770e42fdb7f",
+    "pinned_links": {
+      "double-conversion/string-to-double.cc": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/double-conversion/string-to-double.cc",
+      "double-conversion/string-to-double.h": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/double-conversion/string-to-double.h",
+      "LICENSE": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/LICENSE",
+      "COPYING": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/COPYING"
+    }
+  },
+  "H2": {
+    "repository": "google/btree",
+    "url": "https://github.com/google/btree",
+    "commit": "aeba20f7a1e1315badec4eca4fdc9f754f5f880a",
+    "tree": "0bd699e6843a8afe2b63319820bede015e35699d",
+    "license_spdx": "Apache-2.0",
+    "license_paths": [
+      "LICENSE"
+    ],
+    "production_files": [
+      "btree_generic.go"
+    ],
+    "supporting_scope": [
+      "btree_mem.go",
+      "btree.go: build-selection boundary only",
+      "btree_generic_test.go",
+      "btree_test.go: relevant interface callers only",
+      "README.md",
+      "go.mod",
+      ".github/workflows/test.yml"
+    ],
+    "component_brief": "Assess the generic B-tree clone/update boundary and the production helpers it reaches. Keep the legacy pre-generics implementation outside detailed assessment except to establish build selection.",
+    "identity_record_sha256": "abc7169dfa2e710c1793b2a72f5f5cbe7e1cf2c4280b509f2cf8baaf40fe855f",
+    "pinned_links": {
+      "btree_generic.go": "https://github.com/google/btree/blob/aeba20f7a1e1315badec4eca4fdc9f754f5f880a/btree_generic.go",
+      "LICENSE": "https://github.com/google/btree/blob/aeba20f7a1e1315badec4eca4fdc9f754f5f880a/LICENSE"
+    }
+  },
+  "H3": {
+    "repository": "rust-random/rand",
+    "url": "https://github.com/rust-random/rand",
+    "commit": "d1cbc134a1d039cf4680b82835ac008f172c3dee",
+    "tree": "1874b2b8e5f562cc7440cc41d0993437607419b3",
+    "license_spdx": "MIT OR Apache-2.0",
+    "license_paths": [
+      "COPYRIGHT",
+      "LICENSE-MIT",
+      "LICENSE-APACHE"
+    ],
+    "production_files": [
+      "src/rngs/small.rs",
+      "src/rngs/xoshiro128plusplus.rs",
+      "src/rngs/xoshiro256plusplus.rs"
+    ],
+    "supporting_scope": [
+      "src/rngs/mod.rs",
+      "src/lib.rs: relevant exports/configuration only",
+      "Cargo.toml",
+      "README.md",
+      "SECURITY.md",
+      ".github/workflows/test.yml",
+      "embedded tests in the selected production files"
+    ],
+    "component_brief": "Assess SmallRng and its two architecture-selected implementation files, including their declared external trait/helper boundary. Do not expand into all distributions, operating-system entropy, or whole-library security.",
+    "identity_record_sha256": "678294df3425c77fa1cdfeac6c7c2187a897f23696cbd8de33076546697c8293",
+    "pinned_links": {
+      "src/rngs/small.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/small.rs",
+      "src/rngs/xoshiro128plusplus.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/xoshiro128plusplus.rs",
+      "src/rngs/xoshiro256plusplus.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/xoshiro256plusplus.rs",
+      "COPYRIGHT": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/COPYRIGHT",
+      "LICENSE-MIT": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/LICENSE-MIT",
+      "LICENSE-APACHE": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/LICENSE-APACHE"
+    }
+  }
+}

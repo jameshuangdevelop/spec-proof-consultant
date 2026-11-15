@@ -1,0 +1,1920 @@
+{
+  "kind": "report_data_not_accepted_catalog_knowledge",
+  "campaigns": {
+    "v1": "NOT ACCEPTED",
+    "v2": "NOT ACCEPTED"
+  },
+  "rubric_sha256sums_digest": "8d10bc6088a51a7ecc7f46a3938f4397bdc72ec4502a064a87ca88b311e6e32d",
+  "phases": [
+    {
+      "phase": "v1-dev0",
+      "scores": [
+        9.625,
+        9.625,
+        9.625
+      ],
+      "protocol_status": "NOT ACCEPTED"
+    },
+    {
+      "phase": "v1-confirmation",
+      "scores": [
+        10,
+        10,
+        10
+      ],
+      "protocol_status": "NOT ACCEPTED"
+    },
+    {
+      "phase": "v1-holdout1",
+      "scores": [
+        null,
+        null,
+        null
+      ],
+      "protocol_status": "NOT ACCEPTED"
+    },
+    {
+      "phase": "v1-holdout2",
+      "scores": [
+        null,
+        10,
+        null
+      ],
+      "protocol_status": "NOT ACCEPTED"
+    },
+    {
+      "phase": "v2-dev0",
+      "scores": [
+        null,
+        null,
+        null
+      ],
+      "protocol_status": "NOT ACCEPTED"
+    },
+    {
+      "phase": "v2-dev1",
+      "scores": [
+        10,
+        10,
+        10
+      ],
+      "protocol_status": "NOT ACCEPTED"
+    }
+  ],
+  "runs": [
+    {
+      "phase": "v1-dev0",
+      "repository_id": "D1",
+      "source": {
+        "repository": "tokio-rs/bytes",
+        "url": "https://github.com/tokio-rs/bytes",
+        "commit": "f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c",
+        "tree": "8a832951605a44373017ac9abb8c125b8f02f2c6",
+        "license_spdx": "MIT",
+        "license_paths": [
+          "LICENSE"
+        ],
+        "production_files": [
+          "src/buf/chain.rs",
+          "src/buf/take.rs"
+        ],
+        "supporting_scope": [
+          "src/buf/buf_impl.rs: referenced Buf interface and adapter constructors only",
+          "src/buf/buf_mut.rs: referenced interface only",
+          "src/buf/mod.rs",
+          "src/lib.rs: relevant exports/configuration only",
+          "tests/test_chain.rs",
+          "tests/test_take.rs",
+          "tests/test_buf.rs: relevant callers only",
+          "Cargo.toml",
+          "README.md",
+          ".github/workflows/ci.yml"
+        ],
+        "component_brief": "Assess the Chain and Take buffer adapters and their public interface/caller boundary. Keep broader storage implementations outside the detailed opportunity scope unless a concrete dependency requires bounded inspection.",
+        "identity_record_sha256": "ec42388cd299cfc059943bcbb9c2d00f71b7f6077fd8ed40ab55785f641fcfae",
+        "pinned_links": {
+          "src/buf/chain.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/chain.rs",
+          "src/buf/take.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/take.rs",
+          "LICENSE": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/LICENSE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/dev0-ee8d0e6/D1-assessment.md",
+        "published": "advisories/v1-dev0/D1-assessment.md",
+        "raw_sha256": "2b88f72e46c71fb3769c0161afaf5c01b3d7454787cd790880b0c8655ae257fc",
+        "published_sha256": "d7dc3fe2d209d3725a7b45b6e5129bec590d33aade89a7d61c60b923ae55b4f7",
+        "raw_bytes": 13527,
+        "published_bytes": 13423,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D1>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 9.625,
+      "final_score": 9.625,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Chain/Take behavior, trait obligations, concrete slice implementation and std/feature boundary independently checked; storage bodies explicitly unread and dependent proof blocked. Additional non-driver citations CI and both adapter test sources audited; no material false citations. EOF/pointer imprecision is not fabrication."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 defines legal immutable/lawful inner buffers, 16-descriptor bound, limits/empty dst, borrowed-data provenance and loop remainder. O2 distinguishes valid consumption, saturation from ordinary subtraction, optional panic/clamp, nontransactional errors, mutation/reset, and unsafe initialized-prefix duties. Requirement formalizations are inferred/unresolved with maintainer authority absent."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Noncatalog native tests/source review preferred for actual composition/vectored pattern. Kani scenario IDs/version/assurance and five exclusions accurately quoted; generic instantiations and std/unsafe/allocating paths not declared supported. Native tests/Miri/adapted Verus weighed without arbitrary tool forcing."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "No native pilot is ready (report92-93); tests/CI described as source not passing. Bounds, UB coverage, count-abstraction correspondence, callee and pinned support unknowns preserved. No all-types/unbounded or implementation-wide proof."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "O1 ranks unsafe vectored path and missing dst16 edge before O2 stateful compositions; both relate to existing tests, benefit and uncertainty. Mature examples are not equated to completeness. No additional independently evidenced materially missed lead required beyond this bounded scope."
+        },
+        "H": {
+          "factor": 0.75,
+          "weight": 1.5,
+          "weighted": 1.125,
+          "reason": "Coverage identity/skips/output/read limitations and measurable W1/W2 source tasks sufficient, implementation blocked. W3 lists required future evidence but no concrete future test invocation/version-selection artifact; bounded missing command specification prevents full H, not main recommendation."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "defect_id": "DEV0-D1-H01",
+          "severity": "medium_bounded_omission",
+          "priority": "P3",
+          "criterion": "H",
+          "report_assertion": "D1-assessment.md:167 W3 lists record exact versions/commands/full output as future evidence",
+          "evidence": "W3 supplies evidence checklist and feature/panic/word-size metadata, but neither a proposed native test command template nor a named artifact/task that fixes that command after configuration selection.",
+          "counterexample": "A future isolated executor can identify proposed test scope and required metadata, but cannot recover an actual proposed invocation or command-selection artifact from this advisory. This is a handoff gap, not a source-code failure.",
+          "scope_impact": "Noncritical: immediate W1/W2 source tasks actionable; W3 explicitly blocked; no missing approval/domain/callee silently assumed. Unknown compatibility and lack of an actual run do not cause deduction.",
+          "reproduction": "Read entire Actionable handoff and Method sections of D1-assessment.md plus supplied COMMANDS.md. They contain evidence checklist/current provenance, no concrete proposed target-test command. Do not execute anything.",
+          "cap": null,
+          "reason": "H full anchor requires future execution versions/commands/config/evidence specification. A checklist to record a future command is not yet a command specification; .75 strong bounded omission, not K5/K7 readiness or material assurance defect.",
+          "narrow_general_remedy": "Optional handoff-only refinement: include a clearly unexecuted conditional native-test command template and named source/config/tool-selection artifact; keep versions/support unknown until resolved, no arbitrary tool choice, no execution permission inferred."
+        }
+      ],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "890b9096467632bc2866ff520944ae07143b1d2e25d0c376ecda4e7c71fa590f",
+      "grade_input": "<E1>/private/dev0-evaluation/dev0-D1-ee8d0e6.json",
+      "audit_input": "<E1>/audits/dev0-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-dev0",
+      "repository_id": "D2",
+      "source": {
+        "repository": "littlefs-project/littlefs",
+        "url": "https://github.com/littlefs-project/littlefs",
+        "commit": "6cb4e86540eca0d9ba62500a298385c9d863c8be",
+        "tree": "9079d55ac294f6b66c58147a215ea73779431cef",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.md"
+        ],
+        "production_files": [
+          "lfs.c: caching block-device operations only",
+          "lfs.h: associated types, configuration and interfaces",
+          "lfs_util.h: referenced helpers only"
+        ],
+        "supporting_scope": [
+          "lfs.c: immediate callers of selected cache operations only",
+          "bd/lfs_rambd.c",
+          "bd/lfs_rambd.h",
+          "tests/test_bd.toml",
+          "tests/test_files.toml: relevant cases only",
+          "README.md",
+          "DESIGN.md: cache/block-device context only",
+          "SPEC.md: applicable format context only",
+          "Makefile: configuration only",
+          ".github/workflows/test.yml: configuration only"
+        ],
+        "component_brief": "Assess the caching block-device layer, beginning at lfs_bd_read and its immediate cache helpers/callers. Include the supplied block-device callback/configuration boundary; do not expand into a whole-filesystem assurance claim.",
+        "identity_record_sha256": "e296a84d365b0d39ae5bf339f06a44c4b299e5ed5cb7c7906ef7efed19f0a2fb",
+        "pinned_links": {
+          "lfs.c": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.c",
+          "lfs.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.h",
+          "lfs_util.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs_util.h",
+          "LICENSE.md": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/LICENSE.md"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/dev0-ee8d0e6/D2-assessment.md",
+        "published": "advisories/v1-dev0/D2-assessment.md",
+        "raw_sha256": "c7e559992260239b2a7be4856cdb3c3de93830013f70e2f2e279392b3d8c7dcd",
+        "published_sha256": "9f5c05491a437bf858c42a690152d685bc9114f3706d6fa3d6460323d2853403",
+        "raw_bytes": 15713,
+        "published_bytes": 15609,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D2>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 9.625,
+      "final_score": 9.625,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "All cache, helper, config/init, native caller and callback decision-driving claims checked from actual source; newly cited directory callers/DESIGN/CI/files cases independently read rather than trust assessor. Callback-only tests distinguished. No claim full call graph."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 proposes overlay/geometry/output invariant and retains zero-diff, wrapping/alignup, hint underflow and caller aliasing legality as explicit actionable obligations. O2 addresses failed-refill validity, partial effects, comparator sign, flush/sync order, sentinels and retry authority unresolved; no error-success assumption. Readonly/threadsafe/custom config distinguished."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "cbmc-c-buffer1.0.0 matches C cache reads only conditionally; machine/libc/callback/object/loop domains and exclusions retained. Available RAM C callback distinguished from FFI; hardware/concurrent alternatives blocked. Native traces before finite model/replacement judged relevant."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Failed-read retry identified as hypothesis needing reachable permitted trace, not bug claim. Real device persistence not inferred from return0; CBMC finite and TLC separate abstraction accurately delimited. CI/test definitions not passing or whole-FS proof."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Read-progress/domain first and error/validation second supported by accessible source and existing callback/file tests. Low-level byte claims not expanded into power-loss/ECC guarantee. Full recovery reachability cost/unknown identified; no source-backed material missed lead established."
+        },
+        "H": {
+          "factor": 0.75,
+          "weight": 1.5,
+          "weighted": 1.125,
+          "reason": "All roots/scopes/skips/identity and safe source-only W1/W2 acceptance recorded. Future test module/commands remain to be selected; W3 only asks to record exact commands instead of specifying conditional invocation. Bounded H omission, all actual approvals correctly blocked."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "defect_id": "DEV0-D2-H01",
+          "severity": "medium_bounded_omission",
+          "priority": "P3",
+          "criterion": "H",
+          "report_assertion": "D2-assessment.md:195 W3 lists record exact versions/commands/full output as future evidence",
+          "evidence": "W3 proposes a not-yet-named cache test module or conditional test_files extension and lists future command metadata, but provides no concrete future native test invocation template or command-selection artifact.",
+          "counterexample": "A future isolated executor can identify proposed test scope and required metadata, but cannot recover an actual proposed invocation or command-selection artifact from this advisory. This is a handoff gap, not a source-code failure.",
+          "scope_impact": "Noncritical: immediate W1/W2 source tasks actionable; W3 explicitly blocked; no missing approval/domain/callee silently assumed. Unknown compatibility and lack of an actual run do not cause deduction.",
+          "reproduction": "Read entire Actionable handoff and Method sections of D2-assessment.md plus supplied COMMANDS.md. They contain evidence checklist/current provenance, no concrete proposed target-test command. Do not execute anything.",
+          "cap": null,
+          "reason": "H full anchor requires future execution versions/commands/config/evidence specification. A checklist to record a future command is not yet a command specification; .75 strong bounded omission, not K5/K7 readiness or material assurance defect.",
+          "narrow_general_remedy": "Optional handoff-only refinement: include a clearly unexecuted conditional native-test command template and named source/config/tool-selection artifact; keep versions/support unknown until resolved, no arbitrary tool choice, no execution permission inferred."
+        }
+      ],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "88d6ce7b8f05ab5843d4fded5271bfe81da7e005d16a70fcca5532d9e7ed412e",
+      "grade_input": "<E1>/private/dev0-evaluation/dev0-D2-ee8d0e6.json",
+      "audit_input": "<E1>/audits/dev0-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-dev0",
+      "repository_id": "D3",
+      "source": {
+        "repository": "pallets/itsdangerous",
+        "url": "https://github.com/pallets/itsdangerous",
+        "commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+        "tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.txt"
+        ],
+        "production_files": [
+          "src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py"
+        ],
+        "supporting_scope": [
+          "src/itsdangerous/exc.py",
+          "src/itsdangerous/serializer.py: relevant callers/interface only",
+          "src/itsdangerous/url_safe.py: relevant callers only",
+          "tests/test_itsdangerous/test_timed.py",
+          "tests/test_itsdangerous/test_signer.py",
+          "tests/test_itsdangerous/test_encoding.py",
+          "docs/timed.rst",
+          "docs/signer.rst",
+          "docs/concepts.rst",
+          "README.md",
+          "pyproject.toml",
+          ".github/workflows/tests.yaml"
+        ],
+        "component_brief": "Assess timestamped signing/unsigning and the associated signer/encoding interfaces. Keep application-specific authentication policy and whole-system cryptographic assurance outside the selected component.",
+        "identity_record_sha256": "46b1437796bba83758b471c9b08848f67a17672275fd6b15742cd8dc436a00f4",
+        "pinned_links": {
+          "src/itsdangerous/timed.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/encoding.py",
+          "LICENSE.txt": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/LICENSE.txt"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/dev0-ee8d0e6/D3-assessment.md",
+        "published": "advisories/v1-dev0/D3-assessment.md",
+        "raw_sha256": "3ac2c40682e82223fe9f5ae3c8e7321e2c6da8428b509aa11d14062eb564bf40",
+        "published_sha256": "0f79fa5e9d5f489acedd0862740195c98c7a1861d710cf438219534a5721ed2d",
+        "raw_bytes": 16477,
+        "published_bytes": 16373,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D3>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 9.625,
+      "final_score": 9.625,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Timestamp/Signer/encoding/exception and actual Serializer/URL-safe caller claims independently checked. Correct BadPayload inheritance and datetime handling paths, test and docs applicability. No material nonexistent/misattributed citation; minor ranges past EOF harmless."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 precise inclusive age interval and negative/future/None policy, uint64 vs platform datetime domain and authenticated malformed paths, not assuming away larger obligations. O2 finite fallback/key/config domain, exception partition and attempt invariant with error metadata untrusted. Documented intent versus inferred maintained guarantee and owner approval distinct."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "No Python native formal catalog fit invented. Source/native deterministic-clock and spy tests preferred, optional TLC quote finite and correspondence explicit; Rust/C/replacement unsuitable. stdlib/native/custom unknown bodies not falsely identified FFI. NoneAlgorithm/rotation/custom clock configs inspected or blocked."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Extreme authenticated timestamp behavior labeled source-derived branch-asymmetry hypothesis, platform support not claimed. Samples not proof/HMAC/constant-time security; no future model/compatibility declared verified. Authenticated payload vs diagnostic failure data and parsing normalization distinguished."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Temporal/range/error domain first and fallback precedence second are source-backed improvements beyond existing normal cases, including exact equality absent from read tests. Broader crypto/application policy excluded with reasons; effort/uncertainty and lower-value finite model/ordinary duplication weighed. No independent materially missed lead established."
+        },
+        "H": {
+          "factor": 0.75,
+          "weight": 1.5,
+          "weighted": 1.125,
+          "reason": "Read-only W1/W2 matrices and blockers/coverage sufficient; W3 named test files and full evidence requirements but no concrete invocation/version-selection artifact. Bounded future handoff omission only; not failure to authorize or run unknown tools."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "defect_id": "DEV0-D3-H01",
+          "severity": "medium_bounded_omission",
+          "priority": "P3",
+          "criterion": "H",
+          "report_assertion": "D3-assessment.md:209 W3 lists record exact versions/commands/full output as future evidence",
+          "evidence": "W3 names the pytest files and future version/output metadata but no candidate pytest invocation template or named prerequisite artifact specifying the selected-platform command.",
+          "counterexample": "A future isolated executor can identify proposed test scope and required metadata, but cannot recover an actual proposed invocation or command-selection artifact from this advisory. This is a handoff gap, not a source-code failure.",
+          "scope_impact": "Noncritical: immediate W1/W2 source tasks actionable; W3 explicitly blocked; no missing approval/domain/callee silently assumed. Unknown compatibility and lack of an actual run do not cause deduction.",
+          "reproduction": "Read entire Actionable handoff and Method sections of D3-assessment.md plus supplied COMMANDS.md. They contain evidence checklist/current provenance, no concrete proposed target-test command. Do not execute anything.",
+          "cap": null,
+          "reason": "H full anchor requires future execution versions/commands/config/evidence specification. A checklist to record a future command is not yet a command specification; .75 strong bounded omission, not K5/K7 readiness or material assurance defect.",
+          "narrow_general_remedy": "Optional handoff-only refinement: include a clearly unexecuted conditional native-test command template and named source/config/tool-selection artifact; keep versions/support unknown until resolved, no arbitrary tool choice, no execution permission inferred."
+        }
+      ],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "dd3ea24b759a8f50cd95e348fda187c1b709b789b52462eb68579a87d64a1496",
+      "grade_input": "<E1>/private/dev0-evaluation/dev0-D3-ee8d0e6.json",
+      "audit_input": "<E1>/audits/dev0-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-confirmation",
+      "repository_id": "D1",
+      "source": {
+        "repository": "tokio-rs/bytes",
+        "url": "https://github.com/tokio-rs/bytes",
+        "commit": "f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c",
+        "tree": "8a832951605a44373017ac9abb8c125b8f02f2c6",
+        "license_spdx": "MIT",
+        "license_paths": [
+          "LICENSE"
+        ],
+        "production_files": [
+          "src/buf/chain.rs",
+          "src/buf/take.rs"
+        ],
+        "supporting_scope": [
+          "src/buf/buf_impl.rs: referenced Buf interface and adapter constructors only",
+          "src/buf/buf_mut.rs: referenced interface only",
+          "src/buf/mod.rs",
+          "src/lib.rs: relevant exports/configuration only",
+          "tests/test_chain.rs",
+          "tests/test_take.rs",
+          "tests/test_buf.rs: relevant callers only",
+          "Cargo.toml",
+          "README.md",
+          ".github/workflows/ci.yml"
+        ],
+        "component_brief": "Assess the Chain and Take buffer adapters and their public interface/caller boundary. Keep broader storage implementations outside the detailed opportunity scope unless a concrete dependency requires bounded inspection.",
+        "identity_record_sha256": "ec42388cd299cfc059943bcbb9c2d00f71b7f6077fd8ed40ab55785f641fcfae",
+        "pinned_links": {
+          "src/buf/chain.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/chain.rs",
+          "src/buf/take.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/take.rs",
+          "LICENSE": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/LICENSE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/dev-confirm-ee8d0e6/D1-assessment.md",
+        "published": "advisories/v1-confirmation/D1-assessment.md",
+        "raw_sha256": "69b21155298a3059f85ee0dfe537e8747f767fcd8cd300b16b2629728c90dcd5",
+        "published_sha256": "c5151bfa55a92360666176f262e42d0adba470e28383db3602b3d9227aeb1ffb",
+        "raw_bytes": 13333,
+        "published_bytes": 13229,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D1>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10.0,
+      "final_score": 10.0,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "All material assertions verified against frozen source plus new independent reads: Take/Chain cursor, vector scratch/transmute, saturation, Buf/BufMut obligations and concrete slice bodies. Additional citations in report order: test_buf.rs:25-115 macro; :388-418 instantiations; test_chain.rs:132-178. Correct distinctions between generic static instantiations, dynamic callees, allocations, test definitions and CI definitions. No exact-target run asserted."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 specifies lawful sequential Buf, destination count/prefix/limit/EOF/lifetime conditions and vector loop invariant; explicitly does not require full enumeration or arbitrary trailing-slot preservation. O2 gives current limit/cursor law, saturation, reset/get_mut, zero/seam/maxima, legal versus rejected advances and no panic rollback assumption. Documented API versus inferred saturation versus unresolved approval distinguished. All three map challenges addressed."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Kani arithmetic/slices/unsafe-memory v1.0.0 guide conditions and enabled finite checks accurately preserved; concrete slice/non-std pilot only proposed. IoSlice/transmute/std body support unknown blocks implementation; dyn Buf and other hard exclusions not silently included. Native tests/source lifetime audit preferred; Miri nonexhaustive, Verus adaptation deferred absent grant. Allocating copy path and broader mutable unsafe proof excluded with retained obligations, not declared proved."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Observations, proposed oracles, unknown external bodies, bounded pilot and unexecuted tests separate. 0..8-byte/four-operation example does not discharge machine maxima, arbitrary nesting, unsafe aliasing or lifetime validity. Test/CI presence not pass; no proof, compatibility or result fabricated."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Two ranked source-specific opportunities with stated impact, modest evidence cost and uncertain tool/lifetime cost. Existing macro/nested-adapter/saturation/no-copy tests inspected rather than ignored. Identifies incremental d=15/16/17 scratch boundary and transition oracle; redundant arithmetic, replacement and state abstraction deferred with reasons. No material accessible omission independently evidenced."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "D1 identity, inspected/skipped scope, read-only outside-root output and path limits explicit. W1/W2 are bounded evidence tasks with concrete symbols/cases/acceptance; W3 proposed test files/harness blocked on named owner intent/write/execution/isolation/support gates. Future evidence includes versions, exact commands, full output/failures, bounds/checks/unwinding/correspondence. No nonexistent authority or implementation readiness."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "f758b597b543634eba3d6ba672cc8ded297aad43475fd2f27d37500988b07d8f",
+      "grade_input": "<E1>/private/dev-confirm-evaluation/dev-confirm-D1-ee8d0e6.json",
+      "audit_input": "<E1>/audits/dev-confirm-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-confirmation",
+      "repository_id": "D2",
+      "source": {
+        "repository": "littlefs-project/littlefs",
+        "url": "https://github.com/littlefs-project/littlefs",
+        "commit": "6cb4e86540eca0d9ba62500a298385c9d863c8be",
+        "tree": "9079d55ac294f6b66c58147a215ea73779431cef",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.md"
+        ],
+        "production_files": [
+          "lfs.c: caching block-device operations only",
+          "lfs.h: associated types, configuration and interfaces",
+          "lfs_util.h: referenced helpers only"
+        ],
+        "supporting_scope": [
+          "lfs.c: immediate callers of selected cache operations only",
+          "bd/lfs_rambd.c",
+          "bd/lfs_rambd.h",
+          "tests/test_bd.toml",
+          "tests/test_files.toml: relevant cases only",
+          "README.md",
+          "DESIGN.md: cache/block-device context only",
+          "SPEC.md: applicable format context only",
+          "Makefile: configuration only",
+          ".github/workflows/test.yml: configuration only"
+        ],
+        "component_brief": "Assess the caching block-device layer, beginning at lfs_bd_read and its immediate cache helpers/callers. Include the supplied block-device callback/configuration boundary; do not expand into a whole-filesystem assurance claim.",
+        "identity_record_sha256": "e296a84d365b0d39ae5bf339f06a44c4b299e5ed5cb7c7906ef7efed19f0a2fb",
+        "pinned_links": {
+          "lfs.c": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.c",
+          "lfs.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.h",
+          "lfs_util.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs_util.h",
+          "LICENSE.md": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/LICENSE.md"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/dev-confirm-ee8d0e6/D2-assessment.md",
+        "published": "advisories/v1-confirmation/D2-assessment.md",
+        "raw_sha256": "16e6d662bb86f5b3810f88e7d3adea155c5e56fc7438e8a1021681d770d58a1d",
+        "published_sha256": "22a01c10c0b3e9d049d6dc2a7f269dcc9cd5732c533c4031f57669016c44fd74",
+        "raw_bytes": 15703,
+        "published_bytes": 15599,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D2>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10.0,
+      "final_score": 10.0,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Verified every material source group including cache helpers/read, cmp/crc, flush/sync/prog, typed config/default utility overrides, supplied RAM bodies and actual metadata/file/CTZ/relocation/migration caller ranges. New independent reads confirm reentrant sync test and DESIGN readback/ECC claims. Additional non-driving citations in report order: test_bd.toml:1-29, test_files.toml:364-450, workflow test.yml:15-110. No whole-caller or runtime pass claim."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 specifies optional pcache, nonnull rcache, geometry/cache/destination/callback obligations, overlay priority, aligned calls, partial output/errors, loop invariant/progress, zero/end/overlap. uint32 overflow and hint0 explicitly retained unresolved rather than assumed away. O2 states sentinel/validation/flush/sync traces, dirty-state invariant and failed-refill validity/retry question. Requirement provenance and retry/alias/hint authority remain unresolved, blocking implementation. Legal and hypothetical inputs distinguished."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "CBMC buffer/bitvector 1.0.0 conditional fit to actual C indexing/alignment, not language default. Inspectable RAM C callback not falsely FFI; hardware/custom utilities unknown. One-block static pilot has explicit size geometry and retained uint32/general-device obligations; function-pointer/libc/machine support unclaimed. Hard exclusions assembly/concurrency/FFI respected; source audit/native fault tests prioritized; finite-model/replacement costs correctly deferred."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Device RAM erase/sync no-op, flash/durability and nondeterministic fault-model distinction explicit. Cache metadata can change before failed callback; no safe-retry or rollback invented. Readback not persistence, tests/CI not pass, finite CBMC not whole filesystem. Complete unwinding, models/platform/check limits preserved and compatibility unknown."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Two prioritized useful investigations: overlay/alignment/progress then error/retry/flush protocol. Actual mature raw-device and reentrant filesystem tests considered; incremental gain explained. Device fault/caller recovery uncertainty ranked, existing framework reuse preferred. No independently evidenced material missed opportunity within assigned cache scope."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "D2 identity, bounded caller/config/assurance scope and exclusions documented. W1 caller hint/overflow/alias/error table and W2 per-failure state traces measurable; W3 separate external harness/tests blocked on owner intent, exact support/machine/callback prerequisites, writes/execution/isolation. Full versions/flags/checks/bounds/complete failures/unwinding/correspondence retained as future acceptance, not claimed executed."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "3e3ecb994160188f46768010ced3202102302c13aec3d08fef2314ad7fe16681",
+      "grade_input": "<E1>/private/dev-confirm-evaluation/dev-confirm-D2-ee8d0e6.json",
+      "audit_input": "<E1>/audits/dev-confirm-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-confirmation",
+      "repository_id": "D3",
+      "source": {
+        "repository": "pallets/itsdangerous",
+        "url": "https://github.com/pallets/itsdangerous",
+        "commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+        "tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.txt"
+        ],
+        "production_files": [
+          "src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py"
+        ],
+        "supporting_scope": [
+          "src/itsdangerous/exc.py",
+          "src/itsdangerous/serializer.py: relevant callers/interface only",
+          "src/itsdangerous/url_safe.py: relevant callers only",
+          "tests/test_itsdangerous/test_timed.py",
+          "tests/test_itsdangerous/test_signer.py",
+          "tests/test_itsdangerous/test_encoding.py",
+          "docs/timed.rst",
+          "docs/signer.rst",
+          "docs/concepts.rst",
+          "README.md",
+          "pyproject.toml",
+          ".github/workflows/tests.yaml"
+        ],
+        "component_brief": "Assess timestamped signing/unsigning and the associated signer/encoding interfaces. Keep application-specific authentication policy and whole-system cryptographic assurance outside the selected component.",
+        "identity_record_sha256": "46b1437796bba83758b471c9b08848f67a17672275fd6b15742cd8dc436a00f4",
+        "pinned_links": {
+          "src/itsdangerous/timed.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/encoding.py",
+          "LICENSE.txt": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/LICENSE.txt"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/dev-confirm-ee8d0e6/D3-assessment.md",
+        "published": "advisories/v1-confirmation/D3-assessment.md",
+        "raw_sha256": "86f2ddd631fc5211b50f17edebe7cdcaada20c7332e199e981d6c8319dd4e66b",
+        "published_sha256": "976dd5442e66764cbc0f5796bd3c220fd5d6476e1a1d46ec0ae6f2738d4b2cd6",
+        "raw_bytes": 15943,
+        "published_bytes": 15839,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D3>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10.0,
+      "final_score": 10.0,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "All material timed/signer/encoding/exception and real serializer/fallback/unsafe/url-safe boundaries audited. New reads confirm docs signer and full cited rotation range, URLSafe mixin, diagnostic unsafe loading and tox configuration. Additional citations in report order: test_timed.py:29-94, test_encoding.py:32-40, test_signer.py:89-111. Test artifact versus result and stdlib semantics versus uninspected body explicit."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Precise signed payload, uint64 encoder versus datetime/platform domain, arbitrary malformed token/error surface, empty timestamp=0, age inclusive/future/negative/None, return-mode and exception hypotheses. O2 separates primary/key/fallback order, expiry stop and authentic load before parse; finite configurations, empty config errors and custom algorithm limitation explicit. Straight-line parsing invariant N/A justified, key/fallback invariants given. Inferred intended domains and approval unresolved rather than weakened."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Correct noncatalog Python source/native-test advice; index has no native Python verifier. No forced Kani/CBMC; TLC finite abstraction would owe correspondence; Dafny replacement absent opt-in. Actual custom algorithms/serializer/clock and stdlib boundaries inspected or unknown-blocked. Test doubles limited to control flow, not real crypto/date equivalence."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Out-of-range authenticated timestamp is an unexecuted source-derived hypothesis, not vulnerability reproduction. Invalid-MAC datetime catch differs from valid-MAC conversions; bytes-return versus serializer forced datetime correctly retained. Crypto/MAC/collision/platform bodies trusted/unmodeled, no constant-time/security/replay guarantee. No runtime, exact support or proof success invented."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Two ranked low/moderate evidence tasks address conversion/age/error policy then key/fallback control flow, not redundant roundtrip. Existing inherited normal timed/signer tests recognized; uninspected test_serializer explicitly inspect before duplication. Cost uncertainty and replacement/framework alternatives considered. No material accessible omission found independently."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "D3 identity/coverage/external/skipped domains and output limits explicit. W1 truth table and W2 trace/coverage inventory measurable; named test files W3 separately blocked on owner policies/runtime/platform/write/execution/isolation grants. Exact commands/versions/source/test/config hashes/clock domains/full failures are future evidence, not execution claims. Unsafe diagnostics explicitly outside normal authenticated ordering."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "14100298c1c7580f5161817d0076e57e70be2fb36abb1794364760148b2152be",
+      "grade_input": "<E1>/private/dev-confirm-evaluation/dev-confirm-D3-ee8d0e6.json",
+      "audit_input": "<E1>/audits/dev-confirm-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-holdout1",
+      "repository_id": "H1",
+      "source": {
+        "repository": "google/double-conversion",
+        "url": "https://github.com/google/double-conversion",
+        "commit": "71b329c21e8255643e9c5a23e1013c6eba4f604b",
+        "tree": "b83f8b480a2707b0657aa95e8d74b8b25f45a442",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE",
+          "COPYING"
+        ],
+        "production_files": [
+          "double-conversion/string-to-double.cc",
+          "double-conversion/string-to-double.h"
+        ],
+        "supporting_scope": [
+          "double-conversion/strtod.h",
+          "double-conversion/strtod.cc: referenced callees only",
+          "double-conversion/ieee.h: referenced helpers only",
+          "double-conversion/utils.h: referenced helpers/configuration only",
+          "double-conversion/double-conversion.h",
+          "test/cctest/test-conversions.cc: relevant StringToDouble callers only",
+          "test/cctest/CMakeLists.txt",
+          "README.md",
+          "CMakeLists.txt",
+          ".github/workflows/ci.yml",
+          ".github/workflows/cifuzz.yml"
+        ],
+        "component_brief": "Assess the StringToDoubleConverter parsing interface and its implementation boundary. Use bounded relevant sections rather than reading the complete conversion corpus.",
+        "identity_record_sha256": "1b79b610989b0c99615fbd49716de200f28498658cddefca1944c770e42fdb7f",
+        "pinned_links": {
+          "double-conversion/string-to-double.cc": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/double-conversion/string-to-double.cc",
+          "double-conversion/string-to-double.h": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/double-conversion/string-to-double.h",
+          "LICENSE": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/LICENSE",
+          "COPYING": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/COPYING"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/holdout1-ee8d0e6/H1-assessment.md",
+        "published": "advisories/v1-holdout1/H1-assessment.md",
+        "raw_sha256": "82238267015ef0b37395caa3a17c70580f8735dd099b66d87a0f3d27f7964c31",
+        "published_sha256": "66685d0729d4bffd4b05cf583b3acc71e8a181b640ac3402c32a45e8c2cafc44",
+        "raw_bytes": 13862,
+        "published_bytes": 13758,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-H1>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": {
+        "G": {
+          "factor": null,
+          "weight": 2,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Inspected parser/header/count/radix citations largely correspond; new CodeUnit/locale and empty-symbol question verified. Some remaining supporting test/build/doc citations not audited before protocol stop."
+        },
+        "C": {
+          "factor": null,
+          "weight": 2,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Source-specific explicit-length, flag/configuration and constructor-authority ambiguities retained; finite pilot does not erase long-domain obligations."
+        },
+        "M": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Noncatalog contract/native-test recommendation and conditional CBMC properly blocked on locale/math/callee/model support; no FFI inferred merely from linkage."
+        },
+        "A": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: No tests/proofs/results invented; numerical rounding and grammar/safety distinct; existing tests/CI labeled definitions."
+        },
+        "D": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: One interaction-inventory lead explains incremental value and rejects duplicate-only regressions/replacement."
+        },
+        "H": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Bounded handoff approvals/coverage present, but known shared read-limit overrun blocks scoring."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "id": "PROTO-READ-200",
+          "priority": "P1",
+          "severity": "protocol blocker",
+          "criterion": "resource gate (not numeric cap)",
+          "assertion": "Supplied provenance describes public RULES characters 0:14000 in one Python read; full RULES length 13356. Frozen RULES contains more than 200 lines (ending after line350).",
+          "evidence": "COMMANDS.md Shared reads items4-5 and sessions471/475/476; own prior independent RULES views1-200,200-350,350-400 establish >350 lines. Hence the first 0:14000 read encompasses >350 lines; no metadata exception applies.",
+          "reproduction": "Read authorized COMMANDS.md:1-200 and metadata.json:1-200; compare its stated RULES length/read interval with independently inspected frozen RULES line ranges. Static provenance reproduction; no target execution.",
+          "impact": "Shared assessor intake affects all three reports. Mandatory raw/final null BLOCKED_UNSCORABLE, irrespective of otherwise useful advisory content.",
+          "cap": null,
+          "K2": false
+        },
+        {
+          "id": "EVAL-METADATA-200",
+          "priority": "P1",
+          "severity": "evaluator protocol blocker",
+          "criterion": "resource gate",
+          "assertion": "Own map-phase Python parsed complete individual H1/H3 identity JSON files with read_text, despite bounded native previews. Those files exceed 200 lines; the previews show only a portion of the70/68-entry lists.",
+          "evidence": "Own initial metadata command shell473 retained in transcript and IDENTITY-BEFORE.json; SOURCE-MAPS-LEDGER.json says full identity lists parsed. No metadata line-limit exception exists.",
+          "reproduction": "Inspect preserved initial command in same context and its read_text of selection/H1-identity.json/H3-identity.json; contrast with 1-200 preview ending mid-list. No further original evidence modification.",
+          "impact": "Independent evaluator source maps retained but cannot certify a resource-compliant scored run for this cohort. Do not repair or silently retry.",
+          "cap": null,
+          "K2": false
+        }
+      ],
+      "grade_state": "BLOCKED_UNSCORABLE_GRADE_RECORD",
+      "grade_verdict": "BLOCKED_UNSCORABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "34c61be3cfec4440b47d2620227bc7a2139c8b1ac3c2823f220a112309ea5d36",
+      "grade_input": "<E1>/private/holdout1-evaluation/holdout1-H1-ee8d0e6.json",
+      "audit_input": "<E1>/audits/holdout1-evaluation-scores.json"
+    },
+    {
+      "phase": "v1-holdout1",
+      "repository_id": "H2",
+      "source": {
+        "repository": "google/btree",
+        "url": "https://github.com/google/btree",
+        "commit": "aeba20f7a1e1315badec4eca4fdc9f754f5f880a",
+        "tree": "0bd699e6843a8afe2b63319820bede015e35699d",
+        "license_spdx": "Apache-2.0",
+        "license_paths": [
+          "LICENSE"
+        ],
+        "production_files": [
+          "btree_generic.go"
+        ],
+        "supporting_scope": [
+          "btree_mem.go",
+          "btree.go: build-selection boundary only",
+          "btree_generic_test.go",
+          "btree_test.go: relevant interface callers only",
+          "README.md",
+          "go.mod",
+          ".github/workflows/test.yml"
+        ],
+        "component_brief": "Assess the generic B-tree clone/update boundary and the production helpers it reaches. Keep the legacy pre-generics implementation outside detailed assessment except to establish build selection.",
+        "identity_record_sha256": "abc7169dfa2e710c1793b2a72f5f5cbe7e1cf2c4280b509f2cf8baaf40fe855f",
+        "pinned_links": {
+          "btree_generic.go": "https://github.com/google/btree/blob/aeba20f7a1e1315badec4eca4fdc9f754f5f880a/btree_generic.go",
+          "LICENSE": "https://github.com/google/btree/blob/aeba20f7a1e1315badec4eca4fdc9f754f5f880a/LICENSE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/holdout1-ee8d0e6/H2-assessment.md",
+        "published": "advisories/v1-holdout1/H2-assessment.md",
+        "raw_sha256": "f787b57ec41ffe9cb31aee67ed007bea303af2ce623ec5fd15727fa0c39bbe22",
+        "published_sha256": "301fb0e460269e9c0c5d01e5ea2f0add1e718aa95dad9dadb0b7ca0eef4fadcf",
+        "raw_bytes": 14078,
+        "published_bytes": 13974,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-H2>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": {
+        "G": {
+          "factor": null,
+          "weight": 2,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Mapped clone/mutableFor/remove/freeNode/Clear and tests substantiate decisions; first three other citations (build tags, freelist, shallow items) checked against frozen source."
+        },
+        "C": {
+          "factor": null,
+          "weight": 2,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Precise comparator-equivalence map, shallow payload and empty/rebalance/reuse domains; degree/resource and concurrency exclusions explicit."
+        },
+        "M": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Noncatalog native trace investigation appropriate; optional TLC has actual ownership transitions/correspondence and finite bounds, not native Go proof."
+        },
+        "A": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Source/tests/model proposals separated; no race freedom from sequential traces or CI presence."
+        },
+        "D": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Small fork/Clear/reuse plus replacement gives source-backed incremental diagnostic value over inspected large integer clone tests."
+        },
+        "H": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Downstream authority and blocked implementation correctly distinguished; shared protocol overrun nonetheless blocks scoring."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "id": "PROTO-READ-200",
+          "priority": "P1",
+          "severity": "protocol blocker",
+          "criterion": "resource gate (not numeric cap)",
+          "assertion": "Supplied provenance describes public RULES characters 0:14000 in one Python read; full RULES length 13356. Frozen RULES contains more than 200 lines (ending after line350).",
+          "evidence": "COMMANDS.md Shared reads items4-5 and sessions471/475/476; own prior independent RULES views1-200,200-350,350-400 establish >350 lines. Hence the first 0:14000 read encompasses >350 lines; no metadata exception applies.",
+          "reproduction": "Read authorized COMMANDS.md:1-200 and metadata.json:1-200; compare its stated RULES length/read interval with independently inspected frozen RULES line ranges. Static provenance reproduction; no target execution.",
+          "impact": "Shared assessor intake affects all three reports. Mandatory raw/final null BLOCKED_UNSCORABLE, irrespective of otherwise useful advisory content.",
+          "cap": null,
+          "K2": false
+        },
+        {
+          "id": "EVAL-METADATA-200",
+          "priority": "P1",
+          "severity": "evaluator protocol blocker",
+          "criterion": "resource gate",
+          "assertion": "Own map-phase Python parsed complete individual H1/H3 identity JSON files with read_text, despite bounded native previews. Those files exceed 200 lines; the previews show only a portion of the70/68-entry lists.",
+          "evidence": "Own initial metadata command shell473 retained in transcript and IDENTITY-BEFORE.json; SOURCE-MAPS-LEDGER.json says full identity lists parsed. No metadata line-limit exception exists.",
+          "reproduction": "Inspect preserved initial command in same context and its read_text of selection/H1-identity.json/H3-identity.json; contrast with 1-200 preview ending mid-list. No further original evidence modification.",
+          "impact": "Independent evaluator source maps retained but cannot certify a resource-compliant scored run for this cohort. Do not repair or silently retry.",
+          "cap": null,
+          "K2": false
+        }
+      ],
+      "grade_state": "BLOCKED_UNSCORABLE_GRADE_RECORD",
+      "grade_verdict": "BLOCKED_UNSCORABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "6200dddb58ca1c51b73d42927f8caf34f6bcdb418406e087b3d0ed44609d5a9f",
+      "grade_input": "<E1>/private/holdout1-evaluation/holdout1-H2-ee8d0e6.json",
+      "audit_input": "<E1>/audits/holdout1-evaluation-scores.json"
+    },
+    {
+      "phase": "v1-holdout1",
+      "repository_id": "H3",
+      "source": {
+        "repository": "rust-random/rand",
+        "url": "https://github.com/rust-random/rand",
+        "commit": "d1cbc134a1d039cf4680b82835ac008f172c3dee",
+        "tree": "1874b2b8e5f562cc7440cc41d0993437607419b3",
+        "license_spdx": "MIT OR Apache-2.0",
+        "license_paths": [
+          "COPYRIGHT",
+          "LICENSE-MIT",
+          "LICENSE-APACHE"
+        ],
+        "production_files": [
+          "src/rngs/small.rs",
+          "src/rngs/xoshiro128plusplus.rs",
+          "src/rngs/xoshiro256plusplus.rs"
+        ],
+        "supporting_scope": [
+          "src/rngs/mod.rs",
+          "src/lib.rs: relevant exports/configuration only",
+          "Cargo.toml",
+          "README.md",
+          "SECURITY.md",
+          ".github/workflows/test.yml",
+          "embedded tests in the selected production files"
+        ],
+        "component_brief": "Assess SmallRng and its two architecture-selected implementation files, including their declared external trait/helper boundary. Do not expand into all distributions, operating-system entropy, or whole-library security.",
+        "identity_record_sha256": "678294df3425c77fa1cdfeac6c7c2187a897f23696cbd8de33076546697c8293",
+        "pinned_links": {
+          "src/rngs/small.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/small.rs",
+          "src/rngs/xoshiro128plusplus.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/xoshiro128plusplus.rs",
+          "src/rngs/xoshiro256plusplus.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/xoshiro256plusplus.rs",
+          "COPYRIGHT": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/COPYRIGHT",
+          "LICENSE-MIT": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/LICENSE-MIT",
+          "LICENSE-APACHE": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/LICENSE-APACHE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/holdout1-ee8d0e6/H3-assessment.md",
+        "published": "advisories/v1-holdout1/H3-assessment.md",
+        "raw_sha256": "9a57fb402958184a3f5ad9075f3153795331699bae7b21fc66e8a42b19fee70d",
+        "published_sha256": "72fd12c4158187e00da1d77e853f1a87e63df8c10578d0857adfa696b5fd7a13",
+        "raw_bytes": 16575,
+        "published_bytes": 16471,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-H3>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": {
+        "G": {
+          "factor": null,
+          "weight": 2,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Decision-driving architecture/prefix/transition/seed/helper boundaries matched frozen production source and guides. Additional README99-110 pointer is wrong; reproducibility qualification is README89-92, also directly supported by small.rs."
+        },
+        "C": {
+          "factor": null,
+          "weight": 2,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Precise legal seeds, wrapping arithmetic, nonzero-state precondition and zero control; serde constructor and helper advancement uncertainties retained."
+        },
+        "M": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Conditional Kani arithmetic/slices investigated without pretending unavailable external Rust helpers are FFI; exact Rust2024/tool/dependency support remains unknown and blocked."
+        },
+        "A": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: No crypto/period/statistical claim from local invariant; vector provenance and CI correctly not independently reproduced results."
+        },
+        "D": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Wrapper/helper contract inventory first, nonzero seed/step second, with concrete benefit/cost/alternatives."
+        },
+        "H": {
+          "factor": null,
+          "weight": 1.5,
+          "weighted": null,
+          "reason": "UNSCORABLE under mandatory protocol gate; no provisional numeric factor. Bounded substantive observation: Actionable blocked handoff across16/32/64 and dependencies; protocol overrun invalidates numerical quality grading."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "id": "PROTO-READ-200",
+          "priority": "P1",
+          "severity": "protocol blocker",
+          "criterion": "resource gate (not numeric cap)",
+          "assertion": "Supplied provenance describes public RULES characters 0:14000 in one Python read; full RULES length 13356. Frozen RULES contains more than 200 lines (ending after line350).",
+          "evidence": "COMMANDS.md Shared reads items4-5 and sessions471/475/476; own prior independent RULES views1-200,200-350,350-400 establish >350 lines. Hence the first 0:14000 read encompasses >350 lines; no metadata exception applies.",
+          "reproduction": "Read authorized COMMANDS.md:1-200 and metadata.json:1-200; compare its stated RULES length/read interval with independently inspected frozen RULES line ranges. Static provenance reproduction; no target execution.",
+          "impact": "Shared assessor intake affects all three reports. Mandatory raw/final null BLOCKED_UNSCORABLE, irrespective of otherwise useful advisory content.",
+          "cap": null,
+          "K2": false
+        },
+        {
+          "id": "EVAL-METADATA-200",
+          "priority": "P1",
+          "severity": "evaluator protocol blocker",
+          "criterion": "resource gate",
+          "assertion": "Own map-phase Python parsed complete individual H1/H3 identity JSON files with read_text, despite bounded native previews. Those files exceed 200 lines; the previews show only a portion of the70/68-entry lists.",
+          "evidence": "Own initial metadata command shell473 retained in transcript and IDENTITY-BEFORE.json; SOURCE-MAPS-LEDGER.json says full identity lists parsed. No metadata line-limit exception exists.",
+          "reproduction": "Inspect preserved initial command in same context and its read_text of selection/H1-identity.json/H3-identity.json; contrast with 1-200 preview ending mid-list. No further original evidence modification.",
+          "impact": "Independent evaluator source maps retained but cannot certify a resource-compliant scored run for this cohort. Do not repair or silently retry.",
+          "cap": null,
+          "K2": false
+        },
+        {
+          "id": "H3-CITE-README",
+          "priority": "P3",
+          "severity": "low non-decision citation pointer error",
+          "criterion": "G",
+          "assertion": "README.md:99-110 qualifies reproducibility",
+          "evidence": "Independent view99-110 contains WebAssembly/licensing/link text; view1-98 locates reproducibility qualification under Portability/Reproducibility around89-92. SmallRng docs independently support main nonportability decision.",
+          "reproduction": "view H3/README.md [99,110] then[1,98]",
+          "impact": "Nonmaterial wrong range with nearby inspectable correct content; not fabricated material evidence or K1. Record pointer error without manufacturing high defect.",
+          "cap": null
+        }
+      ],
+      "grade_state": "BLOCKED_UNSCORABLE_GRADE_RECORD",
+      "grade_verdict": "BLOCKED_UNSCORABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "02719108640a4e85a11a7649ab2edbe43c09c1b66c09a485971003610746f62b",
+      "grade_input": "<E1>/private/holdout1-evaluation/holdout1-H3-ee8d0e6.json",
+      "audit_input": "<E1>/audits/holdout1-evaluation-scores.json"
+    },
+    {
+      "phase": "v1-holdout2",
+      "repository_id": "H1",
+      "source": {
+        "repository": "google/double-conversion",
+        "url": "https://github.com/google/double-conversion",
+        "commit": "71b329c21e8255643e9c5a23e1013c6eba4f604b",
+        "tree": "b83f8b480a2707b0657aa95e8d74b8b25f45a442",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE",
+          "COPYING"
+        ],
+        "production_files": [
+          "double-conversion/string-to-double.cc",
+          "double-conversion/string-to-double.h"
+        ],
+        "supporting_scope": [
+          "double-conversion/strtod.h",
+          "double-conversion/strtod.cc: referenced callees only",
+          "double-conversion/ieee.h: referenced helpers only",
+          "double-conversion/utils.h: referenced helpers/configuration only",
+          "double-conversion/double-conversion.h",
+          "test/cctest/test-conversions.cc: relevant StringToDouble callers only",
+          "test/cctest/CMakeLists.txt",
+          "README.md",
+          "CMakeLists.txt",
+          ".github/workflows/ci.yml",
+          ".github/workflows/cifuzz.yml"
+        ],
+        "component_brief": "Assess the StringToDoubleConverter parsing interface and its implementation boundary. Use bounded relevant sections rather than reading the complete conversion corpus.",
+        "identity_record_sha256": "1b79b610989b0c99615fbd49716de200f28498658cddefca1944c770e42fdb7f",
+        "pinned_links": {
+          "double-conversion/string-to-double.cc": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/double-conversion/string-to-double.cc",
+          "double-conversion/string-to-double.h": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/double-conversion/string-to-double.h",
+          "LICENSE": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/LICENSE",
+          "COPYING": "https://github.com/google/double-conversion/blob/71b329c21e8255643e9c5a23e1013c6eba4f604b/COPYING"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/holdout2-ee8d0e6/H1-assessment.md",
+        "published": "advisories/v1-holdout2/H1-assessment.md",
+        "raw_sha256": "848553885fa716714deef5cb2ff7105c1a19f5ff8160526a2d6a9a9284d21179",
+        "published_sha256": "22af6434a9b954548f220ed0344d016505b743e869cb5beb672b7a61a11fab91",
+        "raw_bytes": 13063,
+        "published_bytes": 12959,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-H1>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": null,
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "defect_id": "EVAL-PROTOCOL-H1-LINES",
+          "priority": "P0",
+          "severity": "protocol-blocker",
+          "criterion": "resource protocol, not skill semantic defect",
+          "report_assertion": "No assessment assertion caused this finding; evaluator overran individual-read bound before reports.",
+          "source_path_line_symbol_or_action_evidence": "Evaluator functions.view E/selection/H1-identity.json with range omitted; full returned payload",
+          "returned_content_lines": 540,
+          "counterexample": "Frozen maximum200lines per individual file read has no metadata exception.",
+          "scope_impact": "Affected evaluation unscorable; strict campaign v1 acceptance unavailable.",
+          "reproduction_procedure": "Inspect original evaluator pre-map tool ledger/returned payload; no target execution or reread needed. Parent adjudication retained in session messages.",
+          "cap": null,
+          "reason": "Resource-overrun rule mandates null score, not K1/K2 fabrication or automatic product failure."
+        }
+      ],
+      "grade_state": "BLOCKED_UNSCORABLE_GRADE_RECORD",
+      "grade_verdict": "BLOCKED_UNSCORABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "545d36b8d42e51dda451ea65a23e04eae460d92978bdfc4ed0145e0be77c220b",
+      "grade_input": "<E1>/private/holdout2-evaluation/holdout2-H1-ee8d0e6.json",
+      "audit_input": "<E1>/audits/holdout2-evaluation-scores.json"
+    },
+    {
+      "phase": "v1-holdout2",
+      "repository_id": "H2",
+      "source": {
+        "repository": "google/btree",
+        "url": "https://github.com/google/btree",
+        "commit": "aeba20f7a1e1315badec4eca4fdc9f754f5f880a",
+        "tree": "0bd699e6843a8afe2b63319820bede015e35699d",
+        "license_spdx": "Apache-2.0",
+        "license_paths": [
+          "LICENSE"
+        ],
+        "production_files": [
+          "btree_generic.go"
+        ],
+        "supporting_scope": [
+          "btree_mem.go",
+          "btree.go: build-selection boundary only",
+          "btree_generic_test.go",
+          "btree_test.go: relevant interface callers only",
+          "README.md",
+          "go.mod",
+          ".github/workflows/test.yml"
+        ],
+        "component_brief": "Assess the generic B-tree clone/update boundary and the production helpers it reaches. Keep the legacy pre-generics implementation outside detailed assessment except to establish build selection.",
+        "identity_record_sha256": "abc7169dfa2e710c1793b2a72f5f5cbe7e1cf2c4280b509f2cf8baaf40fe855f",
+        "pinned_links": {
+          "btree_generic.go": "https://github.com/google/btree/blob/aeba20f7a1e1315badec4eca4fdc9f754f5f880a/btree_generic.go",
+          "LICENSE": "https://github.com/google/btree/blob/aeba20f7a1e1315badec4eca4fdc9f754f5f880a/LICENSE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/holdout2-ee8d0e6/H2-assessment.md",
+        "published": "advisories/v1-holdout2/H2-assessment.md",
+        "raw_sha256": "7a21682348cfe12bf4432c49eaa8f675591319b8797124a5309a0382133a7380",
+        "published_sha256": "2838de1f652a986bf38cf46bad116bbe9c7b214cb9925be1b7bb7e793b62c16e",
+        "raw_bytes": 15469,
+        "published_bytes": 15365,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-H2>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10.0,
+      "final_score": 10.0,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted_score": 2,
+          "reason": "All decision-driving H2 citations independently audited against frozen source; complete relevant COW/update/free-list path, tests, build selection and caller/comparator boundaries grounded. All explicit cited loci covered, with extra report-order checks recorded; no CI result invented."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted_score": 2,
+          "reason": "O1 names constructed-tree/comparator/alias/scheduling domain, exact bounded pilot, returns/map/ownership invariants and clear/delete/reuse counterexamples. Extreme degree, nil and NaN obligations retained. O2 inferred finite safety contract and owner authority explicitly unresolved."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted_score": 1.5,
+          "reason": "Noncatalog native Go tests correctly preferred. Optional tla-state-machine-safety1.0.0 compared with loaded TLC guide; finite abstraction, adoption, correspondence and unsupported native Go inference handled. No replacement or forced solver."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted_score": 1.5,
+          "reason": "Proposals and observations distinguished from results; finite model does not prove Go ownership/race freedom; mutex/runtime/comparator/body omissions explicit. Complete exploration, full output, assumptions and correspondence required; exact compatibility unknown honestly blocked."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted_score": 1.5,
+          "reason": "Two prioritized specific opportunities add reclamation/reuse histories to inspected clone tests; concrete value/relative effort, no-rewrite and source/native-test alternatives. Mature assurance acknowledged without claiming exhaustive coverage or test absence."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted_score": 1.5,
+          "reason": "Correct selected identity/coverage/skips, archived downstream-adopter audience, explicit grants and blocked implementation. W1 measurable evidence table, W2 bounded native regression acceptance, W3 model correspondence/version/config/output requirements. Missing future execution is properly blocked, not a defect."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "8119612f13279e0e7941be39e485d958de2d4863f0550ed44c237fcfef9d550d",
+      "grade_input": "<E1>/private/holdout2-evaluation/holdout2-H2-ee8d0e6.json",
+      "audit_input": "<E1>/audits/holdout2-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v1-holdout2",
+      "repository_id": "H3",
+      "source": {
+        "repository": "rust-random/rand",
+        "url": "https://github.com/rust-random/rand",
+        "commit": "d1cbc134a1d039cf4680b82835ac008f172c3dee",
+        "tree": "1874b2b8e5f562cc7440cc41d0993437607419b3",
+        "license_spdx": "MIT OR Apache-2.0",
+        "license_paths": [
+          "COPYRIGHT",
+          "LICENSE-MIT",
+          "LICENSE-APACHE"
+        ],
+        "production_files": [
+          "src/rngs/small.rs",
+          "src/rngs/xoshiro128plusplus.rs",
+          "src/rngs/xoshiro256plusplus.rs"
+        ],
+        "supporting_scope": [
+          "src/rngs/mod.rs",
+          "src/lib.rs: relevant exports/configuration only",
+          "Cargo.toml",
+          "README.md",
+          "SECURITY.md",
+          ".github/workflows/test.yml",
+          "embedded tests in the selected production files"
+        ],
+        "component_brief": "Assess SmallRng and its two architecture-selected implementation files, including their declared external trait/helper boundary. Do not expand into all distributions, operating-system entropy, or whole-library security.",
+        "identity_record_sha256": "678294df3425c77fa1cdfeac6c7c2187a897f23696cbd8de33076546697c8293",
+        "pinned_links": {
+          "src/rngs/small.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/small.rs",
+          "src/rngs/xoshiro128plusplus.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/xoshiro128plusplus.rs",
+          "src/rngs/xoshiro256plusplus.rs": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/src/rngs/xoshiro256plusplus.rs",
+          "COPYRIGHT": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/COPYRIGHT",
+          "LICENSE-MIT": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/LICENSE-MIT",
+          "LICENSE-APACHE": "https://github.com/rust-random/rand/blob/d1cbc134a1d039cf4680b82835ac008f172c3dee/LICENSE-APACHE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E1>/assessments/holdout2-ee8d0e6/H3-assessment.md",
+        "published": "advisories/v1-holdout2/H3-assessment.md",
+        "raw_sha256": "c3883b15fd139d6813e3e31018a8f9ed1995026b98adee6540835a21b5bb45df",
+        "published_sha256": "6b17fbb58dd9d40fb7963a91b38fc68737b603757b547c727b58f161199a2ab2",
+        "raw_bytes": 16814,
+        "published_bytes": 16710,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-H3>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": null,
+      "applied_caps": [],
+      "prioritized_findings": [
+        {
+          "defect_id": "EVAL-PROTOCOL-H3-LINES",
+          "priority": "P0",
+          "severity": "protocol-blocker",
+          "criterion": "resource protocol, not skill semantic defect",
+          "report_assertion": "No assessment assertion caused this finding; evaluator overran individual-read bound before reports.",
+          "source_path_line_symbol_or_action_evidence": "Evaluator functions.view E/selection/H3-identity.json with range omitted; full returned payload",
+          "returned_content_lines": 520,
+          "counterexample": "Frozen maximum200lines per individual file read has no metadata exception.",
+          "scope_impact": "Affected evaluation unscorable; strict campaign v1 acceptance unavailable.",
+          "reproduction_procedure": "Inspect original evaluator pre-map tool ledger/returned payload; no target execution or reread needed. Parent adjudication retained in session messages.",
+          "cap": null,
+          "reason": "Resource-overrun rule mandates null score, not K1/K2 fabrication or automatic product failure."
+        }
+      ],
+      "grade_state": "BLOCKED_UNSCORABLE_GRADE_RECORD",
+      "grade_verdict": "BLOCKED_UNSCORABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "3f04b549c5530005cd1980551cd4e5e086a7ebd666cfd49f3b453324582aa7aa",
+      "grade_input": "<E1>/private/holdout2-evaluation/holdout2-H3-ee8d0e6.json",
+      "audit_input": "<E1>/audits/holdout2-evaluation-scores.json"
+    },
+    {
+      "phase": "v2-dev0",
+      "repository_id": "D1",
+      "source": {
+        "repository": "tokio-rs/bytes",
+        "url": "https://github.com/tokio-rs/bytes",
+        "commit": "f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c",
+        "tree": "8a832951605a44373017ac9abb8c125b8f02f2c6",
+        "license_spdx": "MIT",
+        "license_paths": [
+          "LICENSE"
+        ],
+        "production_files": [
+          "src/buf/chain.rs",
+          "src/buf/take.rs"
+        ],
+        "supporting_scope": [
+          "src/buf/buf_impl.rs: referenced Buf interface and adapter constructors only",
+          "src/buf/buf_mut.rs: referenced interface only",
+          "src/buf/mod.rs",
+          "src/lib.rs: relevant exports/configuration only",
+          "tests/test_chain.rs",
+          "tests/test_take.rs",
+          "tests/test_buf.rs: relevant callers only",
+          "Cargo.toml",
+          "README.md",
+          ".github/workflows/ci.yml"
+        ],
+        "component_brief": "Assess the Chain and Take buffer adapters and their public interface/caller boundary. Keep broader storage implementations outside the detailed opportunity scope unless a concrete dependency requires bounded inspection.",
+        "identity_record_sha256": "ec42388cd299cfc059943bcbb9c2d00f71b7f6077fd8ed40ab55785f641fcfae",
+        "pinned_links": {
+          "src/buf/chain.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/chain.rs",
+          "src/buf/take.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/take.rs",
+          "LICENSE": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/LICENSE"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E2>/assessments/dev0-ee8d0e6/D1-assessment.md",
+        "published": "advisories/v2-dev0/D1-assessment.md",
+        "raw_sha256": "f0274fe52fe2b911e8728cf49b234af3f9890dbdd69a7e96a29f5beb444aabb7",
+        "published_sha256": "8b260a074f66ce4deeec4138fb878d5a13d34772e16cf8a8b59e667fec4da947",
+        "raw_bytes": 12405,
+        "published_bytes": 12301,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D1>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": null,
+      "applied_caps": null,
+      "prioritized_findings": null,
+      "grade_state": "UNSCORED_NO_GRADE_ISSUED",
+      "grade_verdict": null
+    },
+    {
+      "phase": "v2-dev0",
+      "repository_id": "D2",
+      "source": {
+        "repository": "littlefs-project/littlefs",
+        "url": "https://github.com/littlefs-project/littlefs",
+        "commit": "6cb4e86540eca0d9ba62500a298385c9d863c8be",
+        "tree": "9079d55ac294f6b66c58147a215ea73779431cef",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.md"
+        ],
+        "production_files": [
+          "lfs.c: caching block-device operations only",
+          "lfs.h: associated types, configuration and interfaces",
+          "lfs_util.h: referenced helpers only"
+        ],
+        "supporting_scope": [
+          "lfs.c: immediate callers of selected cache operations only",
+          "bd/lfs_rambd.c",
+          "bd/lfs_rambd.h",
+          "tests/test_bd.toml",
+          "tests/test_files.toml: relevant cases only",
+          "README.md",
+          "DESIGN.md: cache/block-device context only",
+          "SPEC.md: applicable format context only",
+          "Makefile: configuration only",
+          ".github/workflows/test.yml: configuration only"
+        ],
+        "component_brief": "Assess the caching block-device layer, beginning at lfs_bd_read and its immediate cache helpers/callers. Include the supplied block-device callback/configuration boundary; do not expand into a whole-filesystem assurance claim.",
+        "identity_record_sha256": "e296a84d365b0d39ae5bf339f06a44c4b299e5ed5cb7c7906ef7efed19f0a2fb",
+        "pinned_links": {
+          "lfs.c": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.c",
+          "lfs.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.h",
+          "lfs_util.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs_util.h",
+          "LICENSE.md": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/LICENSE.md"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E2>/assessments/dev0-ee8d0e6/D2-assessment.md",
+        "published": "advisories/v2-dev0/D2-assessment.md",
+        "raw_sha256": "d4a77a3fc984a3fa4285099f77681b564ca36f19819bafd44c3f73a85d2cb585",
+        "published_sha256": "3020d9bc4238d06f5c3f748bcdbdfdf41dba94f2f54e52ebaf518a5aabf565ad",
+        "raw_bytes": 14284,
+        "published_bytes": 14180,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D2>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": null,
+      "applied_caps": null,
+      "prioritized_findings": null,
+      "grade_state": "UNSCORED_NO_GRADE_ISSUED",
+      "grade_verdict": null
+    },
+    {
+      "phase": "v2-dev0",
+      "repository_id": "D3",
+      "source": {
+        "repository": "pallets/itsdangerous",
+        "url": "https://github.com/pallets/itsdangerous",
+        "commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+        "tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.txt"
+        ],
+        "production_files": [
+          "src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py"
+        ],
+        "supporting_scope": [
+          "src/itsdangerous/exc.py",
+          "src/itsdangerous/serializer.py: relevant callers/interface only",
+          "src/itsdangerous/url_safe.py: relevant callers only",
+          "tests/test_itsdangerous/test_timed.py",
+          "tests/test_itsdangerous/test_signer.py",
+          "tests/test_itsdangerous/test_encoding.py",
+          "docs/timed.rst",
+          "docs/signer.rst",
+          "docs/concepts.rst",
+          "README.md",
+          "pyproject.toml",
+          ".github/workflows/tests.yaml"
+        ],
+        "component_brief": "Assess timestamped signing/unsigning and the associated signer/encoding interfaces. Keep application-specific authentication policy and whole-system cryptographic assurance outside the selected component.",
+        "identity_record_sha256": "46b1437796bba83758b471c9b08848f67a17672275fd6b15742cd8dc436a00f4",
+        "pinned_links": {
+          "src/itsdangerous/timed.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/encoding.py",
+          "LICENSE.txt": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/LICENSE.txt"
+        }
+      },
+      "candidate_revision": "ee8d0e655a2ac51ce032ea1e8de1388b69dce930",
+      "candidate_tree": "b357629ecfde57d434bee1d3f86acc7f7aa1fc95",
+      "advisory": {
+        "input": "<E2>/assessments/dev0-ee8d0e6/D3-assessment.md",
+        "published": "advisories/v2-dev0/D3-assessment.md",
+        "raw_sha256": "0f5210df41ec5edf19f470a93565cf60b7a7c0747342960b16d0d8c5fdddbd53",
+        "published_sha256": "b130c0438b81b2065d2204642529c4940dbdf551013767df49fd7d63784e4e7b",
+        "raw_bytes": 15022,
+        "published_bytes": 14918,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D3>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": null,
+      "final_score": null,
+      "criteria": null,
+      "applied_caps": null,
+      "prioritized_findings": null,
+      "grade_state": "UNSCORED_NO_GRADE_ISSUED",
+      "grade_verdict": null
+    },
+    {
+      "phase": "v2-dev1",
+      "repository_id": "D1",
+      "source": {
+        "repository": "tokio-rs/bytes",
+        "url": "https://github.com/tokio-rs/bytes",
+        "commit": "f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c",
+        "tree": "8a832951605a44373017ac9abb8c125b8f02f2c6",
+        "license_spdx": "MIT",
+        "license_paths": [
+          "LICENSE"
+        ],
+        "production_files": [
+          "src/buf/chain.rs",
+          "src/buf/take.rs"
+        ],
+        "supporting_scope": [
+          "src/buf/buf_impl.rs: referenced Buf interface and adapter constructors only",
+          "src/buf/buf_mut.rs: referenced interface only",
+          "src/buf/mod.rs",
+          "src/lib.rs: relevant exports/configuration only",
+          "tests/test_chain.rs",
+          "tests/test_take.rs",
+          "tests/test_buf.rs: relevant callers only",
+          "Cargo.toml",
+          "README.md",
+          ".github/workflows/ci.yml"
+        ],
+        "component_brief": "Assess the Chain and Take buffer adapters and their public interface/caller boundary. Keep broader storage implementations outside the detailed opportunity scope unless a concrete dependency requires bounded inspection.",
+        "identity_record_sha256": "ec42388cd299cfc059943bcbb9c2d00f71b7f6077fd8ed40ab55785f641fcfae",
+        "pinned_links": {
+          "src/buf/chain.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/chain.rs",
+          "src/buf/take.rs": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/src/buf/take.rs",
+          "LICENSE": "https://github.com/tokio-rs/bytes/blob/f2cf483f13c9956a0f24ce2b7527f2318b0c8a2c/LICENSE"
+        }
+      },
+      "candidate_revision": "706868e2d18810687180bb79ea7b9d7826197633",
+      "candidate_tree": "30ea8295baea2f94da8ee62d1838493f9f002389",
+      "advisory": {
+        "input": "<E2>/assessments/dev1-706868e2d188/D1-assessment.md",
+        "published": "advisories/v2-dev1/D1-assessment.md",
+        "raw_sha256": "e5a2fc2c5cb18e66c6f8de01477c00cc8348f399fc2391b82d52cf8dd2663638",
+        "published_sha256": "85eb628710ec936a55d70a55408b6dcd4a38ba0bccf11c81d530d06afdcba2e1",
+        "raw_bytes": 10534,
+        "published_bytes": 10430,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D1>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10,
+      "final_score": 10,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Chain/Take production, Buf/BufMut contracts, slice and forwarding callees, constructors, default-std configuration and existing tests independently inspected. All decision-driving source claims agree with frozen bytes; pointer-allocation evidence remains tests, not proof."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 defines finite slices, arbitrary usize limits, state transitions and escape-hatch resnapshotting; oversized advance retains panic-or-clamp semantics and saturation beyond pilot. O2 states vector prefix/count/lifetime invariant and zero/16/17 boundaries. Intent/approval explicitly unresolved."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Kani arithmetic/slices and unsafe-memory 1.0.0 assurances conditional on static slice instantiation, IoSlice and UB support. Generic Buf and allocation bodies not claimed covered; native tests/lifetime review preferred where relevant. Verus adaptation not silently adopted."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "No executions claimed; bounded checking, proposed tests, Miri samples and lifetime review remain distinct. Transmute/stdlib trust and full-domain saturation excluded from finite pilot but retained as obligations."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Two source-specific priorities add composition/state-sequence and >16-fragment/lifetime evidence over inspected examples. Allocation and mutable unsafe proofs deferred for concrete missing storage/initialization evidence; no task quota or forced tool."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Named source-only decision, command-selection and lifetime-plan artifacts with prerequisites and measurable acceptance; harness work separately blocked on owner/compatibility/execution approval. Root/identity/coverage/skips/path limits recorded; no current target pass inferred."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "66896dbb571f520eb435921fbe27602ab41a24d513cd21ea0bb52c284afc2327",
+      "grade_input": "<E2>/private/dev1-evaluation/dev1-D1-706868e2d188.json",
+      "audit_input": "<E2>/audits/dev1-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v2-dev1",
+      "repository_id": "D2",
+      "source": {
+        "repository": "littlefs-project/littlefs",
+        "url": "https://github.com/littlefs-project/littlefs",
+        "commit": "6cb4e86540eca0d9ba62500a298385c9d863c8be",
+        "tree": "9079d55ac294f6b66c58147a215ea73779431cef",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.md"
+        ],
+        "production_files": [
+          "lfs.c: caching block-device operations only",
+          "lfs.h: associated types, configuration and interfaces",
+          "lfs_util.h: referenced helpers only"
+        ],
+        "supporting_scope": [
+          "lfs.c: immediate callers of selected cache operations only",
+          "bd/lfs_rambd.c",
+          "bd/lfs_rambd.h",
+          "tests/test_bd.toml",
+          "tests/test_files.toml: relevant cases only",
+          "README.md",
+          "DESIGN.md: cache/block-device context only",
+          "SPEC.md: applicable format context only",
+          "Makefile: configuration only",
+          ".github/workflows/test.yml: configuration only"
+        ],
+        "component_brief": "Assess the caching block-device layer, beginning at lfs_bd_read and its immediate cache helpers/callers. Include the supplied block-device callback/configuration boundary; do not expand into a whole-filesystem assurance claim.",
+        "identity_record_sha256": "e296a84d365b0d39ae5bf339f06a44c4b299e5ed5cb7c7906ef7efed19f0a2fb",
+        "pinned_links": {
+          "lfs.c": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.c",
+          "lfs.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs.h",
+          "lfs_util.h": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/lfs_util.h",
+          "LICENSE.md": "https://github.com/littlefs-project/littlefs/blob/6cb4e86540eca0d9ba62500a298385c9d863c8be/LICENSE.md"
+        }
+      },
+      "candidate_revision": "706868e2d18810687180bb79ea7b9d7826197633",
+      "candidate_tree": "30ea8295baea2f94da8ee62d1838493f9f002389",
+      "advisory": {
+        "input": "<E2>/assessments/dev1-706868e2d188/D2-assessment.md",
+        "published": "advisories/v2-dev1/D2-assessment.md",
+        "raw_sha256": "48f30b778c25d56dd30b89c6e76e0fe03054456cd8375fe63847b3cbac6a3820",
+        "published_sha256": "abec6be9b6c2c65203fb0f07ded758ac7436606773060c730ffe854d3558059b",
+        "raw_bytes": 12356,
+        "published_bytes": 12252,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D2>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10,
+      "final_score": 10,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Read/helpers/cache callbacks/config initialization and selected real callers inspected independently, including new ctz/file-read and helper-override ranges. Supplied scope hashes match current bytes. Device-only tests, roundtrip tests and CI applicability correctly distinguished."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "O1 preserves arithmetic/progress/reachability questions with exact diff-zero and wrapping-guard examples; they are not claimed reachable bugs. O2 specifies initialized buffers/geometry/coherent overlay, success and error-state behavior, and explicitly unresolved failure-retry and alias obligations."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "CBMC buffer/bitvector 1.0.0 fit conditional on C99/machine model, callback/libc model and complete unwinding. RAM C body is not misclassified FFI; override/concurrency boundaries explicit. Native tests and finite abstraction alternatives are accurately limited."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Unsigned wrap separated from UB; no timeout/compatibility/pass fabricated. Conditional finite original-code checking is not real-flash/power-loss/whole-filesystem proof. Failed-refill state and partial writes not assumed rolled back."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Reachability/arithmetic investigation ranked before overlay harness: high potential impact but uncertain reachability. Existing device tests do not test cache precedence. Deferred write/crash proofs have explicit relevance/correspondence costs."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Read-domain, command-plan and separately blocked harness tasks identify exact symbols, configuration, callback inventory, bounds, retained output and correspondence. Requirement/approval gaps block implementation but not safe source evidence work; all coverage and exclusions recorded."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "74bea80d40cc7a443eeff8bae4542e0148b9ad16b7689fc9a4380348771748c7",
+      "grade_input": "<E2>/private/dev1-evaluation/dev1-D2-706868e2d188.json",
+      "audit_input": "<E2>/audits/dev1-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    },
+    {
+      "phase": "v2-dev1",
+      "repository_id": "D3",
+      "source": {
+        "repository": "pallets/itsdangerous",
+        "url": "https://github.com/pallets/itsdangerous",
+        "commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+        "tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+        "license_spdx": "BSD-3-Clause",
+        "license_paths": [
+          "LICENSE.txt"
+        ],
+        "production_files": [
+          "src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py"
+        ],
+        "supporting_scope": [
+          "src/itsdangerous/exc.py",
+          "src/itsdangerous/serializer.py: relevant callers/interface only",
+          "src/itsdangerous/url_safe.py: relevant callers only",
+          "tests/test_itsdangerous/test_timed.py",
+          "tests/test_itsdangerous/test_signer.py",
+          "tests/test_itsdangerous/test_encoding.py",
+          "docs/timed.rst",
+          "docs/signer.rst",
+          "docs/concepts.rst",
+          "README.md",
+          "pyproject.toml",
+          ".github/workflows/tests.yaml"
+        ],
+        "component_brief": "Assess timestamped signing/unsigning and the associated signer/encoding interfaces. Keep application-specific authentication policy and whole-system cryptographic assurance outside the selected component.",
+        "identity_record_sha256": "46b1437796bba83758b471c9b08848f67a17672275fd6b15742cd8dc436a00f4",
+        "pinned_links": {
+          "src/itsdangerous/timed.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/timed.py",
+          "src/itsdangerous/signer.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/signer.py",
+          "src/itsdangerous/encoding.py": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/src/itsdangerous/encoding.py",
+          "LICENSE.txt": "https://github.com/pallets/itsdangerous/blob/672971d66a2ef9f85151e53283113f33d642dabd/LICENSE.txt"
+        }
+      },
+      "candidate_revision": "706868e2d18810687180bb79ea7b9d7826197633",
+      "candidate_tree": "30ea8295baea2f94da8ee62d1838493f9f002389",
+      "advisory": {
+        "input": "<E2>/assessments/dev1-706868e2d188/D3-assessment.md",
+        "published": "advisories/v2-dev1/D3-assessment.md",
+        "raw_sha256": "41e170ecff112e59246805e3256d53de880f9b2fec381673e6dd1ab281d4da6c",
+        "published_sha256": "29c17db3fea2d1f686435140b10950d7aeeaa8630318fdb2d4f9897d1c22eadc",
+        "raw_bytes": 12975,
+        "published_bytes": 12871,
+        "transform": "mechanical-prefix-only",
+        "reversible_prefix_check": true,
+        "applied_prefixes": [
+          "<SOURCE-D3>",
+          "<E1>",
+          "<SESSION-EVIDENCE>"
+        ]
+      },
+      "protocol_status": "NOT ACCEPTED",
+      "raw_score": 10,
+      "final_score": 10,
+      "criteria": {
+        "G": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Timestamp signer, inherited key/signature paths, encoding/exception interfaces, serializer and URL-safe caller, tests/docs and platform configuration independently inspected. Three supporting test citations and CI checked; no supplied result taken as target pass."
+        },
+        "C": {
+          "factor": 1,
+          "weight": 2,
+          "weighted": 2,
+          "reason": "Age equality/None/zero/negative and clock rollback retained; 64-bit signability, decoded width and calendar domain separated. Exception ordering, untrusted diagnostics, expiry-stops-fallback and custom algorithm domain explicit. Conversion-totality intent left unresolved, not silently weakened."
+        },
+        "M": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Honest noncatalog Python source/native-test decision; no arbitrary-language Kani/CBMC/Verus support. Finite model and replacement alternatives rejected with correct correspondence/adoption limits. External datetime/base64/HMAC/custom bodies remain trusted or unknown."
+        },
+        "A": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Branch examples and large authenticated timestamp are static hypotheses, not reproduced bugs. Native samples not proof, authentication not universal across NoneAlgorithm/custom signers, platform exception type/range unknown. No cryptographic or deployed-key claim."
+        },
+        "D": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Age/fallback matrix and representation/error taxonomy provide concrete incremental evidence over existing tests; native regression extensions preferred over parser replacement or forced formal tools. Priorities reflect impact and matrix cost."
+        },
+        "H": {
+          "factor": 1,
+          "weight": 1.5,
+          "weighted": 1.5,
+          "reason": "Time-contract decision table and pinned command-selection tasks have acceptance evidence; named test extensions require owner and separate isolated execution approval. No live keys/network and no production replacement. Root/coverage/skipped bodies/source identity and limits explicit."
+        }
+      },
+      "applied_caps": [],
+      "prioritized_findings": [],
+      "grade_state": "NUMERIC_OBSERVATION_NOT_CAMPAIGN_ACCEPTANCE",
+      "grade_verdict": "ACCEPTABLE",
+      "hard_fail": false,
+      "grade_raw_sha256": "c24f70fff288d4525a9693e1b77a42bca04cc4385c83b6729eb63c934c9ff6ab",
+      "grade_input": "<E2>/private/dev1-evaluation/dev1-D3-706868e2d188.json",
+      "audit_input": "<E2>/audits/dev1-evaluation-scores.json",
+      "arithmetic_check": "exact Decimal weighted sum; empty caps; raw=final"
+    }
+  ]
+}
