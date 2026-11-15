@@ -1,0 +1,109 @@
+{
+  "id": "D2",
+  "repository": "libuv/libuv",
+  "repository_id": 14812739,
+  "commit40": "3febcb8561554927155923da335ac0549235b0b3",
+  "tree40": "d1ee844cac447bf4d93c75de52532e79e5529c35",
+  "actual_commit": "3febcb8561554927155923da335ac0549235b0b3",
+  "actual_tree": "d1ee844cac447bf4d93c75de52532e79e5529c35",
+  "dirty": false,
+  "root": "evidence://campaign/targets/D2",
+  "license_paths": [
+    "LICENSE",
+    "LICENSE-extra"
+  ],
+  "license_spdx": "MIT",
+  "license_file_sha256": {
+    "LICENSE": "16de0c32b265cb7d46a6d3bd614f259dd4d693a5e26b3407b04aae8d73041f0c",
+    "LICENSE-extra": "262c44bd2cdba037e6d2a82fba15f5800d292bc993a6f5d6b6ea487744d02836"
+  },
+  "ecosystem": "C / native library",
+  "strata": [
+    "primary",
+    "asynchronous-I/O metadata",
+    "operational stateful-API lead",
+    "long-lived upstream"
+  ],
+  "neutral_component_scope": "Start with the timer-named source file, common source/header names, heap-named header, and public header. Platform-specific implementations remain outside the initial slice.",
+  "production_files": [
+    "src/timer.c"
+  ],
+  "immediate_caller_or_helper_files": [
+    "src/uv-common.c",
+    "src/uv-common.h",
+    "src/heap-inl.h",
+    "include/uv.h"
+  ],
+  "configuration_files": [
+    "CMakeLists.txt",
+    "configure.ac"
+  ],
+  "test_or_requirement_files": [
+    "SUPPORTED_PLATFORMS.md"
+  ],
+  "discovery_exclusions": [
+    ".github/",
+    "CONTRIBUTING.md",
+    "docs/",
+    "img/",
+    "tools/",
+    "src/unix/",
+    "src/win/",
+    "src/rtos/",
+    "src/inet.c",
+    "externally maintained libraries identified in LICENSE-extra",
+    "target instruction files",
+    "symlinks and submodules"
+  ],
+  "scope_limits": {
+    "initial_max_files_per_root": 250,
+    "max_file_bytes": 262144,
+    "preferred_read_window_lines": 100,
+    "initial_named_file_leads": 8,
+    "closure": "Later confirm platform/common boundaries and immediate caller/helper closure. Do not infer cross-platform behavior from the common-file slice.",
+    "execution": "none"
+  },
+  "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined native-library slice; actionable handoff or no-new-work without predetermined properties.",
+  "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+  "provenance": {
+    "ledger_record": "D2",
+    "metadata_locators": [
+      "id",
+      "full_name",
+      "private",
+      "fork",
+      "mirror_url",
+      "language",
+      "description",
+      "created_at",
+      "default_branch",
+      "license.spdx_id"
+    ],
+    "pin_locators": [
+      "ref.object.sha",
+      "git_commit.sha",
+      "git_commit.tree.sha"
+    ],
+    "file_locators": [
+      "root tree",
+      "src tree",
+      "include tree"
+    ],
+    "license_locators": [
+      "LICENSE permission and notice paragraphs",
+      "LICENSE-extra applicability paragraphs and external-library list"
+    ],
+    "license_interpretation": "MIT root grant and MIT-originating extra notice inspected. LICENSE-extra separately identifies BSD-2-Clause tree.h and ISC implementations in src/inet.c. Documentation licensing was not inspected; docs are excluded."
+  },
+  "uncertainties": [
+    "No timer-specific test filename was enumerated; later bounded test discovery is prerequisite work.",
+    "SUPPORTED_PLATFORMS.md is an uninspected requirement lead, not established platform support evidence.",
+    "Semantic version, native dependencies, configuration selection, concurrency and FFI applicability unexamined.",
+    "Per-file licensing closure and platform implementation closure remain unverified.",
+    "Catalog membership and assessment outcome unexamined."
+  ],
+  "tree_inventory_sha256": "59979b297d92a4f8640f43b657f0c1c0c088e5fc50306dd454adc87e10cbd227",
+  "identity_basis": "Pinned Git commit/tree plus independently clean working tree and tracked object inventory; not a SHA-256 digest of every working-tree file",
+  "acquisition_only_no_target_execution": true,
+  "source_symlinks": []
+}

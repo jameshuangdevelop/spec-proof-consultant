@@ -1,0 +1,171 @@
+{
+  "records": [
+    {
+      "id": "D1",
+      "repository": "serde-rs/json",
+      "repository_id": 35894511,
+      "ecosystem": "Rust / Cargo",
+      "strata": [
+        "primary",
+        "JSON-library metadata",
+        "long-lived upstream",
+        "bounded library-module scope"
+      ],
+      "neutral_component_scope": "Start with the map-named module, library entry file, adjacent iterator-named file, and matching test filename. This is a filename-based boundary, not an established API/caller closure.",
+      "production_files": [
+        "src/map.rs"
+      ],
+      "immediate_caller_or_helper_files": [
+        "src/lib.rs",
+        "src/iter.rs"
+      ],
+      "configuration_files": [
+        "Cargo.toml",
+        "build.rs"
+      ],
+      "test_or_requirement_files": [
+        "tests/map.rs"
+      ],
+      "discovery_exclusions": [
+        ".github/",
+        "CONTRIBUTING.md",
+        "fuzz/",
+        "src/lexical/",
+        "tests/ui/",
+        "tests/regression/",
+        "unlisted source subtrees",
+        "target instruction files",
+        "symlinks and submodules"
+      ],
+      "scope_limits": {
+        "initial_max_files_per_root": 250,
+        "max_file_bytes": 262144,
+        "preferred_read_window_lines": 100,
+        "initial_named_file_leads": 6,
+        "closure": "Confirm actual declarations, immediate callers/helpers, dependency and feature boundaries later; document unresolved closure rather than expanding indefinitely.",
+        "execution": "none"
+      },
+      "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined library slice; actionable handoff or no-new-work without predetermined properties.",
+      "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+      "root": "evidence://campaign/targets/D1",
+      "commit": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+      "tree": "d0c2d891838c3c188f084bdafa0442e063b04d62",
+      "dirty": false,
+      "source_symlinks": []
+    },
+    {
+      "id": "D2",
+      "repository": "libuv/libuv",
+      "repository_id": 14812739,
+      "ecosystem": "C / native library",
+      "strata": [
+        "primary",
+        "asynchronous-I/O metadata",
+        "operational stateful-API lead",
+        "long-lived upstream"
+      ],
+      "neutral_component_scope": "Start with the timer-named source file, common source/header names, heap-named header, and public header. Platform-specific implementations remain outside the initial slice.",
+      "production_files": [
+        "src/timer.c"
+      ],
+      "immediate_caller_or_helper_files": [
+        "src/uv-common.c",
+        "src/uv-common.h",
+        "src/heap-inl.h",
+        "include/uv.h"
+      ],
+      "configuration_files": [
+        "CMakeLists.txt",
+        "configure.ac"
+      ],
+      "test_or_requirement_files": [
+        "SUPPORTED_PLATFORMS.md"
+      ],
+      "discovery_exclusions": [
+        ".github/",
+        "CONTRIBUTING.md",
+        "docs/",
+        "img/",
+        "tools/",
+        "src/unix/",
+        "src/win/",
+        "src/rtos/",
+        "src/inet.c",
+        "externally maintained libraries identified in LICENSE-extra",
+        "target instruction files",
+        "symlinks and submodules"
+      ],
+      "scope_limits": {
+        "initial_max_files_per_root": 250,
+        "max_file_bytes": 262144,
+        "preferred_read_window_lines": 100,
+        "initial_named_file_leads": 8,
+        "closure": "Later confirm platform/common boundaries and immediate caller/helper closure. Do not infer cross-platform behavior from the common-file slice.",
+        "execution": "none"
+      },
+      "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined native-library slice; actionable handoff or no-new-work without predetermined properties.",
+      "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+      "root": "evidence://campaign/targets/D2",
+      "commit": "3febcb8561554927155923da335ac0549235b0b3",
+      "tree": "d1ee844cac447bf4d93c75de52532e79e5529c35",
+      "dirty": false,
+      "source_symlinks": []
+    },
+    {
+      "id": "D3",
+      "repository": "google/leveldb",
+      "repository_id": 23405758,
+      "ecosystem": "C++ / native storage library",
+      "strata": [
+        "primary",
+        "key-value-storage metadata",
+        "operational stateful-API lead",
+        "long-lived upstream"
+      ],
+      "neutral_component_scope": "Start with write_batch-named implementation/public/internal headers and its matching test filename. db_impl-named files are bounded caller leads only; no storage-wide property is proposed.",
+      "production_files": [
+        "db/write_batch.cc",
+        "include/leveldb/write_batch.h"
+      ],
+      "immediate_caller_or_helper_files": [
+        "db/write_batch_internal.h",
+        "db/db_impl.cc",
+        "db/db_impl.h"
+      ],
+      "configuration_files": [
+        "CMakeLists.txt",
+        ".gitmodules"
+      ],
+      "test_or_requirement_files": [
+        "db/write_batch_test.cc"
+      ],
+      "discovery_exclusions": [
+        ".github/",
+        "CONTRIBUTING.md",
+        "third_party/",
+        "benchmarks/",
+        "issues/",
+        "table/",
+        "port/",
+        "unlisted database/storage implementation files",
+        "target instruction files",
+        "symlinks and submodules"
+      ],
+      "scope_limits": {
+        "initial_max_files_per_root": 250,
+        "max_file_bytes": 262144,
+        "preferred_read_window_lines": 100,
+        "initial_named_file_leads": 8,
+        "closure": "Use only bounded relevant windows of db_impl leads after relationships are confirmed. Persistence, recovery, environment and concurrent-system claims require separate closure.",
+        "execution": "none"
+      },
+      "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined storage-library slice; actionable handoff or no-new-work without predetermined properties.",
+      "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+      "root": "evidence://campaign/targets/D3",
+      "commit": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+      "tree": "5e56720c8ea36b1d385362668605d0b40aa645e8",
+      "dirty": false,
+      "source_symlinks": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "received_utc": "2026-11-15T07:50:29.322893+00:00",
+  "author_agent_id": "runtime-id-5",
+  "status": "completed",
+  "artifact_integrity_verified": true,
+  "semantic_review": "Not performed by parent; routed to retained independent evaluator",
+  "result_sha256": "5c17067a1ab365acb0e06c1fa867ad9a34b0f01a680a08a8e8028bfbe9847282"
+}

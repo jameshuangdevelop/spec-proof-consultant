@@ -1,0 +1,103 @@
+{
+  "id": "D3",
+  "repository": "google/leveldb",
+  "repository_id": 23405758,
+  "commit40": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+  "tree40": "5e56720c8ea36b1d385362668605d0b40aa645e8",
+  "actual_commit": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+  "actual_tree": "5e56720c8ea36b1d385362668605d0b40aa645e8",
+  "dirty": false,
+  "root": "evidence://campaign/targets/D3",
+  "license_paths": [
+    "LICENSE"
+  ],
+  "license_spdx": "BSD-3-Clause",
+  "license_file_sha256": {
+    "LICENSE": "ccc19f1da0798ed666609b65a5b44dd8b3abe6fc08b9c0592eb76e82e174db19"
+  },
+  "ecosystem": "C++ / native storage library",
+  "strata": [
+    "primary",
+    "key-value-storage metadata",
+    "operational stateful-API lead",
+    "long-lived upstream"
+  ],
+  "neutral_component_scope": "Start with write_batch-named implementation/public/internal headers and its matching test filename. db_impl-named files are bounded caller leads only; no storage-wide property is proposed.",
+  "production_files": [
+    "db/write_batch.cc",
+    "include/leveldb/write_batch.h"
+  ],
+  "immediate_caller_or_helper_files": [
+    "db/write_batch_internal.h",
+    "db/db_impl.cc",
+    "db/db_impl.h"
+  ],
+  "configuration_files": [
+    "CMakeLists.txt",
+    ".gitmodules"
+  ],
+  "test_or_requirement_files": [
+    "db/write_batch_test.cc"
+  ],
+  "discovery_exclusions": [
+    ".github/",
+    "CONTRIBUTING.md",
+    "third_party/",
+    "benchmarks/",
+    "issues/",
+    "table/",
+    "port/",
+    "unlisted database/storage implementation files",
+    "target instruction files",
+    "symlinks and submodules"
+  ],
+  "scope_limits": {
+    "initial_max_files_per_root": 250,
+    "max_file_bytes": 262144,
+    "preferred_read_window_lines": 100,
+    "initial_named_file_leads": 8,
+    "closure": "Use only bounded relevant windows of db_impl leads after relationships are confirmed. Persistence, recovery, environment and concurrent-system claims require separate closure.",
+    "execution": "none"
+  },
+  "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined storage-library slice; actionable handoff or no-new-work without predetermined properties.",
+  "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+  "provenance": {
+    "ledger_record": "D3",
+    "metadata_locators": [
+      "id",
+      "full_name",
+      "private",
+      "fork",
+      "mirror_url",
+      "language",
+      "description",
+      "created_at",
+      "default_branch",
+      "license.spdx_id"
+    ],
+    "pin_locators": [
+      "ref.object.sha",
+      "git_commit.sha",
+      "git_commit.tree.sha"
+    ],
+    "file_locators": [
+      "root tree",
+      "db tree",
+      "include recursive tree"
+    ],
+    "license_locators": [
+      "LICENSE copyright paragraph, three redistribution conditions and disclaimer"
+    ],
+    "license_interpretation": "Primary API BSD-3-Clause identification agrees with inspected root license text. Dependencies and per-file exceptions were not inspected."
+  },
+  "uncertainties": [
+    "Semantic version, dependencies, submodule identities and configuration behavior unexamined.",
+    "Immediate caller relationships, concurrency, storage-system boundaries, C FFI and deployment applicability unexamined.",
+    "Repository metadata and a narrow slice do not establish durability, recovery or correctness.",
+    "Catalog membership and assessment outcome unexamined."
+  ],
+  "tree_inventory_sha256": "84c6692bb526c546a4cc7035a99b9d2064202e1b9762ae0078a2a0620f14efef",
+  "identity_basis": "Pinned Git commit/tree plus independently clean working tree and tracked object inventory; not a SHA-256 digest of every working-tree file",
+  "acquisition_only_no_target_execution": true,
+  "source_symlinks": []
+}

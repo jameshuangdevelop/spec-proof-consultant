@@ -1,0 +1,184 @@
+{
+  "task_id": "practical-confirm-author",
+  "status": "completed",
+  "phase": "single blinded confirmation author; ready for independent evaluation, not approval",
+  "canonical_truth": "The three assessment.md files only. This JSON is operational bookkeeping, not a parallel advisory or correctness certificate.",
+  "output_base": "evidence://campaign/advisories/confirmation",
+  "scope_path": "evidence://campaign/scopes/development.json",
+  "artifacts": [
+    {
+      "slot": "D1",
+      "root_id": "r1",
+      "path": "evidence://campaign/advisories/confirmation/D1/assessment.md",
+      "sha256": "5d6bf1bbd1d8c913deb4a13544cf558e3eb9eca4214e764c388575a28160fb3b",
+      "bytes": 10092,
+      "source_root": "evidence://campaign/targets/D1",
+      "commit": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+      "tree": "d0c2d891838c3c188f084bdafa0442e063b04d62",
+      "final_git_status": "empty",
+      "named_files_inspected": 6,
+      "requested_source_window_lines_including_native_citation_review": 922
+    },
+    {
+      "slot": "D2",
+      "root_id": "r1",
+      "path": "evidence://campaign/advisories/confirmation/D2/assessment.md",
+      "sha256": "fbcbfd2b3816557204e55fe1efe98da29f367dc500c0fb781fa0a1672d7ebaee",
+      "bytes": 10900,
+      "source_root": "evidence://campaign/targets/D2",
+      "commit": "3febcb8561554927155923da335ac0549235b0b3",
+      "tree": "d1ee844cac447bf4d93c75de52532e79e5529c35",
+      "final_git_status": "empty",
+      "named_files_inspected": 8,
+      "requested_source_window_lines_including_native_citation_review": 1019
+    },
+    {
+      "slot": "D3",
+      "root_id": "r1",
+      "path": "evidence://campaign/advisories/confirmation/D3/assessment.md",
+      "sha256": "4af7eead67044562bdb73f03e59f7dd92cbfc86c711dc90c22ae9941a880174e",
+      "bytes": 11516,
+      "source_root": "evidence://campaign/targets/D3",
+      "commit": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+      "tree": "5e56720c8ea36b1d385362668605d0b40aa645e8",
+      "final_git_status": "empty",
+      "named_files_inspected": 8,
+      "requested_source_window_lines_including_native_citation_review": 846
+    }
+  ],
+  "trusted_checkout": {
+    "path": "checkout://trusted-product",
+    "branch": "feat/practical-skill-benchmark",
+    "head": "544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89",
+    "initial_and_final_status": "empty",
+    "instructions_read": ["docs/AGENT-ORGANIZATION.md:1-200", ".github/copilot-instructions.md:1-150"],
+    "changes": "none; no branch/staging/commit/push/PR/merge operations"
+  },
+  "skill_context": {
+    "path": "evidence://campaign/locked/proof-readiness/",
+    "observed_name": "proof-readiness",
+    "observed_version": "0.2.1",
+    "files_read": {
+      "SKILL.md": [1, 200],
+      "templates/assessment.md": [1, 200],
+      "references/index.md": [1, 200],
+      "examples/assessments.md": [1, 180],
+      "references/tlc.md": [1, 150],
+      "references/cbmc.md": [1, 150]
+    },
+    "startup": "Runtime cwd was checkout://agent-startup; its legacy CLI guide was not loaded as candidate. Staged skill was explicitly read; no claim of vendor skill-discovery registration.",
+    "catalog": "Bundled index provenance only: snapshot 9ce3702cb69a0944cb4db4d5b318cf118cf00509, scenarios 1.0.0 documented; no external assets fetched or verifier examples executed."
+  },
+  "tools_used": ["functions.view", "functions.rg", "functions.bash", "functions.apply_patch", "multi_tool_use.parallel"],
+  "known_actions": [
+    "Read AUTHOR-BRIEF.txt and only development.json selected identities.",
+    "Read trusted project instructions and actual staged skill/template/index/examples/two guides.",
+    "Native trusted-checkout file discovery; metadata-first lstat/realpath on the 22 selected named files, selected roots and output location.",
+    "Bounded source reads/searches on exactly D1/D2/D3; no excluded target instruction files followed.",
+    "Read-only Git identity/status checks initially, at manual review and at final artifact hash check.",
+    "Created only three canonical advisory files and this RESULT.json outside all selected roots.",
+    "Manual advisory review corrected citation line numbers and read-window bookkeeping before final hashes; no second cohort assessment or feedback-driven retry.",
+    "Data-only SHA-256 and structural counts of own Markdown bytes; one detailed opportunity and one r1 row per report. This is not a quality validator.",
+    "No assessed code executed; no imports from targets, tests, builds, scripts, installers, proof tools, network, source writes, product repair, research promotion or nested agents."
+  ],
+  "source_view_parameters": {
+    "D1": {
+      "src/map.rs": [[1, 200], [201, 300]],
+      "tests/map.rs": [[1, 100]],
+      "Cargo.toml": [[1, 100]],
+      "src/lib.rs": [[365, 445]],
+      "src/iter.rs": [[1, 100]],
+      "build.rs": [[1, 100]]
+    },
+    "D2": {
+      "src/timer.c": [[1, 100], [101, 200]],
+      "src/heap-inl.h": [[1, 100], [101, 200], [201, 300]],
+      "src/uv-common.h": [[245, 365]],
+      "src/uv-common.c": [[260, 300]],
+      "include/uv.h": [[1005, 1035]],
+      "SUPPORTED_PLATFORMS.md": [[1, 100]],
+      "configure.ac": [[1, 100]],
+      "CMakeLists.txt": [[1, 55], [180, 215], [710, 730]]
+    },
+    "D3": {
+      "db/write_batch.cc": [[1, 100], [101, 180]],
+      "db/write_batch_test.cc": [[1, 150]],
+      "include/leveldb/write_batch.h": [[1, 100]],
+      "db/write_batch_internal.h": [[1, 100]],
+      "db/db_impl.cc": [[1206, 1278], [1281, 1333]],
+      "db/db_impl.h": [[120, 145]],
+      "CMakeLists.txt": [[1, 100]],
+      ".gitmodules": [[1, 30]]
+    }
+  },
+  "source_search_parameters": [
+    {"slot": "D1", "files": ["src/map.rs", "src/lib.rs", "Cargo.toml"], "pattern": "pub fn (append|sort_keys|shift_remove|swap_remove)|pub mod map|pub use.*Map|cfg.*std|preserve_order|rust-version|indexmap|foldhash", "output_mode": "content", "line_numbers": true, "head_limit": 70},
+    {"slot": "D2", "files": ["src/uv-common.c", "src/uv-common.h", "include/uv.h", "CMakeLists.txt"], "pattern": "uv__handle_(init|start|stop)|uv__is_(active|closing)|uv__run_timers|uv__next_timeout|timer|heap|WIN32|C_STANDARD|CXX_STANDARD|BUILD_TEST", "output_mode": "content", "line_numbers": true, "head_limit": 75},
+    {"slot": "D3", "files": ["db/db_impl.cc", "db/db_impl.h"], "pattern": "WriteBatch|InsertInto|BuildBatchGroup", "output_mode": "content", "line_numbers": true, "head_limit": 40},
+    {"slot": "D3", "files": ["CMakeLists.txt"], "pattern": "write_batch_test|add_subdirectory|leveldb_test|db/write_batch.cc", "output_mode": "content", "line_numbers": true, "head_limit": 25},
+    {"slot": "D2", "files": ["src/timer.c"], "pattern": "^(int uv_timer|uint64_t uv_timer|int uv__next|void uv__run|static int timer_less)|clamped_timeout|start_id|ready_queue|timer_cb\\(handle\\)", "output_mode": "content", "line_numbers": true, "head_limit": 40},
+    {"slot": "D3", "files": ["db/write_batch.cc", "db/write_batch_test.cc"], "pattern": "^(Status WriteBatch|void WriteBatch|int WriteBatch|TEST)|found|handler->|wrong count|kHeader|ParseError", "output_mode": "content", "line_numbers": true, "head_limit": 50}
+  ],
+  "checks": [
+    {
+      "exact_command_template": "git -C <source_root> --no-pager rev-parse HEAD HEAD^{tree}; git -C <source_root> --no-pager status --short --untracked-files=all",
+      "expansion": "Each artifacts[].source_root, exactly D1/D2/D3",
+      "sessions": [795, 798],
+      "result": "All matched scope commits/trees; full status empty; shell exit 0. Initial session 792 used --untracked-files=no."
+    },
+    {
+      "exact_command": "cd checkout://trusted-product && git --no-pager status --short && git --no-pager rev-parse HEAD && git --no-pager branch --show-current",
+      "sessions": [791, 798],
+      "result": "Empty status, approved base HEAD and assigned branch; exit 0."
+    },
+    {
+      "exact_command_template": "nl -ba <root>/<file> | sed -n '<start>,<end>p'",
+      "expansions": ["D1/tests/map.rs:1,70", "D1/src/map.rs:130,200", "D3/db/write_batch.cc:109,142", "D2/src/heap-inl.h:60,73"],
+      "session": 797,
+      "result": "Native read-only line-citation review; exit 0; EOF-short test read. Corrected D1 symbol citations before final materialization."
+    },
+    {
+      "exact_data_only_command": "python3 -c 'import pathlib,hashlib; p=pathlib.Path(\"evidence://campaign/advisories/confirmation\");\nfor s in (\"D1\",\"D2\",\"D3\"):\n f=p/s/\"assessment.md\"; b=f.read_bytes(); print(s,len(b),hashlib.sha256(b).hexdigest(),\"opportunities\",b.count(b\"### O\"),\"r1\",b.count(b\"| r1 |\"))'",
+      "session": 798,
+      "result": "Final byte sizes/hashes in artifacts; all opportunity/r1 counts 1; exit 0. Earlier session 796 hashed intermediate review bytes; those hashes are not final evidence."
+    },
+    {
+      "operation": "python3 data-only json.load of scope, os.lstat and os.path.realpath for records' named paths and output",
+      "session": 794,
+      "result": "All 22 named files regular, below 262144 bytes, parent paths within selected root real paths; confirmation output did not previously exist. Exit 0."
+    }
+  ],
+  "failed_operations": [
+    {
+      "session": 793,
+      "operation": "Data-only scope JSON/lstat/realpath metadata probe using python -c",
+      "exit_code": 127,
+      "output": "/bin/bash: python: command not found",
+      "resolution": "Same metadata purpose performed using available python3 in session 794; no target code execution, product repair or author-trial rerun."
+    }
+  ],
+  "observations_vs_hypotheses": {
+    "observations": "Pinned clean source metadata, named source/config/test text and staged guide content only. Detailed source citations are in the canonical reports.",
+    "hypotheses": "Potential incremental benefits and candidate properties are advisory, with documented/inferred/unresolved labels in each canonical file; no observed defect, proof or compatibility result asserted."
+  },
+  "limitations": [
+    "Shared environment, no execution sandbox; metadata checks and real paths are not atomic no-follow security.",
+    "Only named files/windows and bounded searches; no full API/caller/dependency closure, secret scan or exhaustive coverage.",
+    "Requested source-window counts include EOF-short windows, not actual line/character consumption; metadata, skill/instruction reads and searches are additional. No mandatory cumulative counter was used.",
+    "Preferred 100-line windows sometimes exceeded as disclosed; none exceeded 200. Search limits may omit matches.",
+    "Git rechecks cannot rule out transient edits/reverts or guarantee an atomic source snapshot.",
+    "No source/test/proof execution and no exact supported verifier/toolchain compatibility established.",
+    "No prior author/evaluator artifacts, rubric/scoring/maps/LOCK resultlinks, complete manifests, other roots/trials, logs or feedback were read.",
+    "No implementation grant, execution grant, requirement-owner approval or promotion authority exists."
+  ],
+  "unresolved_blockers": {
+    "assessment_delivery": [],
+    "future_work": [
+      "Resolve requirement authority and named property intent with owners.",
+      "Obtain separately approved extended callee/caller scope where needed.",
+      "Resolve actual tool versions, configuration, commands and supported boundaries in each report's W2 read-only selection artifact.",
+      "Obtain actual named implementation/model-writing and execution grants with appropriate isolation before any proposed W3."
+    ]
+  },
+  "next_action": "Orchestrator may independently evaluate these immutable final advisories and escalate prerequisite decisions; author stops after this exact three-root cohort."
+}

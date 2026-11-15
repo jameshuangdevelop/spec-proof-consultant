@@ -1,0 +1,106 @@
+{
+  "id": "H3",
+  "repository": "isaacs/node-lru-cache",
+  "repository_id": 679662,
+  "commit40": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b",
+  "tree40": "458340823cb11be5a962b17b90c9bbcb43f0536d",
+  "actual_commit": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b",
+  "actual_tree": "458340823cb11be5a962b17b90c9bbcb43f0536d",
+  "dirty": false,
+  "root": "evidence://campaign/targets/H3",
+  "license_paths": [
+    "LICENSE.md"
+  ],
+  "license_spdx": "BlueOak-1.0.0",
+  "license_file_sha256": {
+    "LICENSE.md": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004"
+  },
+  "ecosystem": "JavaScript metadata / TypeScript source names / Node packaging",
+  "strata": [
+    "primary",
+    "cache-library metadata",
+    "operational stateful-API lead",
+    "long-lived upstream"
+  ],
+  "neutral_component_scope": "Start with bounded windows of src/index.ts, adjacent diagnostics/perf-named leads, package/compiler metadata and the basic-named test. Do not inspect the whole index file by default.",
+  "production_files": [
+    "src/index.ts"
+  ],
+  "immediate_caller_or_helper_files": [
+    "src/diagnostics-channel.ts",
+    "src/perf.ts"
+  ],
+  "configuration_files": [
+    "package.json",
+    "tsconfig.json"
+  ],
+  "test_or_requirement_files": [
+    "test/basic.ts"
+  ],
+  "discovery_exclusions": [
+    ".github/",
+    ".tshy/",
+    "benchmark/",
+    "scripts/",
+    "tap-snapshots/",
+    "package-lock.json",
+    "platform-specific diagnostics-channel files",
+    "target instruction files",
+    "symlinks and submodules",
+    "unlisted files"
+  ],
+  "scope_limits": {
+    "initial_max_files_per_root": 250,
+    "max_file_bytes": 262144,
+    "preferred_read_window_lines": 100,
+    "initial_named_file_leads": 6,
+    "closure": "src/index.ts is tree-listed at 102267 bytes; choose a modest declaration/caller slice later, rather than treating the entire file as one assessment scope.",
+    "execution": "none"
+  },
+  "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined JS/TS-library slice; actionable handoff or no-new-work without predetermined properties.",
+  "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+  "provenance": {
+    "ledger_record": "H3",
+    "metadata_locators": [
+      "id",
+      "full_name",
+      "private",
+      "fork",
+      "mirror_url",
+      "language",
+      "description",
+      "created_at",
+      "default_branch",
+      "license.spdx_id"
+    ],
+    "pin_locators": [
+      "ref.object.sha",
+      "git_commit.sha",
+      "git_commit.tree.sha"
+    ],
+    "file_locators": [
+      "root tree",
+      "src tree",
+      "test tree"
+    ],
+    "license_locators": [
+      "LICENSE.md title and Version 1.0.0",
+      "Copyright",
+      "Notices",
+      "Patent",
+      "No Liability"
+    ],
+    "license_interpretation": "Primary API BlueOak-1.0.0 identification agrees with inspected root license text."
+  },
+  "uncertainties": [
+    "API primary language is JavaScript while selected source filenames are TypeScript; no compatibility inference follows.",
+    "Semantic version is not independently established from package or release evidence.",
+    "Supported runtimes, dependencies, configuration, asynchronous behavior, FFI and deployment applicability unexamined.",
+    "No equivalence to excluded Go/Python cache upstreams is indicated by canonical metadata; shared functionality is not identity equivalence.",
+    "Catalog membership and assessment outcome unexamined."
+  ],
+  "tree_inventory_sha256": "2c09f4065a370e79cc1547c83138145b6d8416c47ceae8f4931174d883527dfb",
+  "identity_basis": "Pinned Git commit/tree plus independently clean working tree and tracked object inventory; not a SHA-256 digest of every working-tree file",
+  "acquisition_only_no_target_execution": true,
+  "source_symlinks": []
+}

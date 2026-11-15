@@ -1,0 +1,17 @@
+{
+  "agent_id": "runtime-id-3",
+  "turn": 0,
+  "kind": "maps",
+  "root_ids": [
+    "D1",
+    "D2",
+    "D3"
+  ],
+  "sha256": "174ce27868db4bed911e992e4d1eb85e5ccd4dc712af832ced876bf875c528ff",
+  "bytes": 12964,
+  "produced_utc": "2026-11-15T07:09:06.838224+00:00",
+  "received_utc": "2026-11-15T07:11:00.156734+00:00",
+  "path": "evidence://campaign/private/dev0/maps.json",
+  "source": "Opaque evaluator data packet; not a signature or confidentiality boundary",
+  "materialization": "Exact decoded bytes, hash verified; no semantic source/map interpretation"
+}

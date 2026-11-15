@@ -1,0 +1,169 @@
+{
+  "task": "practical-heldout-author-a",
+  "status": "completed",
+  "status_meaning": "One three-root read-only advisory cohort completed; recommendations unexecuted and not independently approved.",
+  "date": "2026-11-15",
+  "output_path": "evidence://campaign/advisories/heldout-a",
+  "scope_path": "evidence://campaign/scopes/heldout.json",
+  "skill": {
+    "path": "evidence://campaign/locked/proof-readiness",
+    "version": "0.2.1",
+    "SKILL.md_bytes": 7987,
+    "SKILL.md_sha256": "68ae68b8b2fecd9067ddc169522c495a6080c66da6bc08fcbc93f8c5d55c8a37",
+    "loaded": ["SKILL.md", "references/index.md", "references/tlc.md", "templates/assessment.md", "examples/assessments.md:1-100"],
+    "context": "Exact staged agent-native skill used without modification, executable, installation, model API or network. Cwd legacy CLI-era skill was not read. Bundled TLC scenarios version 1.0.0 are documented guidance, not reproduced results. Examples illustrative only."
+  },
+  "trusted_project": {
+    "checkout": "checkout://trusted-product",
+    "commit": "544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89",
+    "tree": "6b966f9e1a6874e811876e5ce350a01c489545f5",
+    "branch": "feat/practical-skill-benchmark",
+    "instructions_read": ["docs/AGENT-ORGANIZATION.md", ".github/copilot-instructions.md", "README.md:1-180"],
+    "startup": "Initial AGENT-ORGANIZATION read was in cwd checkout://agent-startup before brief-directed trusted checkout read. Cwd AGENTS.md glob had no matches. Trusted checkout AGENTS/CONTRIBUTING and .github/*instructions* globs had no matches; git ls-files located .github/copilot-instructions.md, which was read. No branch creation/publication authorized or attempted; no project contribution changes."
+  },
+  "canonical_artifacts": [
+    {
+      "slot": "H1",
+      "root_id_within_assessment": "r1",
+      "path": "evidence://campaign/advisories/heldout-a/H1/assessment.md",
+      "sha256": "a843e4d4a7c0b7583a869ea370656fb27c9b0dd2e723b275445390bbdcfe025a",
+      "bytes": 10274
+    },
+    {
+      "slot": "H2",
+      "root_id_within_assessment": "r1",
+      "path": "evidence://campaign/advisories/heldout-a/H2/assessment.md",
+      "sha256": "d65e4f0d17f914ec6622e8db3253dd5e14ca02a5d6b43fb54b6aae031d8f9b99",
+      "bytes": 11007
+    },
+    {
+      "slot": "H3",
+      "root_id_within_assessment": "r1",
+      "path": "evidence://campaign/advisories/heldout-a/H3/assessment.md",
+      "sha256": "f89ed2a47532337cef80325c14200e63335d122e9944f25cfd2573ea49498768",
+      "bytes": 12206
+    }
+  ],
+  "advisory_truth": "Only the three Markdown files are canonical assessments. This JSON records provenance/operations, not a rewritten report or correctness certificate.",
+  "changed_files": ["H1/assessment.md", "H2/assessment.md", "H3/assessment.md", "RESULT.json"],
+  "change_rationale": "Materialize the requested separate one-root assessments and operational result contract outside all targets; no source changes.",
+  "source_identity": [
+    {
+      "slot": "H1",
+      "root": "evidence://campaign/targets/H1",
+      "before": {"commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f", "tree": "93a7576e74a8ef0017188fb069696a45204631e4", "tracked_status_stdout": "", "named_files_sha256": "53187de5e61a59bbb65f9c13764d692a34ac3b11ecf079e874b36229f14a12c3"},
+      "after": {"commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f", "tree": "93a7576e74a8ef0017188fb069696a45204631e4", "tracked_status_stdout": "", "named_files_sha256": "53187de5e61a59bbb65f9c13764d692a34ac3b11ecf079e874b36229f14a12c3"},
+      "named_files": 9,
+      "metadata_sizes": {"conn.go": 33580, "client.go": 16517, "server.go": 12369, "util.go": 5894, "go.mod": 135, "go.sum": 153, "conn_test.go": 19999, "client_server_test.go": 31350, "doc.go": 9585},
+      "read_windows": {"conn.go": [[240,337],[359,458],[459,558],[565,650],[736,800],[8,35],[183,206]], "doc.go": [[122,174]], "conn_test.go": [[19,58],[151,225],[342,394]], "go.mod": [[1,30]], "client.go": [[310,339]], "server.go": [[200,228]]},
+      "searched_only": ["client_server_test.go"],
+      "metadata_hash_only": ["util.go", "go.sum"]
+    },
+    {
+      "slot": "H2",
+      "root": "evidence://campaign/targets/H2",
+      "before": {"commit": "c3364059663df1ddce32799d6b1922af89a345f6", "tree": "2dc6021d44a8b2f512ce75e977fd2ea4355b3b3e", "tracked_status_stdout": "", "named_files_sha256": "d5f94a6cf5a546a2923c1345bdf3062e6c34a089d412a91ac9f97f837f80b476"},
+      "after": {"commit": "c3364059663df1ddce32799d6b1922af89a345f6", "tree": "2dc6021d44a8b2f512ce75e977fd2ea4355b3b3e", "tracked_status_stdout": "", "named_files_sha256": "d5f94a6cf5a546a2923c1345bdf3062e6c34a089d412a91ac9f97f837f80b476"},
+      "named_files": 6,
+      "metadata_sizes": {"src/blinker/base.py": 19132, "src/blinker/__init__.py": 317, "src/blinker/_utilities.py": 1675, "pyproject.toml": 4336, "tests/test_signals.py": 11890, "tests/test_context.py": 1237},
+      "read_windows": {"src/blinker/base.py": [[1,140],[168,254],[305,404],[405,461]], "src/blinker/_utilities.py": [[1,100]], "src/blinker/__init__.py": [[1,30]], "tests/test_context.py": [[1,100]], "tests/test_signals.py": [[311,340],[397,452],[466,505]], "pyproject.toml": [[1,100]]},
+      "metadata_hash_only": []
+    },
+    {
+      "slot": "H3",
+      "root": "evidence://campaign/targets/H3",
+      "before": {"commit": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b", "tree": "458340823cb11be5a962b17b90c9bbcb43f0536d", "tracked_status_stdout": "", "named_files_sha256": "cd31486b6218ede490541f87c59f7ebc9258ee9403f2a73a2d5d694579fe65ea"},
+      "after": {"commit": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b", "tree": "458340823cb11be5a962b17b90c9bbcb43f0536d", "tracked_status_stdout": "", "named_files_sha256": "cd31486b6218ede490541f87c59f7ebc9258ee9403f2a73a2d5d694579fe65ea"},
+      "named_files": 6,
+      "metadata_sizes": {"src/index.ts": 102267, "src/diagnostics-channel.ts": 396, "src/perf.ts": 505, "package.json": 5368, "tsconfig.json": 485, "test/basic.ts": 8409},
+      "read_windows": {"src/index.ts": [[3072,3171],[2340,2400],[1,100],[1211,1310],[2158,2257],[3025,3071],[3172,3245],[1435,1534],[100,120],[1535,1603],[1726,1848],[2258,2317],[2640,2650],[3000,3024]], "src/diagnostics-channel.ts": [[1,40]], "src/perf.ts": [[1,40]], "package.json": [[1,100],[101,166]], "tsconfig.json": [[1,50]], "test/basic.ts": [[1,100],[100,199]]},
+      "metadata_hash_only": []
+    }
+  ],
+  "hash_recipe": "For each root sort the 9/6/6 named scope files, construct [relative_path, byte_count, sha256(raw_bytes)] entries, JSON serialize with separators=(',',':'), ensure_ascii=True, then sha256(UTF-8). Source hashes first captured after inspection but before artifact writing; final source hashes captured after first report materialization. Subsequent edits corrected only advisory citations. Git commit/tree/status checked before source inspection and after materialization. Byte hashing is data-only, not semantic inspection.",
+  "commands": [
+    {
+      "tool": "bash",
+      "command": "git --no-pager -C checkout://trusted-product rev-parse HEAD HEAD^{tree}; git --no-pager -C checkout://trusted-product branch --show-current; git --no-pager -C checkout://trusted-product ls-files '*instructions*' '*CONTRIBUT*' '*AGENTS*'",
+      "shell_id": "817",
+      "exit": 0,
+      "stdout": "544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89\n6b966f9e1a6874e811876e5ce350a01c489545f5\nfeat/practical-skill-benchmark\n.github/copilot-instructions.md\n"
+    },
+    {
+      "tool": "python3 -c",
+      "shell_id": "819",
+      "source": "import os,json,stat,subprocess; from pathlib import Path; q=Path(\"evidence://campaign\"); s=json.loads((q/\"scopes/heldout.json\").read_text()); paths=[q/\"locked/proof-readiness\",q/\"advisories\"]; print(\"PATHS\",[(str(p),str(p.resolve()),p.is_symlink()) for p in paths]);\nfor r in s[\"records\"]:\n p=Path(r[\"root\"]); print(\"ROOT\",r[\"id\"],str(p.resolve()),p.is_symlink());\n for args in ([\"rev-parse\",\"HEAD\",\"HEAD^{tree}\"],[\"status\",\"--porcelain=v1\",\"--untracked-files=no\"]):\n  c=[\"git\",\"--no-pager\",\"-c\",\"core.fsmonitor=false\",\"-C\",str(p)]+args; x=subprocess.run(c,capture_output=True,text=True); print(\"COMMAND\",c,\"EXIT\",x.returncode,\"OUT\",x.stdout,\"ERR\",x.stderr);\n for f in r[\"production_files\"]+r[\"immediate_caller_or_helper_files\"]+r[\"configuration_files\"]+r[\"test_or_requirement_files\"]:\n  t=p/f; st=t.lstat(); print(f,\"bytes\",st.st_size,\"regular\",stat.S_ISREG(st.st_mode),\"symlink\",t.is_symlink())",
+      "exit": 0,
+      "result": "All six Git subprocesses exit 0, stderr empty; identities equal scope; tracked status empty. Roots/skill/advisories paths resolve to themselves and are not symlinks. All 21 named leaves regular/non-symlink, sizes recorded in source_identity."
+    },
+    {
+      "tool": "python3 -c",
+      "shell_id": "823",
+      "source": "import os,json,stat,hashlib; from pathlib import Path; q=Path(\"evidence://campaign\"); s=json.loads((q/\"scopes/heldout.json\").read_text());\nfor r in s[\"records\"]:\n p=Path(r[\"root\"]); entries=[];\n for f in sorted(r[\"production_files\"]+r[\"immediate_caller_or_helper_files\"]+r[\"configuration_files\"]+r[\"test_or_requirement_files\"]):\n  t=p/f; assert all(not x.is_symlink() for x in [t,*t.parents]); st=t.lstat(); assert stat.S_ISREG(st.st_mode) and st.st_size<=262144; b=t.read_bytes(); entries.append([f,len(b),hashlib.sha256(b).hexdigest()]);\n print(r[\"id\"],\"named_files_sha256\",hashlib.sha256(json.dumps(entries,separators=(\",\",\":\"),ensure_ascii=True).encode()).hexdigest(),\"files\",len(entries));\np=q/\"advisories/heldout-a\"; print(\"OUTPUT\",str(p.resolve()),\"exists\",p.exists(),\"no_symlink_components\",all(not x.is_symlink() for x in [p,*p.parents]))",
+      "exit": 0,
+      "result": "Before named-file aggregates in source_identity. Output initially nonexistent, resolved to exact assigned path, no symlink components. All assertions succeeded."
+    },
+    {
+      "tool": "python3 -c",
+      "shell_id": "825",
+      "source": "import json,stat,hashlib,subprocess; from pathlib import Path; q=Path(\"evidence://campaign\"); s=json.loads((q/\"scopes/heldout.json\").read_text());\nfor r in s[\"records\"]:\n p=Path(r[\"root\"]); entries=[];\n for f in sorted(r[\"production_files\"]+r[\"immediate_caller_or_helper_files\"]+r[\"configuration_files\"]+r[\"test_or_requirement_files\"]):\n  t=p/f; assert all(not x.is_symlink() for x in [t,*t.parents]); st=t.lstat(); assert stat.S_ISREG(st.st_mode) and st.st_size<=262144; b=t.read_bytes(); entries.append([f,len(b),hashlib.sha256(b).hexdigest()]);\n print(r[\"id\"],\"named_files_sha256\",hashlib.sha256(json.dumps(entries,separators=(\",\",\":\"),ensure_ascii=True).encode()).hexdigest(),\"files\",len(entries));\n for args in ([\"rev-parse\",\"HEAD\",\"HEAD^{tree}\"],[\"status\",\"--porcelain=v1\",\"--untracked-files=no\"]):\n  c=[\"git\",\"--no-pager\",\"-c\",\"core.fsmonitor=false\",\"-C\",str(p)]+args; x=subprocess.run(c,capture_output=True,text=True); print(\"COMMAND\",c,\"EXIT\",x.returncode,\"OUT\",x.stdout,\"ERR\",x.stderr);\nfor slot in (\"H1\",\"H2\",\"H3\"):\n p=q/\"advisories/heldout-a\"/slot/\"assessment.md\"; b=p.read_bytes(); print(\"ARTIFACT\",str(p),\"bytes\",len(b),\"sha256\",hashlib.sha256(b).hexdigest());\np=q/\"locked/proof-readiness/SKILL.md\"; b=p.read_bytes(); print(\"SKILL\",len(b),hashlib.sha256(b).hexdigest())",
+      "exit": 0,
+      "result": "After source aggregates and Git identities unchanged; all six Git exits 0/stderr empty/status empty. Initial Markdown hashes computed, then two citation-only report corrections superseded H2/H3 artifact hashes. SKILL.md hash/bytes recorded above."
+    },
+    {
+      "tool": "python3 -c",
+      "shell_id": "827",
+      "source": "import hashlib; from pathlib import Path; p=Path(\"evidence://campaign/advisories/heldout-a\");\nfor slot in (\"H1\",\"H2\",\"H3\"):\n b=(p/slot/\"assessment.md\").read_bytes(); print(slot,len(b),hashlib.sha256(b).hexdigest())",
+      "exit": 0,
+      "result": "Final canonical Markdown byte counts and SHA-256 values recorded in canonical_artifacts."
+    }
+  ],
+  "git_command_expansion": "In recorded Python scripts the actual read-only Git command is ['git','--no-pager','-c','core.fsmonitor=false','-C', source_identity[i].root] + ['rev-parse','HEAD','HEAD^{tree}'] or ['status','--porcelain=v1','--untracked-files=no']; each ran once before and once after, all exit 0.",
+  "inspection_tools": {
+    "view": "Absolute paths and inclusive read_windows above; instructions/brief/scope/skill read separately. No entire large target view.",
+    "rg": [
+      {"slot": "H1", "files": ["conn.go"], "pattern": "^func |writeErr|writeFatal|isWriting|mu ", "head_limit": 100, "matches": 88},
+      {"slot": "H1", "files": ["conn_test.go","doc.go","client.go","server.go","client_server_test.go"], "pattern": "newConn\\(|WriteControl|WriteDeadline|CloseSent|Concurrent|Concurrency|writeErr|WriteError", "head_limit": 80, "matches": 41},
+      {"slot": "H2", "files": ["src/blinker/base.py"], "pattern": "^    (async )?def |weak|_by_sender|_by_receiver", "head_limit": 100, "matches": 65},
+      {"slot": "H2", "files": ["tests/test_signals.py"], "pattern": "^def test_|ANY|sender=|muted", "head_limit": 95, "matches": 36},
+      {"slot": "H3", "files": ["src/index.ts"], "pattern": "(delete\\(|#delete\\(|#evict\\(|#removeItemSize|#addItemSize|set\\(|#connect|#moveToTail|class LRUCache)", "head_limit": 90, "matches": 56},
+      {"slot": "H3", "files": ["src/index.ts"], "pattern": "#(requireSize|isStale|isBackgroundFetch|rindexes)|engines|node", "head_limit": 50, "matches": 49},
+      {"slot": "H2", "files": ["pyproject.toml"], "pattern": "requires-python|tool.pytest|testpaths", "matches": 3},
+      {"slot": "H3", "files": ["tsconfig.json"], "pattern": "target", "matches": 1},
+      {"slot": "H1", "files": ["conn.go"], "pattern": "After a write|err := c.write\\(w.frameType|func \\(w \\*messageWriter\\) Close|return w.flushFrame", "matches": 4}
+    ],
+    "rg_options": "All target searches output_mode=content, -n=true, exact named regular files only; no target instructions or recursive target glob.",
+    "apply_patch": "Added three canonical assessments, corrected two advisory citation lines/intent phrasing during manual review, added RESULT.json; no other writable paths.",
+    "glob": "Instruction discovery only in cwd/trusted project; no matches were normal discovery results, not failed execution.",
+    "directories_viewed": "Exact locked skill and its references/templates directories only; no maps, logs, grades, rubric, prior outputs or other-replica content."
+  },
+  "coverage_and_safety": {
+    "initial_file_budget": "250/root; only 9/6/6 explicitly named scope files metadata-checked and hashed.",
+    "max_file_bytes": 262144,
+    "preferred_window": 100,
+    "deviations": "H2 initial base window 140 and H3 helper window 123 exceeded preferred 100, not ordinary 200. Trusted README window requested 180, skill window 200. Small files/EOF windows returned fewer lines. Targeted closure widened within existing named-file scope only. Read bounds were practical diagnostics, not enforced cumulative limits; no codepoint/syscall counters or forecast ledger.",
+    "truncation": "No observed tool truncation or search head-limit loss; H3 whole index file was not interpreted.",
+    "all_exclusions_retained": true,
+    "source_path_limitations": "Leaf lstat before reads; root resolution initially; full component symlink assertions before/after hashes. Not atomic, no OS-enforced no-follow/sandbox; TOCTOU remains possible.",
+    "source_identity_limitations": "Git HEAD tree plus tracked status is not all filesystem identity; untracked excluded, hashes cover only named source bytes, first byte digest after inspection. Equal before/after does not exclude transient concurrent changes.",
+    "target_execution": "none",
+    "network": "none",
+    "agents": "none",
+    "project_target_writes": "none",
+    "approvals": "Read-only Git/native inspection and data-only hashing authorized. Actual owner grants for future implementation/execution absent.",
+    "checks_not_claimed": ["target tests","builds","proofs","exact verifier compatibility","complete call graph","recommendation correctness","merge approval"]
+  },
+  "data_check": {
+    "tool": "python3 -c",
+    "shell_id": "828",
+    "source": "import json,hashlib; from pathlib import Path; p=Path(\"evidence://campaign/advisories/heldout-a/RESULT.json\"); r=json.loads(p.read_text()); assert len(r[\"canonical_artifacts\"])==3;\nfor a in r[\"canonical_artifacts\"]:\n b=Path(a[\"path\"]).read_bytes(); assert len(b)==a[\"bytes\"] and hashlib.sha256(b).hexdigest()==a[\"sha256\"]; assert b\"## Scope and evidence\" in b and b\"## Decisions\" in b and b\"## Actionable handoff\" in b and b\"## Review and limitations\" in b; print(a[\"slot\"],\"hash/byte-count/headings match\");\nprint(\"RESULT JSON parses; artifact metadata matches. Data-only check, not semantic validation.\")",
+    "exit": 0,
+    "result": "RESULT JSON parsed, exactly three artifacts, each hash/byte count and four template headings matched. Not semantic validation, target test or correctness evidence."
+  },
+  "failures": [],
+  "unresolved_blockers": [
+    "Actual owner grants, requirement authority/intent, exact supported tool/configuration boundaries and appropriate execution isolation are absent for all future implementation/execution recommendations.",
+    "Uninspected dependencies/callbacks/platform and async paths remain unknown; each canonical assessment names its conditional closure and command-selection task."
+  ],
+  "next_action": "Return the canonical artifacts for independent evaluation; orchestrator must escalate real scope/contract/owner authorization decisions before any implementation or execution. Stop after this single H1/H2/H3 cohort; no retry, feedback lookup, repair or promotion."
+}

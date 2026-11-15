@@ -1,0 +1,9 @@
+{
+  "candidate_commit": "29df86f38291093e90055f30c00361930d5d27cd",
+  "locked_skill_files_equal_candidate_git_blobs": 10,
+  "trusted_project_tests": "tests/test_agent_native_skill.py tests/test_distribution.py",
+  "result": "12 passed in0.09s",
+  "execution_scope": "Trusted product asset/distribution tests only, NOT assessed target code or recommendation correctness",
+  "command_record": "Bash781",
+  "native_client_or_target_compatibility": "not established"
+}

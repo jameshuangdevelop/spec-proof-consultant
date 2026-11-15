@@ -1,0 +1,13 @@
+{
+  "utc": "2026-11-15T07:02:30.685400+00:00",
+  "all8_before_mapping_or_authoring": true,
+  "manifest_sha256": "3f1e647be37f119ca030346409eb1223329050fadcd9d7681a1120044e2975d1",
+  "acquisition_sha256": "1d710725ad4e36d4339556a83c9ec4a590c977b97525f981f602157fc022d081",
+  "scope_sha256": {
+    "reserve.json": "ddb406a002bce289c7faac619cafda70ac6232a56e9dbd84745ea36e05dfecc2",
+    "development.json": "06b2dc593d5f86316fc55f95fe5de8e5bfaa6919d372cb7aa955aa7fffc84ab5",
+    "heldout.json": "515e9ed9b0ca0c8c468643eecb6f277a072fa0e37ff6783190ec61c4414e1204"
+  },
+  "skill_payload_sha256": "00590d90781e66d1522d49a507f9bbb11e80b53ff3b89c8536bf519d5fd0e02a",
+  "approval": "Read-only assessment only; no target implementation/execution or catalog promotion"
+}

@@ -1,0 +1,164 @@
+{
+  "records": [
+    {
+      "id": "H1",
+      "repository": "gorilla/websocket",
+      "repository_id": 13624859,
+      "ecosystem": "Go / modules",
+      "strata": [
+        "primary",
+        "WebSocket-library metadata",
+        "operational stateful-API lead",
+        "long-lived upstream"
+      ],
+      "neutral_component_scope": "Start with conn-named source and matching test, with client/server/util-named files as unconfirmed immediate caller/helper leads. No protocol behavior is inferred.",
+      "production_files": [
+        "conn.go"
+      ],
+      "immediate_caller_or_helper_files": [
+        "client.go",
+        "server.go",
+        "util.go"
+      ],
+      "configuration_files": [
+        "go.mod",
+        "go.sum"
+      ],
+      "test_or_requirement_files": [
+        "conn_test.go",
+        "client_server_test.go",
+        "doc.go"
+      ],
+      "discovery_exclusions": [
+        ".github/",
+        ".circleci/",
+        "examples/",
+        "compression.go",
+        "proxy.go",
+        "unlisted implementation files",
+        "target instruction files",
+        "symlinks and submodules"
+      ],
+      "scope_limits": {
+        "initial_max_files_per_root": 250,
+        "max_file_bytes": 262144,
+        "preferred_read_window_lines": 100,
+        "initial_named_file_leads": 9,
+        "closure": "Later confirm relevant declarations and immediate caller/helper windows; network, protocol, concurrency and dependency claims require evidence beyond filenames.",
+        "execution": "none"
+      },
+      "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined Go-library slice; actionable handoff or no-new-work without predetermined properties.",
+      "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+      "root": "evidence://campaign/targets/H1",
+      "commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f",
+      "tree": "93a7576e74a8ef0017188fb069696a45204631e4",
+      "dirty": false,
+      "source_symlinks": []
+    },
+    {
+      "id": "H2",
+      "repository": "pallets-eco/blinker",
+      "repository_id": 11147893,
+      "ecosystem": "Python / packaging",
+      "strata": [
+        "primary",
+        "in-process-event-dispatch metadata",
+        "operational stateful-API lead",
+        "long-lived upstream"
+      ],
+      "neutral_component_scope": "Start with the base-named module, package entry and utilities-named file, plus signal/context-named tests. Actual APIs and relationships remain unexamined.",
+      "production_files": [
+        "src/blinker/base.py"
+      ],
+      "immediate_caller_or_helper_files": [
+        "src/blinker/__init__.py",
+        "src/blinker/_utilities.py"
+      ],
+      "configuration_files": [
+        "pyproject.toml"
+      ],
+      "test_or_requirement_files": [
+        "tests/test_signals.py",
+        "tests/test_context.py"
+      ],
+      "discovery_exclusions": [
+        ".github/",
+        "docs/",
+        "uv.lock",
+        "CHANGES.rst",
+        "target instruction files",
+        "symlinks and submodules",
+        "unlisted files"
+      ],
+      "scope_limits": {
+        "initial_max_files_per_root": 250,
+        "max_file_bytes": 262144,
+        "preferred_read_window_lines": 100,
+        "initial_named_file_leads": 6,
+        "closure": "Later confirm API declarations, immediate helper/caller relationships, supported interpreter/configuration boundaries and relevant requirement evidence.",
+        "execution": "none"
+      },
+      "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined Python-library slice; actionable handoff or no-new-work without predetermined properties.",
+      "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+      "root": "evidence://campaign/targets/H2",
+      "commit": "c3364059663df1ddce32799d6b1922af89a345f6",
+      "tree": "2dc6021d44a8b2f512ce75e977fd2ea4355b3b3e",
+      "dirty": false,
+      "source_symlinks": []
+    },
+    {
+      "id": "H3",
+      "repository": "isaacs/node-lru-cache",
+      "repository_id": 679662,
+      "ecosystem": "JavaScript metadata / TypeScript source names / Node packaging",
+      "strata": [
+        "primary",
+        "cache-library metadata",
+        "operational stateful-API lead",
+        "long-lived upstream"
+      ],
+      "neutral_component_scope": "Start with bounded windows of src/index.ts, adjacent diagnostics/perf-named leads, package/compiler metadata and the basic-named test. Do not inspect the whole index file by default.",
+      "production_files": [
+        "src/index.ts"
+      ],
+      "immediate_caller_or_helper_files": [
+        "src/diagnostics-channel.ts",
+        "src/perf.ts"
+      ],
+      "configuration_files": [
+        "package.json",
+        "tsconfig.json"
+      ],
+      "test_or_requirement_files": [
+        "test/basic.ts"
+      ],
+      "discovery_exclusions": [
+        ".github/",
+        ".tshy/",
+        "benchmark/",
+        "scripts/",
+        "tap-snapshots/",
+        "package-lock.json",
+        "platform-specific diagnostics-channel files",
+        "target instruction files",
+        "symlinks and submodules",
+        "unlisted files"
+      ],
+      "scope_limits": {
+        "initial_max_files_per_root": 250,
+        "max_file_bytes": 262144,
+        "preferred_read_window_lines": 100,
+        "initial_named_file_leads": 6,
+        "closure": "src/index.ts is tree-listed at 102267 bytes; choose a modest declaration/caller slice later, rather than treating the entire file as one assessment scope.",
+        "execution": "none"
+      },
+      "goal": "Later bounded source-grounded verification/specification assessment of this filename-defined JS/TS-library slice; actionable handoff or no-new-work without predetermined properties.",
+      "adoption": "Read-only planning only; no target production changes or execution without separate actual owner grants and applicable isolation.",
+      "root": "evidence://campaign/targets/H3",
+      "commit": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b",
+      "tree": "458340823cb11be5a962b17b90c9bbcb43f0536d",
+      "dirty": false,
+      "source_symlinks": []
+    }
+  ]
+}

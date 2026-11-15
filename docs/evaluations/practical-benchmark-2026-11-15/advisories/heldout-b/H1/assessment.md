@@ -1,0 +1,45 @@
+# Proof-readiness advisory
+
+Status: recommendation only; no target execution or verifier result.
+Date: 2026-11-15. Task: practical-heldout-author-b, H1.
+User goal: bounded source-grounded assessment of the selected Go-library slice.
+Adoption: read-only planning; actual owner implementation/execution grants absent.
+
+## Scope and evidence
+
+| Root ID | Selected absolute root | Revision / dirty state | Inspected areas | Skipped / unknown areas and why |
+|---|---|---|---|---|
+| r1 | evidence://campaign/targets/H1 | commit e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f; tree 93a7576e74a8ef0017188fb069696a45204631e4; tracked status empty before and after | Writer lifecycle, constructor and write callees in conn.go; immediate constructor windows in client/server; pool and stale-writer tests; doc.go concurrency/buffers; go.mod | util.go and go.sum content unread; client_server_test.go search-only; remaining read/protocol paths not deeply inspected; compression.go, proxy.go, examples, CI, unlisted files, target instructions, nested/vendor/generated/private/binary areas excluded |
+
+Output: evidence://campaign/advisories/heldout-b/H1/assessment.md, outside all selected roots.
+Named-file metadata checked: 9 regular files, all below 256 KiB; 7 had content/search inspection. Explicit read windows and searches are recorded in RESULT.json. No recursive source dump; no tool truncation. One window was 105 lines rather than the preferred 100 (within the ordinary 200 ceiling). No cumulative codepoint/syscall budget was enforced. Real-path and type checks are non-atomic; shared host is not a sandbox. Untracked content was not inspected.
+
+Existing assurance: `r1:conn_test.go:243` `TestWriteBufferPool` asserts release/reuse and payload round-trip; `r1:conn_test.go:349` `TestWriteBufferPoolError` asserts release after a write error; `r1:conn_test.go:479` `TestWriteAfterMessageWriterClose` rejects writes after explicit close and implicit replacement. These are read assertions, not passing results. No reproduction or independently supplied test-result provenance.
+
+## Decisions
+
+One modest lifecycle-contract opportunity; do not duplicate existing sample tests blindly. Native trace tests are a better first candidate than a separate finite model because much basic lifecycle behavior already has assertions and concrete network/pool errors matter. No native Go proof scenario is present in the bundled index. TLC's state-machine scenario was considered, not established as an approved project match. Protocol correctness, compression, network delivery and concurrency proofs are deferred.
+
+### O1 — Make writer replacement and resource ownership explicit
+
+- Priority and rationale: medium. An old writer retained by an application must not damage a replacement writer or release its buffer. Incremental benefit is trace coverage of failure/replacement interleavings, not another happy-path Close test. Harness cost is likely modest using existing fake connections, but complete dependency closure and intended error policy remain unknown.
+- Target and boundary: `r1:conn.go:484` `beginMessage` closes the prior writer before opcode validation, ignores that Close return, then checks the sticky write error. `r1:conn.go:527` `NextWriter` installs the writer and may wrap it in compression. `r1:conn.go:549` `endMessage` sets the terminal writer error, clears the connection writer and returns a pooled buffer. `r1:conn.go:565` `flushFrame`, `r1:conn.go:666` `Write`, and `r1:conn.go:736` `Close` implement terminal-state checks. `r1:conn.go:767` `WriteMessage` also has a server fast path.
+  `r1:conn.go:284` `newConn` allocates or defers buffers; constructor callers are confirmed at `r1:client.go:326` and `r1:server.go:213`. `r1:conn.go:379` `write` calls net.Conn deadline/write operations and `writeFatal`; `r1:conn.go:407` `writeBufs` delegates to net.Buffers. Those standard-library bodies and user pool implementations are not inspected. Client masking calls `maskBytes`, whose util.go body is unread. Compression wrapper bodies are excluded, so full API compatibility remains unknown.
+  `r1:doc.go:124` Concurrency permits one concurrent reader and writer, prohibits overlapping application write calls, but permits Close/WriteControl concurrency. This opportunity concerns serial application writer operations; it does not infer race freedom or silently remove the permitted concurrent methods from the full API.
+- Requirement: **documented**, `r1:conn.go:519` `NextWriter` permits at most one open writer and closes a previous writer; `r1:doc.go:172` Buffers describes pooled ownership during a message. Requirement authority/owner approval unconfirmed. Sticky error details, exact repeated-Close behavior, invalid NextWriter side effects and a faulty pool's obligations are **inferred/unresolved**, not an approved stronger contract. Tests indicate stale writers fail, but do not authorize changing error policy.
+- Property: proposed finite trace domain of one connection, at most two retained writer handles and up to eight serial operations drawn from NextWriter (all supported opcodes plus an invalid opcode), Write (empty/small/buffer-crossing payload), Close and WriteMessage; pool absent or contract-conforming pool, server/client modes, successful or failing deadline/write boundary. First evidence task must decide the error and pool contracts; do not assume network success. Candidate postconditions: successful replacement leaves at most one live writer; terminal handles cannot mutate a new writer or cause an additional pool return; terminalization returns the owned buffer once when pooling applies. State invariant: each acquired buffer has at most one active owner and at most one release per acquisition. Counterexamples: stale Write/Close alters the replacement, duplicate release, or invalid replacement/error cleanup violates the owner-approved policy. Payload delivery is not claimed.
+- Method: explicit **noncatalog source inspection followed, conditionally, by native trace tests**. Tests sample implementation behavior, not proof or exhaustive traces. Exact Go/test compatibility is unknown; go.mod declares Go 1.20 (`r1:go.mod:3`) and x/net v0.26.0, not an installed verified toolchain. Source-only analysis needs no invocation.
+- Alternatives: `tla-state-machine-safety` version 1.0.0, locked references/tlc.md, could check approved invariants in an explored finite abstraction, subject to constraints and complete exploration; it would not prove this implementation, real I/O or unbounded behavior. Separate abstraction acceptance and correspondence are absent, so defer it. Kani/Verus/CBMC native scenarios do not match this Go implementation; Dafny replacement adoption is absent.
+- Dependencies/readiness: resolve invalid-opcode replacement and terminal-error intent, audit immediate helper/pool/compression boundaries within newly approved scope if needed, and select an isolated test harness. No implementation or execution approval exists.
+
+## Actionable handoff
+
+| Work ID | Next bounded task / proposed files | Depends on | Approval and readiness | Acceptance / evidence required |
+|---|---|---|---|---|
+| W1 | Read-only lifecycle decision note, outside targets, mapping the cited paths and unresolved error/resource policies | Current evidence | Advisory proposal only; obtain authorization for any expanded helper scope and owner decisions | Record success/error/invalid-opcode/repeated-Close traces, requirement classifications, concrete pool assumptions and remaining unknowns; compare existing tests |
+| W2 | Read-only command-selection artifact `H1-writer-test-invocation.md` outside targets | W1 and selected test scope | Proposed, unexecuted; does not grant execution | Pin Go release, dependency availability, fake-I/O harness scope, working directory, exact focused test arguments, lifecycle side effects and isolation plan; avoid network-based integration tests |
+| W3 | Conditional focused lifecycle regressions, proposed conn_test.go only in a separately authorized writable checkout | W1, W2, approved requirements | **Blocked**: actual owner implementation and execution grants and isolation absent | Cover stale handles, implicit close failure, invalid opcode, empty writes, pool reuse and repeated close; retain exact tree/harness/tool versions, commands, full output and failures; report tests as tests |
+
+## Review and limitations
+
+Manual citation/root/guide and dependency-order review completed; source commit/tree and tracked dirty status unchanged on recheck. No target commands, tests, builds, imports or proofs ran. Skill version 0.2.1 was read from the exact locked path, with index, TLC guide, template and worked examples. Catalog provenance is documented guidance, not reproduced evidence. This slice does not establish full caller/callee closure, all configurations, compatibility, protocol safety or recommendation correctness. Owner decisions and actual grants must be escalated before implementation; this assessment grants none.

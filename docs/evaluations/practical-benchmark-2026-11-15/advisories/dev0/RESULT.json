@@ -1,0 +1,149 @@
+{
+  "task": "practical-dev-author-0",
+  "status": "completed",
+  "result_kind": "single blinded three-root advisory cohort; ready for independent evaluation, not merge approval",
+  "q": "evidence://campaign",
+  "output_directory": "evidence://campaign/advisories/dev0",
+  "artifacts": [
+    {
+      "slot": "D1",
+      "root_id": "r1",
+      "path": "evidence://campaign/advisories/dev0/D1/assessment.md",
+      "sha256": "257dffdba57602f127994bd23b0caeb3827ac7e27b11d6c17fb75da1e1f8c5f4",
+      "commit": "8c535a260ce561eaab4111aafc29038eb9f77ff3",
+      "tree": "d0c2d891838c3c188f084bdafa0442e063b04d62",
+      "initial_and_final_status_short": "",
+      "target_view_ranges": {
+        "src/map.rs": [[1,100],[130,290],[344,410]],
+        "src/lib.rs": [[365,450]],
+        "src/iter.rs": [[1,100]],
+        "tests/map.rs": [[1,100]],
+        "Cargo.toml": [[1,100]],
+        "build.rs": [[1,100]]
+      }
+    },
+    {
+      "slot": "D2",
+      "root_id": "r1",
+      "path": "evidence://campaign/advisories/dev0/D2/assessment.md",
+      "sha256": "ed1d3f7969cbfea019274ca0f8021cbf8d97422de48d0b75cc94795e68723208",
+      "commit": "3febcb8561554927155923da335ac0549235b0b3",
+      "tree": "d1ee844cac447bf4d93c75de52532e79e5529c35",
+      "initial_and_final_status_short": "",
+      "target_view_ranges": {
+        "src/timer.c": [[1,100],[96,200]],
+        "src/heap-inl.h": [[20,120],[115,215],[210,260]],
+        "src/uv-common.h": [[280,365]],
+        "src/uv-common.c": [[255,305]],
+        "include/uv.h": [[1008,1040],[20,75]],
+        "CMakeLists.txt": [[1,55],[188,215]],
+        "configure.ac": [[1,100]],
+        "SUPPORTED_PLATFORMS.md": [[1,100]]
+      }
+    },
+    {
+      "slot": "D3",
+      "root_id": "r1",
+      "path": "evidence://campaign/advisories/dev0/D3/assessment.md",
+      "sha256": "7e2713d9d22115f4faf62a7dea2018c1c1f0ce92f882da051feae7809e4d95cc",
+      "commit": "29465588d3dfdc80fba5e198037582b8fdb5dd60",
+      "tree": "5e56720c8ea36b1d385362668605d0b40aa645e8",
+      "initial_and_final_status_short": "",
+      "target_view_ranges": {
+        "db/write_batch.cc": [[1,100],[97,200]],
+        "include/leveldb/write_batch.h": [[1,100]],
+        "db/write_batch_internal.h": [[1,100]],
+        "db/write_batch_test.cc": [[1,100],[90,150]],
+        "db/db_impl.cc": [[1206,1330]],
+        "db/db_impl.h": [[120,145]],
+        "CMakeLists.txt": [[1,55],[293,355]],
+        ".gitmodules": [[1,20]]
+      }
+    }
+  ],
+  "changed_files": ["D1/assessment.md","D2/assessment.md","D3/assessment.md","RESULT.json"],
+  "scope": {
+    "source_of_roots_goals_adoption": "scopes/development.json",
+    "target_roots": ["targets/D1","targets/D2","targets/D3"],
+    "target_execution": "none authorized; none performed",
+    "writable": "advisories/dev0/ only",
+    "selected_target_files_inspected": 22,
+    "source_modified": false,
+    "publication_operations": [],
+    "hypotheses_and_proposed_work": "Only in the three canonical Markdown assessments; RESULT is bookkeeping, not a second advisory"
+  },
+  "known_context": {
+    "startup_checkout": "checkout://agent-startup",
+    "startup_document_read": "docs/AGENT-ORGANIZATION.md",
+    "startup_discovery": "glob **/*AGENT* returned only that document; no legacy skill or product source read",
+    "trusted_checkout": "checkout://trusted-product",
+    "trusted_commit": "544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89",
+    "trusted_tree": "6b966f9e1a6874e811876e5ce350a01c489545f5",
+    "trusted_branch": "feat/practical-skill-benchmark",
+    "trusted_status_short": "",
+    "trusted_instructions": ["docs/AGENT-ORGANIZATION.md",".github/copilot-instructions.md"],
+    "skill": "skills/candidate-0.2.1/proof-readiness/SKILL.md",
+    "skill_version": "0.2.1",
+    "skill_sha256": "68ae68b8b2fecd9067ddc169522c495a6080c66da6bc08fcbc93f8c5d55c8a37",
+    "bundled_assets_loaded": ["references/index.md","references/cbmc.md","references/tlc.md","templates/assessment.md","examples/assessments.md:1-100"],
+    "no_cli_install_api_prerequisite": true,
+    "private_mapping": "Parent receipt mentioned in assignment; no map facts or keys supplied or read",
+    "forbidden_context_read": false,
+    "environment": "shared, not an execution sandbox"
+  },
+  "tools_and_results": {
+    "native_tools": ["functions.view","functions.glob","functions.rg","functions.bash","functions.apply_patch"],
+    "metadata": "stat -f '%N %HT %z' on selected roots, named source-parent directories, all 22 leads and output paths; stat -f '%N %HT' on Q ancestors. All observed source leads regular; output artifacts regular. Initial advisories parent absent.",
+    "target_identity_check_command": "cd evidence://campaign; for r in D1 D2 D3; do printf '%s\\n' \"$r\"; git -C targets/$r --no-pager rev-parse HEAD HEAD^{tree}; git -C targets/$r --no-pager status --short; done; shasum -a 256 skills/candidate-0.2.1/proof-readiness/SKILL.md",
+    "identity_result": "All commits/trees matched immutable supplied identities; status empty initially and at final source recheck",
+    "trusted_metadata_commands": [
+      "git -C checkout://trusted-product --no-pager rev-parse HEAD HEAD^{tree}",
+      "git -C checkout://trusted-product --no-pager status --short",
+      "git -C checkout://trusted-product --no-pager ls-files '*instructions*' '*CONTRIBUT*' '*AGENTS*'",
+      "git -C checkout://trusted-product --no-pager branch --show-current"
+    ],
+    "artifact_hash_command": "cd evidence://campaign; shasum -a 256 advisories/dev0/D1/assessment.md advisories/dev0/D2/assessment.md advisories/dev0/D3/assessment.md",
+    "source_searches": [
+      {"files":["D1/src/map.rs","D1/src/lib.rs"],"pattern":"pub fn (remove|swap_remove|shift_remove|append|sort_keys|retain)|pub mod map|mod iter|cfg.*(std|alloc)|serde_core","matches":32},
+      {"files":["D2/src/uv-common.c","D2/src/uv-common.h","D2/include/uv.h"],"pattern":"uv__handle_(init|start|stop)|uv__is_(active|closing)|uv__next_timeout|uv__run_timers|queue.h|UV_TIMER|timer_counter|uv_timer_|uv__update_time","matches":28},
+      {"files":["D3/db/db_impl.cc","D3/db/db_impl.h"],"pattern":"WriteBatch|InsertInto|BuildBatchGroup|Write\\(","matches":33},
+      {"files":["D3/CMakeLists.txt","D2/CMakeLists.txt","D2/configure.ac"],"pattern":"CXX_STANDARD|BUILD_TEST|write_batch|gtest|snappy|Threads|NDEBUG|WIN32|uv-common|timer.c|heap|C_STANDARD|libuv|AM_CFLAGS","matches":77,"head_limit":100},
+      {"files":["D2/include/uv.h","D3/db/write_batch.cc","D3/db/write_batch_test.cc","D1/tests/map.rs"],"pattern":"uv/win.h|uv/unix.h|uv/rtos.h|struct uv_loop_s|timer_counter|timer_heap|Status WriteBatch::Iterate|found\\+\\+|WriteBatchInternal::Append|SetContents|TEST\\(WriteBatchTest|pub fn (insert|remove|shift_remove|append)|fn test_"},
+      {"files":["D2/src/timer.c","D2/src/heap-inl.h","D1/Cargo.toml","D1/src/lib.rs","D3/db/write_batch.cc","D3/include/leveldb/write_batch.h"],"pattern":"void uv__run_timers|int uv_timer_again|HEAP_EXPORT\\(void heap_(insert|remove)|preserve_order =|std =|alloc =|include!|class MemTableInserter|static int Count|Copies the operations"}
+    ],
+    "search_options": "All functions.rg calls output_mode=content, -n=true, explicit named paths; no recursive target search",
+    "artifact_writing": "Single apply_patch created three assessments, then apply_patch created RESULT.json; no source edits or advisory repair/retry",
+    "target_tests_builds_proofs": "not run",
+    "data_quality_checks": "Own artifact SHA-256 and type/size checks succeeded; manual source citation review, not a verifier"
+  },
+  "failed_operations": [
+    {
+      "operation": "python -c data-only lstat/JSON metadata probe",
+      "result": "/bin/bash: python: command not found; exit 127",
+      "effect": "No Python code ran; native stat used for authorized metadata instead; no dependency installation"
+    },
+    {
+      "operation": "stat of Q/advisories before artifact creation",
+      "result": "No such file or directory; other selected metadata and Git commands succeeded",
+      "effect": "Absent output parent subsequently created only by authorized apply_patch"
+    }
+  ],
+  "manual_review_diagnostics": [
+    "Post-materialization symbol search found nearby rather than exact declaration-start citations: D1 generated include is src/lib.rs:396, while advisory points to :392; D2 uv_timer_again starts timer.c:112 (advisory :111), uv__run_timers :164 (advisory :165), heap_insert definition heap-inl.h:106 (advisory :109); D3 MemTableInserter class starts write_batch.cc:116 (advisory :118). Windows include the named symbols. Artifacts retained as single-cohort authored outputs without repairs/retries; line-offset precision is a limitation, not evidence of a run.",
+    "Metadata-before-read applied to selected target leads; initial brief/trusted instruction/skill reads did not all have separate prior lstat checks.",
+    "Several explicit windows 101-161 lines exceed preferred 100 but remain below ordinary 200; overlap and EOF-shortened reads present; no hidden hard-budget gate claimed."
+  ],
+  "limitations": [
+    "No cumulative codepoint/syscall counter, atomic source snapshot, hard scanner limit, no-follow enforcement or isolation.",
+    "No comprehensive dependency/caller/platform closure; exact tool compatibility and owner intent remain unknown.",
+    "Tests and platform CI descriptions are presence/documented evidence only, not passing results.",
+    "No target execution/import, builds/tests/proofs/installers, network, secrets/private data reads, product writes, knowledge promotion or nested agents.",
+    "Trusted contribution workflow read; no branch/commit/push/PR authorized or performed for these outside-root assessment artifacts."
+  ],
+  "unresolved_blockers": [
+    "Any future implementation requires actual named owner approval, resolved requirement/domain decisions and supported dependency/configuration closure.",
+    "Any future execution requires separate authorization and appropriate isolation; shared environment supplies neither.",
+    "Expanded reads of excluded/unlisted dependencies, tests or platforms require a new bounded scope."
+  ],
+  "next_action": "Orchestrator may independently evaluate the three canonical assessments and escalate future intent/approval decisions; stop after this single cohort, no grading or repairs."
+}

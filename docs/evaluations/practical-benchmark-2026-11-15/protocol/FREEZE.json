@@ -1,0 +1,15 @@
+{
+  "utc": "2026-11-15T06:54:29.995912+00:00",
+  "campaign": "practical-benchmark-20261115",
+  "authority": "User expressly authorized new simplified benchmark2026-11-15T06:50Z; no prior waiver",
+  "reviewed_protocol_hashes": {
+    "QUALITY.md": "a013b447f8792036fd7b8c3a86a42dea9d932fd939ab821e915a7493eb82d942",
+    "SCORING.json": "c30e9186ce8ad71db7908a1173a93eb5cff79cfe8dc77248f887b889894c3dce",
+    "OPERATIONS.md": "c3f41c2d3e619ee10d79ef22e86a18c8ed32521403d5028b3c39c61e3d479124"
+  },
+  "exclusions_sha256": "7401655329ceb3ca904ab34a9dd20c2788d3ba42c191c018b3550e1d9acfc580",
+  "before_fresh_selection": true,
+  "approved_base": "544a37baabf4a08d6fc4c5c6a7ef9d64a5226b89",
+  "candidate_assets_sha256": "00590d90781e66d1522d49a507f9bbb11e80b53ff3b89c8536bf519d5fd0e02a",
+  "prior_campaigns": "Stopped/unaccepted, unchanged; old deadline not carried into new authorization"
+}

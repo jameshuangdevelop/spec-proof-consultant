@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-15T07:21:23.882435+00:00",
+  "first_qualifying_cohort": "dev0",
+  "development_result_sha256": "bd3f8ee9a8435f17a305a1b1739b9d0e091641c0b9753ce3ee0ba03efd309bb3",
+  "skill_version": "0.2.1",
+  "source_commit": "29df86f38291093e90055f30c00361930d5d27cd",
+  "skill_files_sha256": {
+    "LICENSE": "49e48a0a97d402c39f98287fb49ca20429f38e83e1dea6745927829519be50f0",
+    "SKILL.md": "68ae68b8b2fecd9067ddc169522c495a6080c66da6bc08fcbc93f8c5d55c8a37",
+    "examples/assessments.md": "d44cff46a12b245f5d924fc95e7be00eefa678691bc7716ee76619433341db64",
+    "references/cbmc.md": "ae8c5f8fc5d2b53081fefec30db261fb7b97f4086a9c43ec962ca5f8bfa56249",
+    "references/dafny.md": "d972de1087f881efc258d9f35e609a64b57fd5441455ab957637641b25572c15",
+    "references/index.md": "57e253f5fd1a351bd6269f672fe305da6e9e59a6ccc1343183414962babe9457",
+    "references/kani.md": "6987800dbfb55c3046827169f3d299df8a6157b614c11667dec9dc02f91fe5d7",
+    "references/tlc.md": "94ea090e3b8c4622a56d35aaae1f29be015d92287e5ae4714f9f33f055af3487",
+    "references/verus.md": "973602907bf043d550b1e0ae5e0190cabcf34cc3c481db6cf76b8c1ecbebbe8e",
+    "templates/assessment.md": "16c9dce616f7970aeb4fadbf7c8b22b12075e77088989919df792ad4f3ca2a7e"
+  },
+  "author_config_sha256": "31d864466e09590af22327cf7a57fa925e20aab63edefbc9e157375fa33d8ab6",
+  "protocol_config_sha256": "c3f41c2d3e619ee10d79ef22e86a18c8ed32521403d5028b3c39c61e3d479124",
+  "runtime_model_full_context": "Unknown; no full-input or model-setting certification",
+  "no_product_repairs": true,
+  "approval": "Benchmark lock only, no merge/catalog/target implementation authority"
+}
